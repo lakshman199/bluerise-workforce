@@ -41,6 +41,9 @@ import {
   shiftHours,
 } from "@/lib/workforce";
 
+// The JSON store is read per request, so this page must not be prerendered.
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   const data = await readData();
   const weekStart = startOfWeek(todayISO());

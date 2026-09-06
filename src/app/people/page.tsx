@@ -11,6 +11,9 @@ import { buildEmployeeDetail, sortEmployees } from "@/lib/workforce";
 
 export const metadata: Metadata = { title: "People" };
 
+// The JSON store is read per request, so this page must not be prerendered.
+export const dynamic = "force-dynamic";
+
 export default async function PeoplePage() {
   const data = await readData();
   const employees = sortEmployees(data.employees);

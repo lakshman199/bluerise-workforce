@@ -429,9 +429,8 @@ function DayCell({
         aria-label={`Add a shift on ${date}`}
         className={cn(
           "text-muted-foreground/60 hover:border-primary/50 hover:text-primary flex cursor-pointer items-center justify-center rounded-md border border-dashed border-transparent transition-colors focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none",
-          shifts.length === 0
-            ? "flex-1 opacity-0 group-hover/cell:opacity-100 focus-visible:opacity-100"
-            : "h-6 opacity-0 group-hover/cell:opacity-100 focus-visible:opacity-100",
+          "opacity-0 group-hover/cell:opacity-100 focus-visible:opacity-100 pointer-coarse:opacity-70",
+          shifts.length === 0 ? "flex-1" : "h-6",
         )}
       >
         <Plus className="size-3.5" />
