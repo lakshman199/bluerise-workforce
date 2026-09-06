@@ -1,0 +1,121 @@
+@use 'breakpoints' as bp;
+
+body {
+  font-family: var(--br-font-sans);
+  font-size: var(--br-text-base);
+  color: var(--br-color-text);
+  background-color: var(--br-color-surface);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--br-weight-semibold);
+  line-height: var(--br-leading-tight);
+  letter-spacing: var(--br-tracking-tight);
+  color: var(--br-color-text);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--br-text-5xl);
+}
+
+h2 {
+  font-size: var(--br-text-4xl);
+}
+
+h3 {
+  font-size: var(--br-text-2xl);
+  letter-spacing: var(--br-tracking-snug);
+}
+
+h4 {
+  font-size: var(--br-text-xl);
+  letter-spacing: var(--br-tracking-snug);
+}
+
+h5 {
+  font-size: var(--br-text-lg);
+  letter-spacing: var(--br-tracking-normal);
+}
+
+h6 {
+  font-size: var(--br-text-base);
+  letter-spacing: var(--br-tracking-normal);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--br-color-text-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color var(--br-duration-fast) var(--br-ease-out);
+
+  &:hover {
+    color: var(--br-color-primary-active);
+  }
+}
+
+strong,
+b {
+  font-weight: var(--br-weight-semibold);
+}
+
+small {
+  font-size: var(--br-text-sm);
+}
+
+code,
+kbd,
+samp {
+  font-family: var(--br-font-mono);
+  font-size: 0.9em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--br-color-border);
+  margin-block: var(--br-space-8);
+}
+
+// Visually hidden but available to assistive technology.
+.br-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+// The skip link is the first focusable element on the page and only becomes visible when
+// it takes focus.
+.br-skip-link {
+  position: absolute;
+  top: var(--br-space-2);
+  left: var(--br-space-2);
+  z-index: var(--br-z-toast);
+  padding: var(--br-space-3) var(--br-space-5);
+  border-radius: var(--br-radius-md);
+  background: var(--br-color-primary);
+  color: var(--br-color-text-inverse);
+  font-weight: var(--br-weight-medium);
+  text-decoration: none;
+  transform: translateY(calc(-100% - var(--br-space-4)));
+  transition: transform var(--br-duration-base) var(--br-ease-out);
+
+  &:focus-visible {
+    transform: translateY(0);
+    color: var(--br-color-text-inverse);
+  }
+}

@@ -1,0 +1,29 @@
+// Breakpoints are SCSS variables rather than custom properties because media queries are
+// resolved at compile time and cannot read `var()`.
+//
+// Four breakpoints, not eight. The specification lists eight verification widths (375, 390,
+// 430, 768, 1024, 1280, 1440, 1920); fluid sizing between four breakpoints is what makes
+// all eight work without eight sets of overrides.
+
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+@mixin from($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin until($breakpoint) {
+  @media (max-width: ($breakpoint - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

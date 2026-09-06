@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    // Kept inside outDir so `nest build --deleteOutDir` clears it too. Left at the default
+    // location it survives the clean, and a stale cache silently suppresses emit.
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "exclude": ["node_modules", "dist", "test", "**/*.spec.ts"]
+}

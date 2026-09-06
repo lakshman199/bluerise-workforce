@@ -1,0 +1,141 @@
+// Empty, loading, and error presentations.
+//
+// These are a first-class part of the design system rather than something each screen
+// improvises, because they are what a user sees most often when something is wrong.
+
+.br-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--br-space-3);
+  padding: var(--br-space-12) var(--br-space-6);
+  text-align: center;
+  border: 1px dashed var(--br-color-border-strong);
+  border-radius: var(--br-radius-lg);
+  background: var(--br-color-surface);
+}
+
+.br-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--br-radius-full);
+  background: var(--br-color-surface-muted);
+  color: var(--br-color-text-muted);
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.br-state__title {
+  font-size: var(--br-text-lg);
+  font-weight: var(--br-weight-semibold);
+}
+
+.br-state__body {
+  max-width: 46ch;
+  color: var(--br-color-text-muted);
+}
+
+.br-state--error {
+  border-style: solid;
+  border-color: var(--br-danger-border);
+  background: var(--br-danger-surface);
+
+  .br-state__icon {
+    background: rgb(192 38 38 / 12%);
+    color: var(--br-danger);
+  }
+}
+
+.br-state--loading {
+  border-style: solid;
+  border-color: var(--br-color-border);
+}
+
+// ---------------------------------------------------------------------------------------
+// Skeletons
+// ---------------------------------------------------------------------------------------
+
+.br-skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--br-radius-sm);
+  background: var(--br-color-surface-muted);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 65%),
+      transparent
+    );
+    animation: br-shimmer 1.4s infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .br-skeleton::after {
+    animation: none;
+  }
+}
+
+@keyframes br-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.br-skeleton--text {
+  height: 0.85rem;
+  margin-block: 0.32rem;
+}
+
+.br-skeleton--title {
+  height: 1.6rem;
+  width: 60%;
+}
+
+.br-skeleton--block {
+  height: 8rem;
+}
+
+.br-skeleton--circle {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--br-radius-full);
+}
+
+// ---------------------------------------------------------------------------------------
+// Spinner
+// ---------------------------------------------------------------------------------------
+
+.br-spinner {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--br-color-border-strong);
+  border-top-color: var(--br-color-primary);
+  border-radius: var(--br-radius-full);
+  animation: br-spin 700ms linear infinite;
+}
+
+.br-spinner--sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 2px;
+}
+
+.br-spinner--lg {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-width: 3px;
+}

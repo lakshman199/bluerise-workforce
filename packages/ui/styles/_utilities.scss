@@ -1,0 +1,75 @@
+@use 'breakpoints' as bp;
+
+// A deliberately small utility set. Anything used more than a handful of times becomes a
+// component class instead; a large utility layer competes with the design system rather
+// than supporting it.
+
+.br-text-muted {
+  color: var(--br-color-text-muted);
+}
+
+.br-text-subtle {
+  color: var(--br-color-text-subtle);
+}
+
+.br-text-inverse {
+  color: var(--br-color-text-inverse);
+}
+
+.br-text-center {
+  text-align: center;
+}
+
+.br-text-sm {
+  font-size: var(--br-text-sm);
+}
+
+.br-text-lg {
+  font-size: var(--br-text-lg);
+}
+
+.br-measure {
+  max-width: var(--br-measure);
+}
+
+.br-numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+.br-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.br-full-width {
+  width: 100%;
+}
+
+.br-mt-auto {
+  margin-top: auto;
+}
+
+.br-hide-below-md {
+  @include bp.until(bp.$bp-md) {
+    display: none !important;
+  }
+}
+
+.br-hide-from-md {
+  @include bp.from(bp.$bp-md) {
+    display: none !important;
+  }
+}
+
+.br-hide-below-lg {
+  @include bp.until(bp.$bp-lg) {
+    display: none !important;
+  }
+}
+
+.br-hide-from-lg {
+  @include bp.from(bp.$bp-lg) {
+    display: none !important;
+  }
+}

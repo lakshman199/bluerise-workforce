@@ -1,0 +1,117 @@
+@use 'breakpoints' as bp;
+
+.br-container {
+  width: 100%;
+  max-width: var(--br-container-max);
+  margin-inline: auto;
+  padding-inline: var(--br-gutter);
+
+  @include bp.from(bp.$bp-md) {
+    --br-gutter: var(--br-space-8);
+  }
+
+  @include bp.from(bp.$bp-xl) {
+    --br-gutter: var(--br-space-10);
+  }
+}
+
+.br-container--wide {
+  max-width: var(--br-container-wide);
+}
+
+.br-container--narrow {
+  max-width: 780px;
+}
+
+.br-section {
+  padding-block: var(--br-section-y);
+}
+
+.br-section--tight {
+  padding-block: calc(var(--br-section-y) * 0.6);
+}
+
+.br-section--sunken {
+  background: var(--br-color-surface-sunken);
+}
+
+.br-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-4);
+  max-width: 62ch;
+  margin-bottom: var(--br-space-10);
+}
+
+.br-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-space-2);
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: var(--br-tracking-wide);
+  text-transform: uppercase;
+  color: var(--br-color-primary);
+}
+
+.br-lead {
+  font-size: var(--br-text-lg);
+  line-height: var(--br-leading-relaxed);
+  color: var(--br-color-text-muted);
+  max-width: var(--br-measure);
+}
+
+// A flexible grid that collapses by content width rather than by breakpoint. `auto-fit`
+// with a minimum column width handles 375px through 1920px without a single media query.
+.br-grid {
+  display: grid;
+  gap: var(--br-space-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.br-grid--tight {
+  gap: var(--br-space-4);
+}
+
+.br-grid--wide-cells {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+}
+
+.br-split {
+  display: grid;
+  gap: var(--br-space-10);
+  align-items: center;
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--br-space-16);
+  }
+}
+
+.br-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-4);
+}
+
+.br-stack--sm {
+  gap: var(--br-space-2);
+}
+
+.br-stack--lg {
+  gap: var(--br-space-6);
+}
+
+.br-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--br-space-3);
+}
+
+.br-divider {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--br-color-border);
+}

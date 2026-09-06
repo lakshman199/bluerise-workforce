@@ -1,0 +1,200 @@
+// Design tokens.
+//
+// Two layers. The ramp holds raw values; the semantic aliases beneath it are what
+// components reference. A component that reads `--br-blue-600` directly is a bug: it
+// defeats theming and makes an alternate surface impossible.
+
+:root {
+  // ---------------------------------------------------------------------------
+  // Primary ramp
+  // `--br-blue-600` is the primary. It clears 6.1:1 against white in both
+  // directions, so it works as a text colour and as a button fill.
+  // ---------------------------------------------------------------------------
+  --br-blue-50: #eef5ff;
+  --br-blue-100: #d9e8ff;
+  --br-blue-200: #bcd7ff;
+  --br-blue-300: #8ebfff;
+  --br-blue-400: #599dff;
+  --br-blue-500: #337aff;
+  --br-blue-600: #1a56db;
+  --br-blue-700: #1743ad;
+  --br-blue-800: #17398b;
+  --br-blue-900: #17346f;
+
+  // ---------------------------------------------------------------------------
+  // Neutrals, warmed very slightly toward blue so they sit with the primary ramp
+  // ---------------------------------------------------------------------------
+  --br-neutral-0: #ffffff;
+  --br-neutral-25: #fbfcfe;
+  --br-neutral-50: #f6f8fb;
+  --br-neutral-100: #eef1f6;
+  --br-neutral-200: #e2e7ef;
+  --br-neutral-300: #cbd3e1;
+  --br-neutral-400: #97a3b8;
+  --br-neutral-500: #6b7890;
+  --br-neutral-600: #4d5a72;
+  --br-neutral-700: #3a4558;
+  --br-neutral-800: #253044;
+  --br-neutral-900: #161e2d;
+  --br-neutral-950: #0c111b;
+
+  // ---------------------------------------------------------------------------
+  // Semantic hues. Each foreground clears 4.5:1 on white.
+  // ---------------------------------------------------------------------------
+  --br-success: #12805c;
+  --br-success-surface: #e8f7f1;
+  --br-success-border: #a7e0cb;
+
+  --br-warning: #a4620a;
+  --br-warning-surface: #fdf3e3;
+  --br-warning-border: #f0cf9a;
+
+  --br-danger: #c02626;
+  --br-danger-surface: #fdeeee;
+  --br-danger-border: #f4bcbc;
+
+  --br-info: var(--br-blue-600);
+  --br-info-surface: var(--br-blue-50);
+  --br-info-border: var(--br-blue-200);
+
+  // ---------------------------------------------------------------------------
+  // Semantic aliases — the only colour names components should use
+  // ---------------------------------------------------------------------------
+  --br-color-text: var(--br-neutral-900);
+  --br-color-text-muted: var(--br-neutral-600);
+  --br-color-text-subtle: var(--br-neutral-500);
+  --br-color-text-inverse: var(--br-neutral-0);
+  --br-color-text-link: var(--br-blue-700);
+
+  --br-color-surface: var(--br-neutral-0);
+  --br-color-surface-raised: var(--br-neutral-0);
+  --br-color-surface-sunken: var(--br-neutral-50);
+  --br-color-surface-muted: var(--br-neutral-100);
+  --br-color-surface-inverse: var(--br-neutral-900);
+
+  --br-color-border: var(--br-neutral-200);
+  --br-color-border-strong: var(--br-neutral-300);
+
+  --br-color-primary: var(--br-blue-600);
+  --br-color-primary-hover: var(--br-blue-700);
+  --br-color-primary-active: var(--br-blue-800);
+  --br-color-primary-surface: var(--br-blue-50);
+  --br-color-primary-border: var(--br-blue-200);
+
+  --br-color-focus: var(--br-blue-500);
+
+  // ---------------------------------------------------------------------------
+  // Typography
+  // ---------------------------------------------------------------------------
+  --br-font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue',
+    Arial, sans-serif;
+  --br-font-mono:
+    ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', 'Courier New', monospace;
+
+  // Fluid scale. Headings shrink on small screens without a cascade of overrides.
+  --br-text-xs: 0.75rem;
+  --br-text-sm: 0.875rem;
+  --br-text-base: 1rem;
+  --br-text-lg: 1.125rem;
+  --br-text-xl: clamp(1.188rem, 1.13rem + 0.28vw, 1.375rem);
+  --br-text-2xl: clamp(1.375rem, 1.27rem + 0.52vw, 1.75rem);
+  --br-text-3xl: clamp(1.625rem, 1.44rem + 0.9vw, 2.25rem);
+  --br-text-4xl: clamp(2rem, 1.68rem + 1.6vw, 3rem);
+  --br-text-5xl: clamp(2.375rem, 1.83rem + 2.7vw, 3.75rem);
+  --br-text-6xl: clamp(2.75rem, 1.95rem + 4vw, 4.5rem);
+
+  --br-leading-none: 1;
+  --br-leading-tight: 1.15;
+  --br-leading-snug: 1.3;
+  --br-leading-normal: 1.55;
+  --br-leading-relaxed: 1.7;
+
+  --br-weight-regular: 400;
+  --br-weight-medium: 500;
+  --br-weight-semibold: 600;
+  --br-weight-bold: 700;
+
+  --br-tracking-tight: -0.02em;
+  --br-tracking-snug: -0.011em;
+  --br-tracking-normal: 0;
+  --br-tracking-wide: 0.04em;
+
+  // Caps line length for readability.
+  --br-measure: 68ch;
+
+  // ---------------------------------------------------------------------------
+  // Spacing — 4px base
+  // ---------------------------------------------------------------------------
+  --br-space-1: 0.25rem;
+  --br-space-2: 0.5rem;
+  --br-space-3: 0.75rem;
+  --br-space-4: 1rem;
+  --br-space-5: 1.25rem;
+  --br-space-6: 1.5rem;
+  --br-space-8: 2rem;
+  --br-space-10: 2.5rem;
+  --br-space-12: 3rem;
+  --br-space-16: 4rem;
+  --br-space-20: 5rem;
+  --br-space-24: 6rem;
+  --br-space-32: 8rem;
+
+  --br-container-max: 1200px;
+  --br-container-wide: 1400px;
+  --br-gutter: var(--br-space-5);
+  --br-section-y: clamp(3.5rem, 2.4rem + 5.5vw, 7rem);
+
+  // ---------------------------------------------------------------------------
+  // Radius
+  // ---------------------------------------------------------------------------
+  --br-radius-xs: 4px;
+  --br-radius-sm: 6px;
+  --br-radius-md: 10px;
+  --br-radius-lg: 14px;
+  --br-radius-xl: 20px;
+  --br-radius-2xl: 28px;
+  --br-radius-full: 999px;
+
+  // ---------------------------------------------------------------------------
+  // Elevation — deliberately low contrast; heavy drop shadows read as dated
+  // ---------------------------------------------------------------------------
+  --br-shadow-xs: 0 1px 2px rgb(22 30 45 / 6%);
+  --br-shadow-sm: 0 1px 3px rgb(22 30 45 / 7%), 0 1px 2px rgb(22 30 45 / 4%);
+  --br-shadow-md: 0 4px 12px rgb(22 30 45 / 8%), 0 1px 3px rgb(22 30 45 / 5%);
+  --br-shadow-lg: 0 12px 32px rgb(22 30 45 / 10%), 0 2px 8px rgb(22 30 45 / 5%);
+  --br-shadow-focus: 0 0 0 3px rgb(51 122 255 / 30%);
+
+  // ---------------------------------------------------------------------------
+  // Motion
+  // ---------------------------------------------------------------------------
+  --br-duration-fast: 120ms;
+  --br-duration-base: 200ms;
+  --br-duration-slow: 320ms;
+  --br-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --br-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  // ---------------------------------------------------------------------------
+  // Layering
+  // ---------------------------------------------------------------------------
+  --br-z-base: 1;
+  --br-z-sticky: 100;
+  --br-z-header: 200;
+  --br-z-dropdown: 300;
+  --br-z-overlay: 400;
+  --br-z-modal: 500;
+  --br-z-toast: 600;
+
+  // Minimum interactive target, per WCAG 2.1 AA target size guidance.
+  --br-touch-target: 44px;
+}
+
+// Honour the operating-system preference globally. Individual components never need to
+// repeat this check.
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --br-duration-fast: 1ms;
+    --br-duration-base: 1ms;
+    --br-duration-slow: 1ms;
+  }
+}

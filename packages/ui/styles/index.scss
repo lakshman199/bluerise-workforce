@@ -1,0 +1,17 @@
+// BlueRise Workforce design system.
+//
+// Import order matters: tokens define the custom properties everything else reads, the
+// reset normalises the browser, base styles set typographic defaults, and components
+// build on all three.
+//
+// Consumers import this once at the application root.
+
+@forward 'breakpoints';
+
+@use 'tokens';
+@use 'reset';
+@use 'base';
+@use 'layout';
+@use 'components';
+@use 'states';
+@use 'utilities';
