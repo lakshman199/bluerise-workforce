@@ -1,19 +1,16 @@
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  inject,
-  signal,
-} from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import type { HealthResponse } from '@bluerise/shared-types';
 
-import { toApiError, type ApiError } from '../../core/api/api-error';
-import { HealthService } from '../../core/api/health.service';
-import { DELIVERY_PHASES, PLATFORM_MODULES } from './platform-content';
-
-type LoadState = 'loading' | 'loaded' | 'error';
+import {
+  HERO_EYEBROW,
+  HERO_HEADLINE_ACCENT,
+  HERO_HEADLINE_PRIMARY,
+  HERO_LEAD,
+  PURPOSE_EYEBROW,
+  PURPOSE_HEADLINE,
+  PURPOSE_ITEMS,
+  PURPOSE_LEAD,
+} from './home-content';
 
 @Component({
   selector: 'br-home',
@@ -23,44 +20,37 @@ type LoadState = 'loading' | 'loaded' | 'error';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
-  private readonly healthService = inject(HealthService);
-  // Captured as a field so the retry path, which runs outside the injection context, can
-  // still tie its subscription to this component's lifetime.
-  private readonly destroyRef = inject(DestroyRef);
-
-  protected readonly modules = PLATFORM_MODULES;
-  protected readonly phases = DELIVERY_PHASES;
-
-  protected readonly state = signal<LoadState>('loading');
-  protected readonly health = signal<HealthResponse | null>(null);
-  protected readonly error = signal<ApiError | null>(null);
+  protected readonly eyebrow = HERO_EYEBROW;
+  protected readonly headlinePrimary = HERO_HEADLINE_PRIMARY;
+  protected readonly headlineAccent = HERO_HEADLINE_ACCENT;
+  protected readonly lead = HERO_LEAD;
+  protected readonly purposeEyebrow = PURPOSE_EYEBROW;
+  protected readonly purposeHeadline = PURPOSE_HEADLINE;
+  protected readonly purposeLead = PURPOSE_LEAD;
+  protected readonly purposeItems = PURPOSE_ITEMS;
 
   constructor() {
-    this.loadHealth();
+    afterNextRender(() => {
+      if (window.location.hash === '#purpose') {
+        this.scrollPurposeIntoView(false);
+      }
+    });
   }
 
-  protected loadHealth(): void {
-    this.state.set('loading');
-    this.error.set(null);
-
-    this.healthService
-      .getHealth()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (health) => {
-          this.health.set(health);
-          this.state.set('loaded');
-        },
-        error: (cause: unknown) => {
-          this.error.set(toApiError(cause));
-          this.state.set('error');
-        },
-      });
+  /**
+   * Angular's in-memory anchor scrolling does not honour CSS `scroll-margin`, so the
+   * sticky header would cover the Core Purpose heading. Native `scrollIntoView` does.
+   */
+  protected onExplorePurpose(event: Event): void {
+    event.preventDefault();
+    this.scrollPurposeIntoView(true);
   }
 
-  protected badgeClassFor(status: string): string {
-    if (status === 'ok') return 'br-badge br-badge--success';
-    if (status === 'degraded') return 'br-badge br-badge--warning';
-    return 'br-badge br-badge--danger';
+  private scrollPurposeIntoView(smooth: boolean): void {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.getElementById('purpose')?.scrollIntoView({
+      behavior: reduceMotion || !smooth ? 'auto' : 'smooth',
+      block: 'start',
+    });
   }
 }
