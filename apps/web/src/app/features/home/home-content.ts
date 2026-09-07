@@ -38,3 +38,95 @@ export const PURPOSE_ITEMS: readonly PurposeItem[] = [
   { icon: 'security', title: 'Financial security and career stability' },
   { icon: 'respect', title: 'Respect, dignity, and equal opportunity' },
 ] as const;
+
+/**
+ * Community Impact copy from the approved content screenshot. The lead is aspirational
+ * on purpose: these are intended pathways, not claimed programme results.
+ */
+export const COMMUNITY_EYEBROW = 'Community Impact & Giving Back';
+
+export const COMMUNITY_HEADLINE =
+  'BlueRise Workforce is committed to creating opportunities beyond traditional staffing and workforce services.';
+
+export const COMMUNITY_LEAD =
+  'We aspire to establish programs and partnerships that allow individuals, businesses, and communities to contribute toward:';
+
+export type CommunityIcon =
+  'development' | 'training' | 'scholarship' | 'workshops' | 'inclusion' | 'community';
+
+export interface CommunityItem {
+  icon: CommunityIcon;
+  title: string;
+}
+
+export const COMMUNITY_ITEMS: readonly CommunityItem[] = [
+  { icon: 'development', title: 'Workforce development initiatives' },
+  { icon: 'training', title: 'Career training programs' },
+  { icon: 'scholarship', title: 'Scholarship opportunities' },
+  { icon: 'workshops', title: 'Skills development workshops' },
+  { icon: 'inclusion', title: 'Autism and special-needs workforce programs' },
+  { icon: 'community', title: 'Community employment and inclusion projects' },
+] as const;
+
+export const COMMUNITY_CLOSING =
+  'By working together, we can create sustainable pathways that empower people to build brighter futures.';
+
+export const TOGETHER_HEADLINE = 'A Future Built Together';
+
+export const TOGETHER_LEAD =
+  'At BlueRise Workforce, we believe that when people are empowered, communities prosper.';
+
+export const TOGETHER_BODY = [
+  'Through meaningful employment, workforce development, inclusive opportunities, and a commitment to serving others, we strive to create a future where everyone has the chance to contribute, succeed, and thrive.',
+  'Together, we are building stronger workforces, brighter futures, and lasting impact for generations to come.',
+] as const;
+
+export const TOGETHER_CTA = 'Explore Benefits';
+export const TOGETHER_CTA_HREF = '/benefits';
+
+export const VALUES_EYEBROW = 'How we work';
+export const VALUES_HEADLINE = 'Our Values';
+export const VALUES_LEAD =
+  'The same commitments that shape employment, inclusion, and community impact.';
+
+export interface ValueItem {
+  title: string;
+  body: string;
+}
+
+export const VALUE_ITEMS: readonly ValueItem[] = [
+  {
+    title: 'Empowerment',
+    body: 'Meaningful work as a pathway to dignity, growth, and opportunity.',
+  },
+  {
+    title: 'Integrity',
+    body: 'Honest, respectful support for every person we serve.',
+  },
+  {
+    title: 'Inclusion',
+    body: 'A commitment to accessible employment pathways, including for neurodiverse talent.',
+  },
+  {
+    title: 'Compassion',
+    body: 'Care for people, families, and the communities around them.',
+  },
+  {
+    title: 'Excellence',
+    body: 'Thoughtful workforce support that helps safeguard people’s futures.',
+  },
+  {
+    title: 'Impact',
+    body: 'When people are empowered, communities prosper.',
+  },
+] as const;
+
+export const CLOSE_EYEBROW = 'Get in touch';
+export const CLOSE_HEADLINE = 'Build the future of work with BlueRise Workforce.';
+export const CLOSE_LEAD =
+  'Employers, job seekers, and community partners are invited to connect with BlueRise Workforce.';
+
+export const CLOSE_PRIMARY_CTA = 'Contact Us';
+export const CLOSE_PRIMARY_HREF = '/contact';
+export const CLOSE_SECONDARY_CTA = 'Explore Our Solutions';
+export const CLOSE_SECONDARY_HREF = '/our-solutions';

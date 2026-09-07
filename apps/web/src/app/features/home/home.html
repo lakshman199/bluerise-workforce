@@ -207,3 +207,137 @@
     <br-inclusion-commitment [compact]="true" [showCta]="true" />
   </div>
 </section>
+
+<!-- ===================================================================================== -->
+<!-- Community impact                                                                      -->
+<!-- ===================================================================================== -->
+<section class="br-section impact" id="community" aria-labelledby="community-heading">
+  <div class="br-container impact__inner">
+    <header class="impact__header">
+      <p class="br-eyebrow">{{ communityEyebrow }}</p>
+      <h2 id="community-heading">{{ communityHeadline }}</h2>
+      <p class="br-lead">{{ communityLead }}</p>
+    </header>
+
+    <ul class="impact__grid">
+      @for (item of communityItems; track item.title) {
+        <li class="impact-card">
+          <span class="impact-card__icon" aria-hidden="true">
+            @switch (item.icon) {
+              @case ('development') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 20V9l8-5 8 5v11" stroke-linejoin="round" />
+                  <path d="M9 20v-6h6v6" stroke-linejoin="round" />
+                </svg>
+              }
+              @case ('training') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="4" width="18" height="12" rx="2" />
+                  <path d="M8 20h8M12 16v4" stroke-linecap="round" />
+                </svg>
+              }
+              @case ('scholarship') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 3 4 7.5 12 12l8-4.5L12 3Z" stroke-linejoin="round" />
+                  <path d="M7 10.5V16c0 1.7 2.2 3 5 3s5-1.3 5-3v-5.5" stroke-linecap="round" />
+                </svg>
+              }
+              @case ('workshops') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M14.7 6.3 17 4l3 3-2.3 2.3" stroke-linejoin="round" />
+                  <path d="m4 20 8.5-8.5 3 3L7 23H4v-3Z" stroke-linejoin="round" />
+                </svg>
+              }
+              @case ('inclusion') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="8" cy="8" r="2.3" />
+                  <circle cx="16" cy="8" r="2.3" />
+                  <path
+                    d="M4.5 18c.5-2.3 2.4-3.7 4.5-3.7h.4M14.6 14.3h.4c2.1 0 4 1.4 4.5 3.7"
+                    stroke-linecap="round"
+                  />
+                  <path d="M9.8 14.6c.7-.4 1.5-.6 2.2-.6s1.5.2 2.2.6" stroke-linecap="round" />
+                </svg>
+              }
+              @case ('community') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20Z"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              }
+            }
+          </span>
+          <p class="impact-card__title">{{ item.title }}</p>
+        </li>
+      }
+    </ul>
+
+    <p class="impact__closing">{{ communityClosing }}</p>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- A Future Built Together                                                               -->
+<!-- ===================================================================================== -->
+<section class="br-section together" id="together" aria-labelledby="together-heading">
+  <div class="br-container">
+    <div class="together__banner">
+      <div class="together__copy">
+        <h2 id="together-heading">{{ togetherHeadline }}</h2>
+        <p class="together__lead">{{ togetherLead }}</p>
+        @for (paragraph of togetherBody; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+      <a
+        class="br-button br-button--inverse br-button--lg together__cta"
+        [routerLink]="togetherCtaHref"
+      >
+        {{ togetherCta }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Values                                                                                -->
+<!-- ===================================================================================== -->
+<section class="br-section br-section--sunken values" id="values" aria-labelledby="values-heading">
+  <div class="br-container">
+    <header class="values__header">
+      <p class="br-eyebrow">{{ valuesEyebrow }}</p>
+      <h2 id="values-heading">{{ valuesHeadline }}</h2>
+      <p class="br-lead">{{ valuesLead }}</p>
+    </header>
+
+    <ul class="values__grid">
+      @for (item of valueItems; track item.title) {
+        <li class="value-card">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.body }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Final CTA                                                                             -->
+<!-- ===================================================================================== -->
+<section class="br-section close" id="connect" aria-labelledby="close-heading">
+  <div class="br-container close__inner">
+    <p class="br-eyebrow">{{ closeEyebrow }}</p>
+    <h2 id="close-heading">{{ closeHeadline }}</h2>
+    <p class="br-lead">{{ closeLead }}</p>
+    <div class="br-cluster close__actions">
+      <a class="br-button br-button--primary br-button--lg" [routerLink]="closePrimaryHref">
+        {{ closePrimaryCta }}
+      </a>
+      <a class="br-button br-button--secondary br-button--lg" [routerLink]="closeSecondaryHref">
+        {{ closeSecondaryCta }}
+      </a>
+    </div>
+  </div>
+</section>

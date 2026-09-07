@@ -3,7 +3,22 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
 import { Home } from './home';
-import { HERO_HEADLINE_PRIMARY, PURPOSE_HEADLINE, PURPOSE_ITEMS } from './home-content';
+import {
+  CLOSE_HEADLINE,
+  CLOSE_PRIMARY_CTA,
+  CLOSE_SECONDARY_CTA,
+  COMMUNITY_CLOSING,
+  COMMUNITY_HEADLINE,
+  COMMUNITY_ITEMS,
+  HERO_HEADLINE_PRIMARY,
+  PURPOSE_HEADLINE,
+  PURPOSE_ITEMS,
+  TOGETHER_CTA,
+  TOGETHER_HEADLINE,
+  TOGETHER_LEAD,
+  VALUE_ITEMS,
+  VALUES_HEADLINE,
+} from './home-content';
 import {
   ABOUT_HEADLINE,
   ABOUT_HOME_CTA,
@@ -23,6 +38,8 @@ function setup() {
         { path: 'benefits', children: [] },
         { path: 'about', children: [] },
         { path: 'inclusion', children: [] },
+        { path: 'contact', children: [] },
+        { path: 'our-solutions', children: [] },
       ]),
     ],
   });
@@ -115,12 +132,77 @@ describe('Home', () => {
     expect(text).not.toMatch(/Priya|Marcus|Gusto|ADP/);
   });
 
-  it('uses a single h1 and section h2s for Purpose, About, and Inclusion', () => {
+  it('renders Community Impact after Inclusion as aspirational pathways, not results', () => {
+    const fixture = setup();
+    const root = fixture.nativeElement as HTMLElement;
+    const community = root.querySelector('#community');
+
+    expect(community).not.toBeNull();
+    expect(root.querySelector('#inclusion')?.nextElementSibling).toBe(community);
+    expect(community?.querySelector('h2')?.textContent).toContain(COMMUNITY_HEADLINE);
+    expect(community?.textContent).toContain('We aspire to establish programs');
+    expect(community?.textContent).toContain(COMMUNITY_CLOSING);
+    expect(community?.querySelectorAll('.impact-card').length).toBe(
+      COMMUNITY_ITEMS.length,
+    );
+    for (const item of COMMUNITY_ITEMS) {
+      expect(community?.textContent).toContain(item.title);
+    }
+    expect(community?.textContent).not.toMatch(/\d+%/);
+    expect(community?.textContent).not.toMatch(/\$\d/);
+    expect(community?.textContent).not.toMatch(/partnered with|in partnership with/i);
+  });
+
+  it('renders A Future Built Together with Explore Benefits after Community Impact', () => {
+    const fixture = setup();
+    const root = fixture.nativeElement as HTMLElement;
+    const together = root.querySelector('#together');
+
+    expect(together).not.toBeNull();
+    expect(root.querySelector('#community')?.nextElementSibling).toBe(together);
+    expect(together?.querySelector('h2')?.textContent).toContain(TOGETHER_HEADLINE);
+    expect(together?.textContent).toContain(TOGETHER_LEAD);
+    expect(together?.textContent).toContain('meaningful employment');
+    expect(together?.textContent).toContain('lasting impact');
+    expect(together?.querySelector('a[href="/benefits"]')?.textContent?.trim()).toBe(
+      TOGETHER_CTA,
+    );
+  });
+
+  it('renders Values and a final CTA for employers, job seekers, and community partners', () => {
+    const fixture = setup();
+    const root = fixture.nativeElement as HTMLElement;
+    const values = root.querySelector('#values');
+    const close = root.querySelector('#connect');
+
+    expect(values).not.toBeNull();
+    expect(close).not.toBeNull();
+    expect(root.querySelector('#together')?.nextElementSibling).toBe(values);
+    expect(values?.nextElementSibling).toBe(close);
+    expect(values?.querySelector('h2')?.textContent).toContain(VALUES_HEADLINE);
+    expect(values?.querySelectorAll('.value-card').length).toBe(VALUE_ITEMS.length);
+    for (const item of VALUE_ITEMS) {
+      expect(values?.textContent).toContain(item.title);
+      expect(values?.textContent).toContain(item.body);
+    }
+    expect(close?.querySelector('h2')?.textContent).toContain(CLOSE_HEADLINE);
+    expect(close?.textContent).toContain(
+      'Employers, job seekers, and community partners',
+    );
+    expect(close?.querySelector('a[href="/contact"]')?.textContent?.trim()).toBe(
+      CLOSE_PRIMARY_CTA,
+    );
+    expect(close?.querySelector('a[href="/our-solutions"]')?.textContent?.trim()).toBe(
+      CLOSE_SECONDARY_CTA,
+    );
+  });
+
+  it('uses a single h1 and one h2 per homepage section', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
 
     expect(root.querySelectorAll('h1').length).toBe(1);
-    expect(root.querySelectorAll('h2').length).toBe(3);
+    expect(root.querySelectorAll('h2').length).toBe(7);
     expect(root.querySelector('#purpose')?.getAttribute('aria-labelledby')).toBe(
       'purpose-heading',
     );
@@ -129,6 +211,18 @@ describe('Home', () => {
     );
     expect(root.querySelector('#inclusion')?.getAttribute('aria-labelledby')).toBe(
       'inclusion-heading',
+    );
+    expect(root.querySelector('#community')?.getAttribute('aria-labelledby')).toBe(
+      'community-heading',
+    );
+    expect(root.querySelector('#together')?.getAttribute('aria-labelledby')).toBe(
+      'together-heading',
+    );
+    expect(root.querySelector('#values')?.getAttribute('aria-labelledby')).toBe(
+      'values-heading',
+    );
+    expect(root.querySelector('#connect')?.getAttribute('aria-labelledby')).toBe(
+      'close-heading',
     );
   });
 });

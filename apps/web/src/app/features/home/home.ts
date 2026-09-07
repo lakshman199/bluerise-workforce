@@ -16,6 +16,18 @@ import { PrincipleCard } from '../about/principle-card';
 import { TalentCard } from '../about/talent-card';
 import { InclusionCommitment } from '../inclusion/inclusion-commitment';
 import {
+  CLOSE_EYEBROW,
+  CLOSE_HEADLINE,
+  CLOSE_LEAD,
+  CLOSE_PRIMARY_CTA,
+  CLOSE_PRIMARY_HREF,
+  CLOSE_SECONDARY_CTA,
+  CLOSE_SECONDARY_HREF,
+  COMMUNITY_CLOSING,
+  COMMUNITY_EYEBROW,
+  COMMUNITY_HEADLINE,
+  COMMUNITY_ITEMS,
+  COMMUNITY_LEAD,
   HERO_EYEBROW,
   HERO_HEADLINE_ACCENT,
   HERO_HEADLINE_PRIMARY,
@@ -24,6 +36,15 @@ import {
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
   PURPOSE_LEAD,
+  TOGETHER_BODY,
+  TOGETHER_CTA,
+  TOGETHER_CTA_HREF,
+  TOGETHER_HEADLINE,
+  TOGETHER_LEAD,
+  VALUE_ITEMS,
+  VALUES_EYEBROW,
+  VALUES_HEADLINE,
+  VALUES_LEAD,
 } from './home-content';
 
 @Component({
@@ -51,6 +72,27 @@ export class Home {
   protected readonly vision = ABOUT_VISION;
   protected readonly aboutCta = ABOUT_HOME_CTA;
   protected readonly aboutCtaHref = ABOUT_HOME_CTA_HREF;
+  protected readonly communityEyebrow = COMMUNITY_EYEBROW;
+  protected readonly communityHeadline = COMMUNITY_HEADLINE;
+  protected readonly communityLead = COMMUNITY_LEAD;
+  protected readonly communityItems = COMMUNITY_ITEMS;
+  protected readonly communityClosing = COMMUNITY_CLOSING;
+  protected readonly togetherHeadline = TOGETHER_HEADLINE;
+  protected readonly togetherLead = TOGETHER_LEAD;
+  protected readonly togetherBody = TOGETHER_BODY;
+  protected readonly togetherCta = TOGETHER_CTA;
+  protected readonly togetherCtaHref = TOGETHER_CTA_HREF;
+  protected readonly valuesEyebrow = VALUES_EYEBROW;
+  protected readonly valuesHeadline = VALUES_HEADLINE;
+  protected readonly valuesLead = VALUES_LEAD;
+  protected readonly valueItems = VALUE_ITEMS;
+  protected readonly closeEyebrow = CLOSE_EYEBROW;
+  protected readonly closeHeadline = CLOSE_HEADLINE;
+  protected readonly closeLead = CLOSE_LEAD;
+  protected readonly closePrimaryCta = CLOSE_PRIMARY_CTA;
+  protected readonly closePrimaryHref = CLOSE_PRIMARY_HREF;
+  protected readonly closeSecondaryCta = CLOSE_SECONDARY_CTA;
+  protected readonly closeSecondaryHref = CLOSE_SECONDARY_HREF;
 
   constructor() {
     afterNextRender(() => {
