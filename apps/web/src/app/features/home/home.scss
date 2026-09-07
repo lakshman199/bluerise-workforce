@@ -338,3 +338,54 @@
   font-weight: var(--br-weight-semibold);
   line-height: var(--br-leading-snug);
 }
+
+// ---------------------------------------------------------------------------------------
+// About / Mission / Vision
+// ---------------------------------------------------------------------------------------
+
+.about-home {
+  scroll-margin-top: 12.5rem;
+
+  @include bp.from(bp.$bp-md) {
+    scroll-margin-top: 8.5rem;
+  }
+}
+
+.about-home__inner {
+  display: grid;
+  gap: var(--br-space-10);
+  align-items: start;
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: var(--br-space-16);
+  }
+}
+
+.about-home__copy h2 {
+  max-width: 16ch;
+  overflow-wrap: break-word;
+}
+
+.about-home__cta {
+  margin-top: var(--br-space-8);
+  white-space: normal;
+  text-align: center;
+}
+
+.about-home__cards {
+  display: grid;
+  gap: var(--br-space-4);
+}
+
+// ---------------------------------------------------------------------------------------
+// Inclusion
+// ---------------------------------------------------------------------------------------
+
+.inclusion-home {
+  scroll-margin-top: 12.5rem;
+
+  @include bp.from(bp.$bp-md) {
+    scroll-margin-top: 8.5rem;
+  }
+}

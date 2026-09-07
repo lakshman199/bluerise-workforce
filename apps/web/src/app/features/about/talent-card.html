@@ -1,0 +1,17 @@
+<article class="talent">
+  @if (showHeading()) {
+    <h3 class="talent__title">{{ heading }}</h3>
+  }
+  <ul class="talent__list">
+    @for (theme of themes; track theme) {
+      <li>
+        <span class="talent__check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="m5 12 5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        {{ theme }}
+      </li>
+    }
+  </ul>
+</article>

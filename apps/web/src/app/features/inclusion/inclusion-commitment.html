@@ -1,0 +1,32 @@
+<div class="commitment" [class.commitment--compact]="compact()">
+  @if (showEyebrow()) {
+    <p class="br-eyebrow commitment__eyebrow">{{ eyebrow }}</p>
+  }
+
+  @if (showHeading()) {
+    <h2 class="commitment__headline" id="inclusion-heading">{{ headline }}</h2>
+  }
+
+  @if (showIntro()) {
+    <p class="commitment__intro">{{ intro }}</p>
+  }
+
+  @if (showGoals()) {
+    <p class="commitment__goal-intro">{{ goalIntro }}</p>
+    <ul class="commitment__goals">
+      @for (goal of goals; track goal) {
+        <li>{{ goal }}</li>
+      }
+    </ul>
+  }
+
+  @if (showClosing()) {
+    <p class="commitment__closing">{{ closing }}</p>
+  }
+
+  @if (showCta()) {
+    <a class="br-button br-button--inverse br-button--lg commitment__cta" [routerLink]="ctaHref">
+      {{ ctaLabel }}
+    </a>
+  }
+</div>

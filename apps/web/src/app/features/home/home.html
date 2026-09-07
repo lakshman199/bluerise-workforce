@@ -169,3 +169,41 @@
     </ul>
   </div>
 </section>
+
+<!-- ===================================================================================== -->
+<!-- About / Mission / Vision                                                              -->
+<!-- ===================================================================================== -->
+<section class="br-section about-home" id="about" aria-labelledby="about-heading">
+  <div class="br-container about-home__inner">
+    <div class="about-home__copy">
+      <p class="br-eyebrow">{{ aboutEyebrow }}</p>
+      <h2 id="about-heading">{{ aboutHeadline }}</h2>
+      <p class="br-lead">{{ aboutIntro }}</p>
+      <a
+        class="br-button br-button--primary br-button--lg about-home__cta"
+        [routerLink]="aboutCtaHref"
+      >
+        {{ aboutCta }}
+      </a>
+    </div>
+
+    <div class="about-home__cards">
+      <br-principle-card [label]="missionLabel" [body]="mission" headingLevel="h3" />
+      <br-principle-card [label]="visionLabel" [body]="vision" headingLevel="h3" />
+      <br-talent-card />
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Inclusion                                                                             -->
+<!-- ===================================================================================== -->
+<section
+  class="br-section br-section--sunken inclusion-home"
+  id="inclusion"
+  aria-labelledby="inclusion-heading"
+>
+  <div class="br-container">
+    <br-inclusion-commitment [compact]="true" [showCta]="true" />
+  </div>
+</section>

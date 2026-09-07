@@ -1,0 +1,45 @@
+<article class="about">
+  <header class="br-section about__hero">
+    <div class="br-container br-container--narrow">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1>{{ headline }}</h1>
+      <p class="br-lead">{{ intro }}</p>
+    </div>
+  </header>
+
+  <section class="br-section br-section--sunken about__principles" aria-label="Mission and vision">
+    <div class="br-container about__principle-grid">
+      <br-principle-card [label]="missionLabel" [body]="mission" headingLevel="h2" />
+      <br-principle-card [label]="visionLabel" [body]="vision" headingLevel="h2" />
+    </div>
+  </section>
+
+  <section class="br-section about__talent" aria-labelledby="about-talent">
+    <div class="br-container about__talent-inner">
+      <div class="about__talent-copy">
+        <p class="br-eyebrow">{{ talentHeading }}</p>
+        <h2 id="about-talent">{{ talentHeading }}</h2>
+        <p class="br-lead">{{ talentIntro }}</p>
+      </div>
+      <br-talent-card [showHeading]="false" />
+    </div>
+  </section>
+
+  <section class="br-section about__next" aria-labelledby="about-next">
+    <div class="br-container br-container--narrow">
+      <h2 id="about-next">Continue exploring BlueRise Workforce</h2>
+      <p class="br-lead">
+        Read how inclusion shapes employment pathways, or reach the team to talk about workforce
+        support.
+      </p>
+      <div class="br-cluster about__actions">
+        <a class="br-button br-button--primary br-button--lg" routerLink="/inclusion">
+          Explore our inclusion commitment
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" routerLink="/contact">
+          Contact BlueRise Workforce
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

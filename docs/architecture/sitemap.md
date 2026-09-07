@@ -12,26 +12,27 @@ Primary navigation: **Home · About Us · Employers · Job Seekers · Our Soluti
 Benefits · Resources · Contact Us**. Desktop navigation is shown from 1280px; below that
 the same items are in the mobile menu.
 
-| Route                  | Nav label     | Phase | Purpose                                                                                                            |
-| ---------------------- | ------------- | ----- | ------------------------------------------------------------------------------------------------------------------ |
-| `/`                    | Home          | 2     | Brand, platform overview, purpose, employer and job-seeker value, inclusion, community impact, values, closing CTA |
-| `/about`               | About Us      | 2     | Mission, vision, purpose, values                                                                                   |
-| `/employers`           | Employers     | 2     | Workforce operations for businesses                                                                                |
-| `/job-seekers`         | Job Seekers   | 2     | One place for pay, benefits, hours, documents                                                                      |
-| `/our-solutions`       | Our Solutions | 2     | The platform modules as a service offering                                                                         |
-| `/benefits`            | Benefits      | 2     | Benefit categories and how coordination works                                                                      |
-| `/resources`           | Resources     | 2     | Guides and reference material index                                                                                |
-| `/contact`             | Contact Us    | 2     | Contact form, persisted server-side                                                                                |
-| `/legal/privacy`       | —             | 2     | Placeholder pending legal copy. Not in the header until copy exists.                                               |
-| `/legal/terms`         | —             | 2     | Placeholder pending legal copy. Not in the header until copy exists.                                               |
-| `/legal/accessibility` | —             | 2     | Conformance target and contact route. Not in the header until copy exists.                                         |
-| `/login`               | —             | 3     | Entry to Portal and Admin. Not in the public header.                                                               |
-| `/design-system`       | —             | 1     | Token and component gallery, `noindex`. Not in the public header.                                                  |
-| `/**`                  | —             | 1     | 404                                                                                                                |
+| Route                  | Nav label     | Phase | Purpose                                                                                                         |
+| ---------------------- | ------------- | ----- | --------------------------------------------------------------------------------------------------------------- |
+| `/`                    | Home          | 2     | Brand, platform overview, purpose, about / mission / vision, inclusion. Further homepage sections arrive later. |
+| `/about`               | About Us      | 2     | Mission, vision, Talent Meets Purpose                                                                           |
+| `/inclusion`           | —             | 2     | Inclusion commitment and supported workforce pathways. Not in the public header.                                |
+| `/employers`           | Employers     | 2     | Workforce operations for businesses                                                                             |
+| `/job-seekers`         | Job Seekers   | 2     | One place for pay, benefits, hours, documents                                                                   |
+| `/our-solutions`       | Our Solutions | 2     | The platform modules as a service offering                                                                      |
+| `/benefits`            | Benefits      | 2     | Benefit categories and how coordination works                                                                   |
+| `/resources`           | Resources     | 2     | Guides and reference material index                                                                             |
+| `/contact`             | Contact Us    | 2     | Contact form, persisted server-side                                                                             |
+| `/legal/privacy`       | —             | 2     | Placeholder pending legal copy. Not in the header until copy exists.                                            |
+| `/legal/terms`         | —             | 2     | Placeholder pending legal copy. Not in the header until copy exists.                                            |
+| `/legal/accessibility` | —             | 2     | Conformance target and contact route. Not in the header until copy exists.                                      |
+| `/login`               | —             | 3     | Entry to Portal and Admin. Not in the public header.                                                            |
+| `/design-system`       | —             | 1     | Token and component gallery, `noindex`. Not in the public header.                                               |
+| `/**`                  | —             | 1     | 404                                                                                                             |
 
-Legal routes, `/inclusion` as a dedicated URL, and Login are not primary public
-navigation. Inclusion copy still belongs on the public site (home and about) when those
-pages are written.
+Legal routes, `/inclusion`, and Login are not primary public navigation. `/inclusion` is
+a full public page, linked from Home and About Us. Community impact, values, and the
+remaining marketing pages stay as skeletons until those tasks are written.
 
 ## BlueRise Portal
 

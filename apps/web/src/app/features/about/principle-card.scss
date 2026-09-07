@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.principle {
+  height: 100%;
+  padding: var(--br-space-6);
+  border: 1px solid var(--br-color-border);
+  border-radius: var(--br-radius-xl);
+  background: var(--br-color-surface);
+  box-shadow: var(--br-shadow-xs);
+}
+
+.principle h2,
+.principle h3 {
+  margin: 0;
+  font-size: var(--br-text-xl);
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: var(--br-tracking-snug);
+  line-height: var(--br-leading-snug);
+}
+
+.principle p {
+  margin: var(--br-space-4) 0 0;
+  color: var(--br-color-text-muted);
+  font-size: var(--br-text-base);
+  line-height: var(--br-leading-relaxed);
+}

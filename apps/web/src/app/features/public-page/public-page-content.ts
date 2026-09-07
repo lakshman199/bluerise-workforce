@@ -15,15 +15,6 @@ export interface PublicPageSkeletonContent {
  */
 export const PUBLIC_PAGE_SKELETONS: readonly PublicPageSkeletonContent[] = [
   {
-    path: 'about',
-    heading: 'About Us',
-    intro:
-      'This page will cover who BlueRise Workforce is, our mission, and the values that guide the work. The full story is being written next.',
-    seoTitle: 'About Us',
-    seoDescription:
-      'Learn who BlueRise Workforce is and the mission behind Building Stronger Workforces. Creating Brighter Futures.',
-  },
-  {
     path: 'employers',
     heading: 'Employers',
     intro:

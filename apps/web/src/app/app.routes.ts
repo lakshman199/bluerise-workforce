@@ -1,6 +1,11 @@
 import { type Routes } from '@angular/router';
 
 import { seoResolver } from './core/seo/seo';
+import { ABOUT_SEO_DESCRIPTION, ABOUT_SEO_TITLE } from './features/about/about-content';
+import {
+  INCLUSION_SEO_DESCRIPTION,
+  INCLUSION_SEO_TITLE,
+} from './features/inclusion/inclusion-content';
 import { PUBLIC_PAGE_SKELETONS } from './features/public-page/public-page-content';
 
 /**
@@ -19,6 +24,29 @@ export const routes: Routes = [
         title: 'BlueRise Workforce — Building Stronger Workforces',
         description:
           'BlueRise Workforce is a unified workforce platform covering onboarding, payroll, benefits, HR and compliance, timekeeping, and workers’ compensation for employers and the people they employ.',
+      },
+    },
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./features/about/about-page').then((m) => m.AboutPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: ABOUT_SEO_TITLE,
+        description: ABOUT_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'inclusion',
+    loadComponent: () =>
+      import('./features/inclusion/inclusion-page').then((m) => m.InclusionPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: INCLUSION_SEO_TITLE,
+        description: INCLUSION_SEO_DESCRIPTION,
       },
     },
   },

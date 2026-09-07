@@ -1,0 +1,87 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.inclusion__hero {
+  padding-bottom: calc(var(--br-section-y) * 0.45);
+}
+
+.inclusion__hero h1 {
+  max-width: 22ch;
+  overflow-wrap: break-word;
+}
+
+.inclusion__commitment {
+  padding-top: 0;
+}
+
+.inclusion__pathways h2,
+.inclusion__careers h2,
+.inclusion__cta h2 {
+  max-width: 20ch;
+}
+
+.inclusion__list {
+  display: grid;
+  gap: var(--br-space-3);
+  margin: var(--br-space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inclusion__list li {
+  padding: var(--br-space-3) 0 var(--br-space-3) var(--br-space-4);
+  border-left: 3px solid var(--br-color-primary);
+  font-weight: var(--br-weight-semibold);
+  line-height: var(--br-leading-snug);
+}
+
+.inclusion__split {
+  padding-top: calc(var(--br-section-y) * 0.7);
+  padding-bottom: calc(var(--br-section-y) * 0.7);
+}
+
+.inclusion__split-grid {
+  display: grid;
+  gap: var(--br-space-4);
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--br-space-6);
+    align-items: stretch;
+  }
+}
+
+.inclusion__panel {
+  height: 100%;
+  padding: var(--br-space-6);
+  border: 1px solid var(--br-color-border);
+  border-radius: var(--br-radius-xl);
+  background: var(--br-color-surface);
+  box-shadow: var(--br-shadow-xs);
+
+  h2 {
+    font-size: var(--br-text-2xl);
+  }
+
+  p:last-child {
+    margin-top: var(--br-space-4);
+    color: var(--br-color-text-muted);
+    line-height: var(--br-leading-relaxed);
+  }
+}
+
+.inclusion__cta {
+  padding-top: calc(var(--br-section-y) * 0.7);
+}
+
+.inclusion__actions {
+  margin-top: var(--br-space-8);
+
+  .br-button {
+    white-space: normal;
+    text-align: center;
+  }
+}

@@ -1,0 +1,77 @@
+<article class="inclusion">
+  <header class="br-section inclusion__hero">
+    <div class="br-container br-container--narrow">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1>{{ headline }}</h1>
+      <p class="br-lead">{{ lede }}</p>
+    </div>
+  </header>
+
+  <section class="br-section inclusion__commitment" aria-label="Inclusion commitment">
+    <div class="br-container">
+      <br-inclusion-commitment
+        [showEyebrow]="false"
+        [showHeading]="false"
+        [showIntro]="false"
+        [showClosing]="false"
+      />
+    </div>
+  </section>
+
+  <section
+    class="br-section br-section--sunken inclusion__pathways"
+    aria-labelledby="inclusion-pathways"
+  >
+    <div class="br-container br-container--narrow">
+      <p class="br-eyebrow">{{ pathwaysEyebrow }}</p>
+      <h2 id="inclusion-pathways">{{ pathwaysTitle }}</h2>
+      <p class="br-lead">{{ pathwaysBody }}</p>
+      <ul class="inclusion__list">
+        @for (item of pathwaysItems; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section inclusion__split" aria-label="Training and employer collaboration">
+    <div class="br-container inclusion__split-grid">
+      <article class="inclusion__panel">
+        <p class="br-eyebrow">{{ trainingEyebrow }}</p>
+        <h2 id="inclusion-training">{{ trainingTitle }}</h2>
+        <p>{{ trainingBody }}</p>
+      </article>
+      <article class="inclusion__panel">
+        <p class="br-eyebrow">{{ employersEyebrow }}</p>
+        <h2 id="inclusion-employers">{{ employersTitle }}</h2>
+        <p>{{ employersBody }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="br-section br-section--sunken inclusion__careers"
+    aria-labelledby="inclusion-careers"
+  >
+    <div class="br-container br-container--narrow">
+      <p class="br-eyebrow">{{ careersEyebrow }}</p>
+      <h2 id="inclusion-careers">{{ careersTitle }}</h2>
+      <p class="br-lead">{{ careersBody }}</p>
+    </div>
+  </section>
+
+  <section class="br-section inclusion__cta" aria-labelledby="inclusion-cta">
+    <div class="br-container br-container--narrow">
+      <h2 id="inclusion-cta">{{ ctaTitle }}</h2>
+      <p class="br-lead">{{ closing }}</p>
+      <div class="br-cluster inclusion__actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="primaryCtaHref">
+          {{ primaryCta }}
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryCtaHref">
+          {{ secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

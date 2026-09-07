@@ -1,0 +1,8 @@
+<article class="principle">
+  @if (headingLevel() === 'h2') {
+    <h2>{{ label() }}</h2>
+  } @else {
+    <h3>{{ label() }}</h3>
+  }
+  <p>{{ body() }}</p>
+</article>

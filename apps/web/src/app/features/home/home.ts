@@ -2,6 +2,20 @@ import { afterNextRender, ChangeDetectionStrategy, Component } from '@angular/co
 import { RouterLink } from '@angular/router';
 
 import {
+  ABOUT_EYEBROW,
+  ABOUT_HEADLINE,
+  ABOUT_HOME_CTA,
+  ABOUT_HOME_CTA_HREF,
+  ABOUT_HOME_INTRO,
+  ABOUT_MISSION,
+  ABOUT_MISSION_LABEL,
+  ABOUT_VISION,
+  ABOUT_VISION_LABEL,
+} from '../about/about-content';
+import { PrincipleCard } from '../about/principle-card';
+import { TalentCard } from '../about/talent-card';
+import { InclusionCommitment } from '../inclusion/inclusion-commitment';
+import {
   HERO_EYEBROW,
   HERO_HEADLINE_ACCENT,
   HERO_HEADLINE_PRIMARY,
@@ -14,7 +28,7 @@ import {
 
 @Component({
   selector: 'br-home',
-  imports: [RouterLink],
+  imports: [RouterLink, PrincipleCard, TalentCard, InclusionCommitment],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,6 +42,15 @@ export class Home {
   protected readonly purposeHeadline = PURPOSE_HEADLINE;
   protected readonly purposeLead = PURPOSE_LEAD;
   protected readonly purposeItems = PURPOSE_ITEMS;
+  protected readonly aboutEyebrow = ABOUT_EYEBROW;
+  protected readonly aboutHeadline = ABOUT_HEADLINE;
+  protected readonly aboutIntro = ABOUT_HOME_INTRO;
+  protected readonly missionLabel = ABOUT_MISSION_LABEL;
+  protected readonly mission = ABOUT_MISSION;
+  protected readonly visionLabel = ABOUT_VISION_LABEL;
+  protected readonly vision = ABOUT_VISION;
+  protected readonly aboutCta = ABOUT_HOME_CTA;
+  protected readonly aboutCtaHref = ABOUT_HOME_CTA_HREF;
 
   constructor() {
     afterNextRender(() => {

@@ -1,0 +1,95 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.commitment {
+  padding: clamp(1.75rem, 4vw, 3.25rem);
+  border-radius: var(--br-radius-2xl);
+  background: var(--br-color-surface-inverse);
+  color: var(--br-color-text-inverse);
+  box-shadow: var(--br-shadow-md);
+}
+
+.commitment__eyebrow {
+  color: var(--br-blue-200);
+}
+
+.commitment__headline {
+  max-width: 22ch;
+  color: var(--br-color-text-inverse);
+  font-size: var(--br-text-3xl);
+  font-weight: var(--br-weight-bold);
+  letter-spacing: var(--br-tracking-tight);
+  line-height: var(--br-leading-tight);
+  overflow-wrap: break-word;
+}
+
+.commitment__intro,
+.commitment__goal-intro,
+.commitment__closing {
+  max-width: 62ch;
+  color: rgb(255 255 255 / 82%);
+  font-size: var(--br-text-lg);
+  line-height: var(--br-leading-relaxed);
+}
+
+.commitment__intro {
+  margin-top: var(--br-space-4);
+}
+
+.commitment__goal-intro {
+  margin-top: var(--br-space-8);
+  font-size: var(--br-text-base);
+}
+
+.commitment__goals {
+  display: grid;
+  gap: var(--br-space-3);
+  margin: var(--br-space-5) 0 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.from(bp.$bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include bp.from(bp.$bp-xl) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.commitment__goals li {
+  min-width: 0;
+  padding: var(--br-space-4);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: var(--br-radius-lg);
+  background: rgb(255 255 255 / 6%);
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-medium);
+  line-height: var(--br-leading-snug);
+}
+
+.commitment__closing {
+  margin-top: var(--br-space-8);
+  font-weight: var(--br-weight-semibold);
+  color: var(--br-color-text-inverse);
+}
+
+.commitment__cta {
+  margin-top: var(--br-space-8);
+  white-space: normal;
+  text-align: center;
+}
+
+.commitment--compact {
+  .commitment__headline {
+    max-width: 24ch;
+    font-size: var(--br-text-2xl);
+  }
+
+  .commitment__intro {
+    font-size: var(--br-text-base);
+  }
+}
