@@ -9,7 +9,7 @@ import {
 import type { ApiErrorResponse } from '@bluerise/shared-types';
 import type { Request, Response } from 'express';
 
-import { type AppConfigService } from '../../config/app-config.service';
+import { AppConfigService } from '../../config/app-config.service';
 import { getRequestId } from '../request-context';
 
 /**

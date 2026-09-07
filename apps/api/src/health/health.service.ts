@@ -7,9 +7,9 @@ import type {
   LivenessResponse,
   ReadinessResponse,
 } from '@bluerise/shared-types';
-import { type DataSource } from 'typeorm';
+import { DataSource } from 'typeorm';
 
-import { type AppConfigService } from '../config/app-config.service';
+import { AppConfigService } from '../config/app-config.service';
 
 @Injectable()
 export class HealthService {

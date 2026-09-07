@@ -8,7 +8,7 @@ import {
   LivenessResponseDto,
   ReadinessResponseDto,
 } from './dto/health-response.dto';
-import { type HealthService } from './health.service';
+import { HealthService } from './health.service';
 
 @ApiTags('Health')
 @Controller({ path: 'health', version: '1' })

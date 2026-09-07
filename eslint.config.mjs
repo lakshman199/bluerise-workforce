@@ -54,6 +54,12 @@ export default tseslint.config(
     files: ['apps/api/**/*.ts'],
     rules: {
       '@typescript-eslint/no-extraneous-class': 'off',
+      // Nest resolves constructor dependencies from `emitDecoratorMetadata`, and a type-only
+      // import is erased before that metadata is written — the application then fails at
+      // boot with "Nest can't resolve dependencies". ESLint cannot tell an injected
+      // parameter from an ordinary type annotation, so the rule is off for the API rather
+      // than left on with a suppression on every provider.
+      '@typescript-eslint/consistent-type-imports': 'off',
     },
   },
 
