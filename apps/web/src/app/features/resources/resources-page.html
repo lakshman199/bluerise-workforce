@@ -1,0 +1,71 @@
+<article class="resources">
+  <header class="br-section resources__hero">
+    <div class="br-container resources__hero-inner">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1 [innerHTML]="headlineHtml"></h1>
+      <p class="br-lead">{{ intro }}</p>
+      <p class="resources__availability">{{ availability }}</p>
+    </div>
+  </header>
+
+  <section class="br-section br-section--sunken" aria-labelledby="resources-categories">
+    <div class="br-container">
+      <header class="resources__head">
+        <h2 id="resources-categories">{{ categoriesTitle }}</h2>
+        <p class="br-lead">{{ categoriesLead }}</p>
+      </header>
+      <ul class="resources__categories">
+        @for (item of categories; track item.title) {
+          <li>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="resources-audience">
+    <div class="br-container resources__audience">
+      <header class="resources__head">
+        <h2 id="resources-audience">{{ audienceTitle }}</h2>
+        <p class="br-lead">{{ audienceLead }}</p>
+      </header>
+      <ul class="resources__audiences">
+        @for (item of audiences; track item.title) {
+          <li>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section resources__themes-band" aria-labelledby="resources-themes">
+    <div class="br-container resources__themes-inner">
+      <h2 id="resources-themes">{{ themesTitle }}</h2>
+      <p class="resources__themes-lead">{{ themesLead }}</p>
+      <ul class="resources__themes">
+        @for (item of themes; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="resources-cta">
+    <div class="br-container resources__cta">
+      <h2 id="resources-cta">{{ ctaTitle }}</h2>
+      <p class="br-lead">{{ ctaBody }}</p>
+      <div class="br-cluster resources__actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="primaryHref">
+          {{ primaryCta }}
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+          {{ secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

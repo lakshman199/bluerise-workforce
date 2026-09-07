@@ -164,9 +164,9 @@ decisions that were considered and rejected, is in
 - No company address, phone number, social account, statistic, or customer name has been
   invented. Where a real value is not available, the UI omits the section rather than
   filling it with a placeholder.
-- The contact form (Phase 2) will persist submissions and will not send email until a
-  mail provider is configured, and will not present a CAPTCHA until a real provider is
-  configured. A decorative CAPTCHA is not security.
+- The contact form persists submissions and does not send email until a mail provider is
+  configured. It does not present a CAPTCHA until a real provider is configured. A
+  decorative CAPTCHA is not security.
 
 ## Contributing
 

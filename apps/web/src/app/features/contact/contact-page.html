@@ -1,0 +1,340 @@
+<article class="contact">
+  <header class="br-section contact__hero">
+    <div class="br-container contact__hero-inner">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1 [innerHTML]="headlineHtml"></h1>
+      <p class="br-lead">{{ intro }}</p>
+    </div>
+  </header>
+
+  <section class="br-section contact__body" aria-labelledby="contact-info-title">
+    <div class="br-container">
+      <div class="contact__card">
+        <aside class="contact__info">
+          <p class="contact__info-eyebrow">{{ infoEyebrow }}</p>
+          <h2 id="contact-info-title">{{ infoTitle }}</h2>
+          <p>{{ infoLead }}</p>
+          <p class="contact__email">
+            <span class="contact__email-label">{{ emailLabel }}</span>
+            <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+          </p>
+        </aside>
+
+        <div class="contact__panel">
+          @if (submitted()) {
+            <div class="contact__success" role="status">
+              <div class="br-alert br-alert--success">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <path d="m20 6-11 11-5-5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div>
+                  <p class="br-alert__title">{{ successTitle }}</p>
+                  <p class="br-alert__body">{{ successBody }}</p>
+                </div>
+              </div>
+              <p>
+                If you need to add anything, write again or email
+                <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+                .
+              </p>
+              <button type="button" class="br-button br-button--secondary" (click)="resetForm()">
+                {{ successAgain }}
+              </button>
+            </div>
+          } @else {
+            <form
+              class="contact__form"
+              [formGroup]="form"
+              (ngSubmit)="onSubmit()"
+              novalidate
+              [attr.aria-busy]="submitting()"
+            >
+              <div class="br-form-grid">
+                <div class="br-field">
+                  <label class="br-label" for="contact-first-name">
+                    First name
+                    <span class="br-label__required" aria-hidden="true">*</span>
+                    <span class="br-sr-only">(required)</span>
+                  </label>
+                  <input
+                    id="contact-first-name"
+                    class="br-input"
+                    type="text"
+                    autocomplete="given-name"
+                    formControlName="firstName"
+                    [attr.aria-invalid]="showError('firstName')"
+                    [attr.aria-describedby]="
+                      showError('firstName') ? 'contact-first-name-error' : null
+                    "
+                  />
+                  @if (showError('firstName')) {
+                    <p id="contact-first-name-error" class="br-error-text" role="alert">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                      </svg>
+                      {{ errorFor('firstName') }}
+                    </p>
+                  }
+                </div>
+
+                <div class="br-field">
+                  <label class="br-label" for="contact-last-name">
+                    Last name
+                    <span class="br-label__required" aria-hidden="true">*</span>
+                    <span class="br-sr-only">(required)</span>
+                  </label>
+                  <input
+                    id="contact-last-name"
+                    class="br-input"
+                    type="text"
+                    autocomplete="family-name"
+                    formControlName="lastName"
+                    [attr.aria-invalid]="showError('lastName')"
+                    [attr.aria-describedby]="
+                      showError('lastName') ? 'contact-last-name-error' : null
+                    "
+                  />
+                  @if (showError('lastName')) {
+                    <p id="contact-last-name-error" class="br-error-text" role="alert">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                      </svg>
+                      {{ errorFor('lastName') }}
+                    </p>
+                  }
+                </div>
+
+                <div class="br-field">
+                  <label class="br-label" for="contact-email">
+                    Email
+                    <span class="br-label__required" aria-hidden="true">*</span>
+                    <span class="br-sr-only">(required)</span>
+                  </label>
+                  <input
+                    id="contact-email"
+                    class="br-input"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    formControlName="email"
+                    [attr.aria-invalid]="showError('email')"
+                    [attr.aria-describedby]="showError('email') ? 'contact-email-error' : null"
+                  />
+                  @if (showError('email')) {
+                    <p id="contact-email-error" class="br-error-text" role="alert">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                      </svg>
+                      {{ errorFor('email') }}
+                    </p>
+                  }
+                </div>
+
+                <div class="br-field">
+                  <label class="br-label" for="contact-phone">Phone number</label>
+                  <input
+                    id="contact-phone"
+                    class="br-input"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    formControlName="phone"
+                    [attr.aria-invalid]="showError('phone')"
+                    [attr.aria-describedby]="
+                      showError('phone')
+                        ? 'contact-phone-error contact-phone-hint'
+                        : 'contact-phone-hint'
+                    "
+                  />
+                  <p id="contact-phone-hint" class="br-hint">
+                    Optional. Include a country code if you are writing from outside the United
+                    States.
+                  </p>
+                  @if (showError('phone')) {
+                    <p id="contact-phone-error" class="br-error-text" role="alert">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                      </svg>
+                      {{ errorFor('phone') }}
+                    </p>
+                  }
+                </div>
+              </div>
+
+              <fieldset
+                class="br-fieldset contact__subjects"
+                [attr.aria-invalid]="showError('subject')"
+                [attr.aria-describedby]="showError('subject') ? 'contact-subject-error' : null"
+              >
+                <legend class="br-label">
+                  {{ subjectsLabel }}
+                  <span class="br-label__required" aria-hidden="true">*</span>
+                  <span class="br-sr-only">(required)</span>
+                </legend>
+                <div class="contact__subject-options">
+                  @for (option of subjects; track option) {
+                    <label class="br-radio">
+                      <input type="radio" formControlName="subject" [value]="option" />
+                      <span>{{ option }}</span>
+                    </label>
+                  }
+                </div>
+                @if (showError('subject')) {
+                  <p id="contact-subject-error" class="br-error-text" role="alert">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                    </svg>
+                    {{ errorFor('subject') }}
+                  </p>
+                }
+              </fieldset>
+
+              <div class="br-field">
+                <label class="br-label" for="contact-message">
+                  Message
+                  <span class="br-label__required" aria-hidden="true">*</span>
+                  <span class="br-sr-only">(required)</span>
+                </label>
+                <textarea
+                  id="contact-message"
+                  class="br-textarea"
+                  formControlName="message"
+                  rows="6"
+                  [attr.aria-invalid]="showError('message')"
+                  [attr.aria-describedby]="showError('message') ? 'contact-message-error' : null"
+                ></textarea>
+                @if (showError('message')) {
+                  <p id="contact-message-error" class="br-error-text" role="alert">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                    </svg>
+                    {{ errorFor('message') }}
+                  </p>
+                }
+              </div>
+
+              <div class="br-field">
+                <label class="br-checkbox" for="contact-consent">
+                  <input
+                    id="contact-consent"
+                    type="checkbox"
+                    formControlName="consent"
+                    [attr.aria-invalid]="showError('consent')"
+                    [attr.aria-describedby]="showError('consent') ? 'contact-consent-error' : null"
+                  />
+                  <span>
+                    {{ consentLabel }}
+                    <span class="br-label__required" aria-hidden="true">*</span>
+                    <span class="br-sr-only">(required)</span>
+                  </span>
+                </label>
+                @if (showError('consent')) {
+                  <p id="contact-consent-error" class="br-error-text" role="alert">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                    </svg>
+                    {{ errorFor('consent') }}
+                  </p>
+                }
+              </div>
+
+              @if (apiError(); as error) {
+                <div class="br-alert br-alert--danger" role="alert">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+                  </svg>
+                  <div>
+                    <p class="br-alert__title">{{ errorTitle }}</p>
+                    <p class="br-alert__body">
+                      {{ error.message }}
+                      @if (error.requestId) {
+                        Quote request {{ error.requestId }} if you contact us about this.
+                      }
+                    </p>
+                  </div>
+                </div>
+              }
+
+              <div class="contact__actions">
+                <button
+                  type="submit"
+                  class="br-button br-button--primary br-button--lg"
+                  [disabled]="submitDisabled"
+                >
+                  @if (submitting()) {
+                    <span class="br-button__spinner" aria-hidden="true"></span>
+                    {{ submittingLabel }}
+                  } @else {
+                    {{ submitLabel }}
+                  }
+                </button>
+              </div>
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</article>

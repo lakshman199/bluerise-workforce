@@ -25,10 +25,7 @@ export class PublicPageSkeleton {
 
   protected readonly page = computed(() => {
     const path = this.path();
-    return (
-      PUBLIC_PAGE_SKELETONS.find((entry) => entry.path === path) ??
-      PUBLIC_PAGE_SKELETONS[0]
-    );
+    return PUBLIC_PAGE_SKELETONS.find((entry) => entry.path === path);
   });
 
   protected readonly contactEmail = PUBLIC_CONTACT_EMAIL;

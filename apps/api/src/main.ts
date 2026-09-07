@@ -81,8 +81,8 @@ async function bootstrap(): Promise<void> {
       new DocumentBuilder()
         .setTitle('BlueRise Workforce API')
         .setDescription(
-          'The BlueRise Workforce platform API. Phase 1 exposes health endpoints only; ' +
-            'later phases add contact, authentication, workforce, payroll, benefits, ' +
+          'The BlueRise Workforce platform API. Health and public contact submissions ' +
+            'are available; later phases add authentication, workforce, payroll, benefits, ' +
             'timekeeping, HR/compliance, and workers’ compensation modules.',
         )
         .setVersion(config.app.version)

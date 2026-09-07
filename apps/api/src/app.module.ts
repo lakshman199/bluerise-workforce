@@ -7,6 +7,7 @@ import { ResponseEnvelopeInterceptor } from './common/interceptors/response-enve
 import { AppConfigModule } from './config/config.module';
 import { AppConfigService } from './config/app-config.service';
 import { DatabaseModule } from './database/database.module';
+import { ContactModule } from './contact/contact.module';
 import { HealthModule } from './health/health.module';
 import { LoggerModule } from './logger/logger.module';
 
@@ -28,6 +29,7 @@ import { LoggerModule } from './logger/logger.module';
       }),
     }),
     HealthModule,
+    ContactModule,
   ],
   providers: [
     // Rate limiting applies to every route by default; a route opts out explicitly with

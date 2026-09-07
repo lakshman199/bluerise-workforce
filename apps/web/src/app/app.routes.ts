@@ -8,9 +8,17 @@ import {
 } from './features/inclusion/inclusion-content';
 import { PUBLIC_PAGE_SKELETONS } from './features/public-page/public-page-content';
 import {
+  CONTACT_SEO_DESCRIPTION,
+  CONTACT_SEO_TITLE,
+} from './features/contact/contact-content';
+import {
   EMPLOYERS_SEO_DESCRIPTION,
   EMPLOYERS_SEO_TITLE,
 } from './features/employers/employers-content';
+import {
+  RESOURCES_SEO_DESCRIPTION,
+  RESOURCES_SEO_TITLE,
+} from './features/resources/resources-content';
 import {
   SEEKERS_SEO_DESCRIPTION,
   SEEKERS_SEO_TITLE,
@@ -111,6 +119,30 @@ export const routes: Routes = [
       seo: {
         title: BENEFITS_SEO_TITLE,
         description: BENEFITS_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'resources',
+    loadComponent: () =>
+      import('./features/resources/resources-page').then((m) => m.ResourcesPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: RESOURCES_SEO_TITLE,
+        description: RESOURCES_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'contact',
+    loadComponent: () =>
+      import('./features/contact/contact-page').then((m) => m.ContactPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: CONTACT_SEO_TITLE,
+        description: CONTACT_SEO_DESCRIPTION,
       },
     },
   },

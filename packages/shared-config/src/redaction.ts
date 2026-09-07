@@ -28,6 +28,13 @@ export const REDACTED_FIELD_NAMES = [
   'bankAccount',
   'dateOfBirth',
   'dob',
+  'message',
+  'firstName',
+  'lastName',
+  'email',
+  'phone',
+  'first_name',
+  'last_name',
 ] as const;
 
 export type RedactedFieldName = (typeof REDACTED_FIELD_NAMES)[number];

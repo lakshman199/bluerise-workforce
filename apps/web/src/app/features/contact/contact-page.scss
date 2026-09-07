@@ -1,0 +1,155 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.contact__hero {
+  text-align: center;
+  padding-block: clamp(3.25rem, 2rem + 6vw, 6.5rem) calc(var(--br-section-y) * 0.45);
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 0%, rgb(217 232 255 / 52%), transparent 60%),
+    var(--br-color-page);
+}
+
+.contact__hero-inner {
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.contact__hero .br-eyebrow,
+.contact__hero h1,
+.contact__hero .br-lead {
+  margin-inline: auto;
+}
+
+.contact__hero h1 {
+  max-width: 14ch;
+  overflow-wrap: break-word;
+}
+
+.contact__body {
+  padding-top: 0;
+}
+
+.contact__card {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--br-color-border);
+  border-radius: var(--br-radius-2xl);
+  background: var(--br-color-surface);
+  box-shadow: var(--br-shadow-sm);
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: minmax(16rem, 0.85fr) minmax(0, 1.15fr);
+  }
+}
+
+.contact__info {
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background:
+    radial-gradient(ellipse 80% 70% at 0% 100%, rgb(51 122 255 / 18%), transparent 52%),
+    var(--br-color-surface-inverse);
+  color: var(--br-color-text-inverse);
+
+  h2 {
+    color: var(--br-color-text-inverse);
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    letter-spacing: -0.03em;
+    overflow-wrap: break-word;
+  }
+
+  p {
+    color: rgb(247 243 234 / 78%);
+    line-height: var(--br-leading-relaxed);
+  }
+}
+
+.contact__info-eyebrow {
+  margin: 0 0 var(--br-space-4);
+  font-size: var(--br-text-xs);
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(247 243 234 / 72%);
+}
+
+.contact__email {
+  display: grid;
+  gap: var(--br-space-1);
+  margin: var(--br-space-8) 0 0;
+  padding: var(--br-space-4);
+  border-radius: var(--br-radius-lg);
+  background: rgb(255 255 255 / 8%);
+}
+
+.contact__email-label {
+  font-size: var(--br-text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(247 243 234 / 62%);
+}
+
+.contact__email a {
+  color: var(--br-color-text-inverse);
+  font-weight: var(--br-weight-semibold);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact__email a:hover,
+.contact__email a:focus-visible {
+  text-decoration: underline;
+}
+
+.contact__panel {
+  min-width: 0;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+}
+
+.contact__form,
+.contact__success {
+  display: grid;
+  gap: var(--br-space-6);
+}
+
+.contact__subjects {
+  min-width: 0;
+}
+
+.contact__subject-options {
+  display: grid;
+  gap: var(--br-space-3);
+
+  @include bp.from(bp.$bp-sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.contact__actions {
+  display: flex;
+  justify-content: flex-end;
+
+  .br-button {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+.contact__success p {
+  margin: 0;
+  color: var(--br-color-text-muted);
+  line-height: var(--br-leading-relaxed);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__card,
+  .contact__info,
+  .br-button__spinner {
+    animation: none;
+    transition: none;
+  }
+}

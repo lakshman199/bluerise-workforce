@@ -1,20 +1,22 @@
 <section class="br-section skeleton">
   <div class="br-container br-container--narrow">
     <p class="br-eyebrow">BlueRise Workforce</p>
-    <h1>{{ page().heading }}</h1>
-    <p class="br-lead">{{ page().intro }}</p>
+    @if (page(); as page) {
+      <h1>{{ page.heading }}</h1>
+      <p class="br-lead">{{ page.intro }}</p>
 
-    @if (page().path === 'contact') {
-      <p class="skeleton__email">
-        <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
-      </p>
-    }
-
-    <div class="br-cluster skeleton__actions">
-      <a class="br-button br-button--primary" routerLink="/">Back to the home page</a>
-      @if (page().path !== 'contact') {
-        <a class="br-button br-button--secondary" routerLink="/contact">Contact Us</a>
+      @if (page.path === 'contact') {
+        <p class="skeleton__email">
+          <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+        </p>
       }
-    </div>
+
+      <div class="br-cluster skeleton__actions">
+        <a class="br-button br-button--primary" routerLink="/">Back to the home page</a>
+        @if (page.path !== 'contact') {
+          <a class="br-button br-button--secondary" routerLink="/contact">Contact Us</a>
+        }
+      </div>
+    }
   </div>
 </section>

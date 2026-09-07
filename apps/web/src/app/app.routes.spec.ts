@@ -6,23 +6,21 @@ describe('public route SEO', () => {
     return route?.data?.['seo'] as { title?: string; description?: string } | undefined;
   }
 
-  it('gives Employers, Job Seekers, Our Solutions, and Benefits unique titles and descriptions', () => {
-    const employers = seoFor('employers');
-    const seekers = seoFor('job-seekers');
-    const solutions = seoFor('our-solutions');
-    const benefits = seoFor('benefits');
-
-    const titles = [employers?.title, seekers?.title, solutions?.title, benefits?.title];
-    const descriptions = [
-      employers?.description,
-      seekers?.description,
-      solutions?.description,
-      benefits?.description,
+  it('gives public marketing pages unique titles and descriptions', () => {
+    const paths = [
+      'employers',
+      'job-seekers',
+      'our-solutions',
+      'benefits',
+      'resources',
+      'contact',
     ];
+    const titles = paths.map((path) => seoFor(path)?.title);
+    const descriptions = paths.map((path) => seoFor(path)?.description);
 
     expect(titles.every(Boolean)).toBe(true);
     expect(descriptions.every((value) => (value?.length ?? 0) > 40)).toBe(true);
-    expect(new Set(titles).size).toBe(4);
-    expect(new Set(descriptions).size).toBe(4);
+    expect(new Set(titles).size).toBe(paths.length);
+    expect(new Set(descriptions).size).toBe(paths.length);
   });
 });

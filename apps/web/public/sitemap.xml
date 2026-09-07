@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Absolute <loc> hosts are omitted until a public website origin is confirmed.
+  The indexable public paths are listed below and in robots.txt.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc></url>
+  <url><loc>/about</loc></url>
+  <url><loc>/inclusion</loc></url>
+  <url><loc>/employers</loc></url>
+  <url><loc>/job-seekers</loc></url>
+  <url><loc>/our-solutions</loc></url>
+  <url><loc>/benefits</loc></url>
+  <url><loc>/resources</loc></url>
+  <url><loc>/contact</loc></url>
+</urlset>

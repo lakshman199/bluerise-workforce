@@ -31,8 +31,9 @@ the same items are in the mobile menu.
 | `/**`                  | —             | 1     | 404                                                                                                                |
 
 Legal routes, `/inclusion`, and Login are not primary public navigation. `/inclusion` is
-a full public page, linked from Home and About Us. Resources and Contact remain
-skeletons until those pages are written.
+a full public page, linked from Home and About Us. Resources is an informational index
+without invented publications. Contact persists submissions and does not send email
+until a mail provider is configured.
 
 ## BlueRise Portal
 

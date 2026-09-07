@@ -105,7 +105,7 @@ export class DesignSystem {
     }
 
     // Nothing is sent anywhere. This demonstrates the pending and success states of the
-    // form pattern; the contact endpoint arrives in Phase 2.
+    // form pattern; the public contact form posts separately to /api/v1/contact.
     this.submitting.set(true);
     this.submitted.set(false);
 
