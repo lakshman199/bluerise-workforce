@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { finalize } from 'rxjs';
 
+import type { ContactSubject } from '@bluerise/shared-types';
+
 import { ContactService } from '../../core/api/contact.service';
 import { toApiError, type ApiError } from '../../core/api/api-error';
 import { PUBLIC_CONTACT_EMAIL } from '../../layout/navigation';
@@ -71,7 +73,7 @@ export class ContactPage {
     lastName: ['', [Validators.required, Validators.maxLength(80)]],
     email: ['', [Validators.required, Validators.email, Validators.maxLength(254)]],
     phone: ['', [Validators.maxLength(32), optionalPhone]],
-    subject: [this.subjects[0], Validators.required],
+    subject: [this.subjects[0] as ContactSubject, Validators.required],
     message: [
       '',
       [Validators.required, Validators.minLength(10), Validators.maxLength(4000)],

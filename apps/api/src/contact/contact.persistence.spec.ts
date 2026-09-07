@@ -9,6 +9,7 @@ function loadEnvironmentFile(): void {
   const candidates = [
     resolve(process.cwd(), '.env'),
     resolve(process.cwd(), '../../.env'),
+    resolve(__dirname, '../../../../.env'),
   ];
 
   for (const candidate of candidates) {
