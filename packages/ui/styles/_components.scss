@@ -779,3 +779,34 @@
     cursor: not-allowed;
   }
 }
+
+// ---------------------------------------------------------------------------------------
+// Touch density
+//
+// Compact controls exist so a dense administrative table is not exhausting to read with a
+// mouse. On a touch device that density becomes a miss-tap, so every one of them grows to
+// the full 44px target. Keying on the pointer rather than on viewport width is what makes
+// this correct for a touchscreen laptop and for a phone in landscape alike.
+//
+// This block is last in the file deliberately: the rules it overrides are single-class
+// selectors too, so it wins on source order rather than on specificity.
+// ---------------------------------------------------------------------------------------
+
+@media (pointer: coarse) {
+  .br-button--sm,
+  .br-tab,
+  .br-dropdown__item,
+  .br-pagination__page,
+  .br-checkbox,
+  .br-radio,
+  .br-breadcrumb a {
+    min-height: var(--br-touch-target);
+  }
+
+  // Checkbox and radio labels keep their top alignment, so the control stays beside the
+  // first line of a label that wraps rather than floating in the middle of it.
+  .br-breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+  }
+}

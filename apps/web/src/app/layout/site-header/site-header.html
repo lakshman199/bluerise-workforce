@@ -23,15 +23,27 @@
       <ul class="nav__list">
         @for (item of navItems; track item.label) {
           <li>
-            <a
-              class="nav__link"
-              [routerLink]="item.path"
-              [fragment]="item.fragment"
-              routerLinkActive="nav__link--active"
-              [routerLinkActiveOptions]="{ exact: !item.fragment }"
-            >
-              {{ item.label }}
-            </a>
+            <!--
+              Only a link to a distinct route carries an active state. A fragment link
+              points at a section of the page it is already on, so `routerLinkActive` would
+              mark every one of them active at once; tracking which section is in view is a
+              scroll-position question, not a routing one.
+            -->
+            @if (item.fragment) {
+              <a class="nav__link" [routerLink]="item.path" [fragment]="item.fragment">
+                {{ item.label }}
+              </a>
+            } @else {
+              <a
+                class="nav__link"
+                [routerLink]="item.path"
+                routerLinkActive="nav__link--active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                ariaCurrentWhenActive="page"
+              >
+                {{ item.label }}
+              </a>
+            }
           </li>
         }
       </ul>

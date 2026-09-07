@@ -61,6 +61,17 @@
   max-width: var(--br-measure);
 }
 
+// An eyebrow, heading, and lead are frequently used outside `.br-section__header` — in one
+// half of a split, for instance — where that container's flex gap does not reach them.
+// These rules give the same rhythm wherever the trio appears.
+.br-eyebrow + :is(h1, h2, h3) {
+  margin-top: var(--br-space-3);
+}
+
+:is(h1, h2, h3) + .br-lead {
+  margin-top: var(--br-space-4);
+}
+
 // A flexible grid that collapses by content width rather than by breakpoint. `auto-fit`
 // with a minimum column width handles 375px through 1920px without a single media query.
 .br-grid {

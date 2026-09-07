@@ -38,6 +38,9 @@
   text-decoration: none;
   color: var(--br-color-text);
   flex-shrink: 0;
+  // The logo is the route home from every page, so it is a primary target and gets the
+  // full 44px even though its content is shorter than that.
+  min-height: var(--br-touch-target);
 
   &:hover {
     color: var(--br-color-text);

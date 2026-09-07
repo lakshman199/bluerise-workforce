@@ -26,8 +26,12 @@
 
 .hero__title {
   margin-top: var(--br-space-4);
-  font-size: var(--br-text-6xl);
-  line-height: 1.05;
+  // Deliberately smaller than --br-text-6xl. The hero copy sits in roughly half the
+  // container at desktop widths, and the display size wraps this headline onto six lines
+  // there — large enough to read as a mistake rather than as emphasis.
+  font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: var(--br-tracking-tight);
 }
 
 .hero__title-accent {
@@ -163,7 +167,11 @@
   text-transform: capitalize;
 }
 
+// Placed explicitly. The detail spans the row below, so auto-placement would push the
+// timing down and left instead of keeping it beside the dependency name.
 .dep__timing {
+  grid-column: 3;
+  grid-row: 1;
   font-size: var(--br-text-xs);
   color: var(--br-color-text-subtle);
 }
