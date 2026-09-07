@@ -11,6 +11,7 @@ import {
   COMMUNITY_HEADLINE,
   COMMUNITY_ITEMS,
   HERO_HEADLINE_PRIMARY,
+  HERO_PLATFORM_AREAS,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
   TOGETHER_CTA,
@@ -119,12 +120,19 @@ describe('Home', () => {
     );
   });
 
-  it('keeps the hero visual generic and does not present developer status', () => {
+  it('shows a platform overview in the hero, not live employee or payroll data', () => {
     const fixture = setup();
     const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
 
-    expect(text).toContain('Sample view');
-    expect(text).toContain('Team member');
+    for (const area of HERO_PLATFORM_AREAS) {
+      expect(text).toContain(area);
+    }
+    expect(text).not.toContain('Employee portal');
+    expect(text).not.toContain('Pay statement');
+    expect(text).not.toContain('Coverage on file');
+    expect(text).not.toContain('Direct deposit');
+    expect(text).not.toContain('Enrolled');
+    expect(text).not.toContain('3 of 5');
     expect(text).not.toContain('Live system status');
     expect(text).not.toContain('Phase 4');
     expect(text).not.toContain('Roadmap');

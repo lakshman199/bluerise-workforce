@@ -16,6 +16,21 @@ export const HERO_LEAD = [
   'We partner with organizations to deliver workforce solutions while ensuring that every individual we serve is treated with respect, compassion, and the opportunity to reach their full potential.',
 ] as const;
 
+/**
+ * Homepage hero visual labels. These name platform areas, not live employee records,
+ * payroll amounts, benefit enrollments, or connected providers.
+ */
+export const HERO_PLATFORM_TITLE = 'BlueRise Workforce';
+export const HERO_PLATFORM_LEAD = 'A coordinated workforce platform';
+export const HERO_PLATFORM_AREAS = [
+  'Payroll',
+  'Benefits',
+  'HR & Compliance',
+  'Timekeeping',
+  'Workers’ Comp',
+  'Employee Support',
+] as const;
+
 export const PURPOSE_EYEBROW = 'Our core purpose';
 
 export const PURPOSE_HEADLINE =

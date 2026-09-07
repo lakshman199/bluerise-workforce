@@ -29,71 +29,20 @@
       </div>
     </div>
 
-    <!--
-      Original product visual. Labels are generic on purpose: this is a sample of the
-      employee experience, not a live record and not a copied recruitment screenshot.
-    -->
     <figure class="hero__visual">
       <figcaption class="br-sr-only">
-        A sample employee portal view showing onboarding progress, a pay statement, and benefits
-        status. It is an illustration, not live employee data.
+        An overview of the BlueRise Workforce platform areas: payroll, benefits, HR and compliance,
+        timekeeping, workers’ compensation, and employee support.
       </figcaption>
 
-      <div class="stage" aria-hidden="true">
-        <article class="panel panel--portal">
-          <header class="panel__head">
-            <div>
-              <p class="panel__kicker">Employee portal</p>
-              <p class="panel__title">Your workforce at a glance</p>
-            </div>
-            <span class="br-badge br-badge--neutral">Sample view</span>
-          </header>
-
-          <div class="profile">
-            <span class="profile__avatar">BR</span>
-            <div>
-              <p class="profile__name">Team member</p>
-              <p class="profile__meta">Active · Onboarding in progress</p>
-            </div>
-            <span class="br-badge br-badge--success">Active</span>
-          </div>
-
-          <div class="progress">
-            <div class="progress__row">
-              <p class="progress__label">Onboarding</p>
-              <p class="progress__count">3 of 5 complete</p>
-            </div>
-            <div class="progress__track" role="presentation">
-              <span class="progress__fill"></span>
-            </div>
-            <ol class="progress__steps">
-              <li data-state="done">Welcome</li>
-              <li data-state="done">Profile</li>
-              <li data-state="done">Documents</li>
-              <li data-state="current">Benefits</li>
-              <li data-state="next">Acknowledgement</li>
-            </ol>
-          </div>
-        </article>
-
-        <article class="panel panel--float panel--pay">
-          <p class="panel__kicker">Payroll</p>
-          <p class="panel__title">Pay statement</p>
-          <p class="panel__detail">Current period · Direct deposit on file</p>
-        </article>
-
-        <article class="panel panel--float panel--benefits">
-          <p class="panel__kicker">Benefits</p>
-          <p class="panel__title">Coverage on file</p>
-          <p class="panel__detail">Medical · Enrolled</p>
-        </article>
-
-        <ul class="services">
-          <li>Payroll</li>
-          <li>Benefits</li>
-          <li>Time</li>
-          <li>HR</li>
-        </ul>
+      <div class="overview" aria-hidden="true">
+        <p class="overview__hub">{{ platformTitle }}</p>
+        <p class="overview__lead">{{ platformLead }}</p>
+        <ol class="overview__areas">
+          @for (item of platformAreas; track item) {
+            <li>{{ item }}</li>
+          }
+        </ol>
       </div>
     </figure>
   </div>

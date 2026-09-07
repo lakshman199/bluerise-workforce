@@ -60,7 +60,7 @@
 }
 
 // ---------------------------------------------------------------------------------------
-// Sample product visual — marketing composition
+// Platform overview visual — capabilities, not live records
 // ---------------------------------------------------------------------------------------
 
 .hero__visual {
@@ -68,233 +68,75 @@
   min-width: 0;
 }
 
-.stage {
+.overview {
   position: relative;
-  display: grid;
-  gap: var(--br-space-4);
-  isolation: isolate;
+  min-width: 0;
+  padding: clamp(1.4rem, 3vw, 2.1rem);
+  border: 1px solid var(--br-color-border);
+  border-radius: var(--br-radius-2xl);
+  background: var(--br-color-surface);
+  box-shadow: var(--br-shadow-sm);
 
   &::before {
     content: '';
     position: absolute;
-    inset: 8% 4% -6% 18%;
-    z-index: 0;
+    inset: auto -12% -28% 42%;
+    height: 70%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgb(255 214 160 / 42%), transparent 68%);
+    background: radial-gradient(circle, rgb(255 214 160 / 34%), transparent 68%);
     pointer-events: none;
   }
-
-  @include bp.from(bp.$bp-lg) {
-    min-height: 28rem;
-    padding: var(--br-space-8) var(--br-space-4) var(--br-space-2) 0;
-  }
 }
 
-.panel {
+.overview__hub {
   position: relative;
-  z-index: 1;
-  padding: var(--br-space-6);
-  border: 1px solid var(--br-color-border);
-  border-radius: var(--br-radius-2xl);
-  background: var(--br-color-surface);
-  box-shadow: var(--br-shadow-md);
-}
-
-.panel--portal {
-  padding: var(--br-space-7, var(--br-space-8));
-
-  @include bp.from(bp.$bp-lg) {
-    margin-right: 6.25rem;
-    margin-top: var(--br-space-10);
-  }
-}
-
-.panel__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--br-space-3);
-  margin-bottom: var(--br-space-6);
-}
-
-.panel__kicker {
-  font-size: var(--br-text-xs);
-  font-weight: var(--br-weight-semibold);
-  letter-spacing: var(--br-tracking-wide);
-  text-transform: uppercase;
-  color: var(--br-color-text-subtle);
-}
-
-.panel__title {
-  margin-top: var(--br-space-1);
-  font-size: var(--br-text-lg);
-  font-weight: var(--br-weight-semibold);
-}
-
-.panel__detail {
-  margin-top: var(--br-space-1);
-  font-size: var(--br-text-sm);
-  color: var(--br-color-text-muted);
-}
-
-.profile {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--br-space-3);
-  padding: var(--br-space-4);
-  border-radius: var(--br-radius-xl);
-  background: var(--br-color-surface-sunken);
-}
-
-.profile__avatar {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: var(--br-radius-full);
-  background: var(--br-color-cta);
-  color: var(--br-color-text-inverse);
-  font-size: var(--br-text-sm);
-  font-weight: var(--br-weight-bold);
-}
-
-.profile__name {
-  font-size: var(--br-text-sm);
-  font-weight: var(--br-weight-semibold);
-}
-
-.profile > div {
-  flex: 1 1 8rem;
-  min-width: 0;
-}
-
-.profile__meta {
-  font-size: var(--br-text-xs);
-  color: var(--br-color-text-muted);
-}
-
-.progress {
-  margin-top: var(--br-space-6);
-}
-
-.progress__row {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--br-space-3);
-}
-
-.progress__label,
-.progress__count {
-  font-size: var(--br-text-sm);
-  font-weight: var(--br-weight-medium);
-}
-
-.progress__count {
-  color: var(--br-color-text-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.progress__track {
-  height: 0.5rem;
-  margin-top: var(--br-space-2);
-  border-radius: var(--br-radius-full);
-  background: var(--br-color-surface-muted);
-  overflow: hidden;
-}
-
-.progress__fill {
-  display: block;
-  width: 60%;
-  height: 100%;
-  border-radius: var(--br-radius-full);
-  background: var(--br-color-primary);
-}
-
-.progress__steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--br-space-2);
-  margin: var(--br-space-4) 0 0;
-  padding: 0;
-  list-style: none;
-  font-size: var(--br-text-xs);
-  color: var(--br-color-text-muted);
-
-  li {
-    padding: 0.28rem 0.65rem;
-    border-radius: var(--br-radius-full);
-    background: var(--br-color-surface-muted);
-  }
-
-  li[data-state='done'] {
-    background: var(--br-success-surface);
-    color: var(--br-success);
-  }
-
-  li[data-state='current'] {
-    background: var(--br-color-primary-surface);
-    color: var(--br-blue-800);
-    font-weight: var(--br-weight-semibold);
-  }
-}
-
-.panel--float {
-  @include bp.from(bp.$bp-lg) {
-    position: absolute;
-    z-index: 2;
-    width: min(15.5rem, 48%);
-    padding: var(--br-space-5);
-    box-shadow: var(--br-shadow-lg);
-  }
-}
-
-.panel--pay {
-  @include bp.from(bp.$bp-lg) {
-    top: 0.35rem;
-    right: 0;
-    transform: rotate(-2.4deg);
-  }
-}
-
-.panel--benefits {
-  @include bp.from(bp.$bp-lg) {
-    right: 0.35rem;
-    bottom: 4.25rem;
-    transform: rotate(2.1deg);
-  }
-}
-
-.services {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--br-space-2);
   margin: 0;
+  font-family: var(--br-font-serif);
+  font-style: italic;
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: var(--br-leading-snug);
+}
+
+.overview__lead {
+  position: relative;
+  margin: var(--br-space-2) 0 0;
+  color: var(--br-color-text-muted);
+  font-size: var(--br-text-sm);
+}
+
+.overview__areas {
+  position: relative;
+  display: grid;
+  gap: 0;
+  margin: var(--br-space-6) 0 0;
   padding: 0;
   list-style: none;
 
+  @include bp.from(bp.$bp-sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--br-space-8);
+  }
+
   li {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid var(--br-color-border);
-    border-radius: var(--br-radius-full);
-    background: rgb(255 253 248 / 88%);
-    font-size: var(--br-text-xs);
+    display: flex;
+    align-items: center;
+    gap: var(--br-space-3);
+    min-width: 0;
+    padding: var(--br-space-3) 0;
+    border-bottom: 1px solid var(--br-color-border);
     font-weight: var(--br-weight-semibold);
-    color: var(--br-color-text-muted);
-  }
+    overflow-wrap: break-word;
 
-  @include bp.from(bp.$bp-lg) {
-    padding-inline: var(--br-space-1);
-  }
-}
-
-@include bp.reduced-motion {
-  .panel--float {
-    position: static;
-    width: auto;
-    transform: none;
+    &::before {
+      content: '→';
+      flex-shrink: 0;
+      color: var(--br-color-accent);
+      font-family: var(--br-font-serif);
+      font-style: italic;
+      font-weight: 500;
+    }
   }
 }
 
@@ -302,7 +144,13 @@
 // Core purpose
 // ---------------------------------------------------------------------------------------
 
-.purpose {
+.purpose,
+.about-home,
+.inclusion-home,
+.impact,
+.together,
+.values,
+.close {
   scroll-margin-top: 12.5rem;
 
   @include bp.from(bp.$bp-md) {
@@ -378,14 +226,6 @@
 // About / Mission / Vision
 // ---------------------------------------------------------------------------------------
 
-.about-home {
-  scroll-margin-top: 12.5rem;
-
-  @include bp.from(bp.$bp-md) {
-    scroll-margin-top: 8.5rem;
-  }
-}
-
 .about-home__inner {
   display: grid;
   gap: var(--br-space-12);
@@ -418,25 +258,12 @@
 // ---------------------------------------------------------------------------------------
 
 .inclusion-home {
-  scroll-margin-top: 12.5rem;
   background: transparent;
-
-  @include bp.from(bp.$bp-md) {
-    scroll-margin-top: 8.5rem;
-  }
 }
 
 // ---------------------------------------------------------------------------------------
 // Community impact
 // ---------------------------------------------------------------------------------------
-
-.impact {
-  scroll-margin-top: 12.5rem;
-
-  @include bp.from(bp.$bp-md) {
-    scroll-margin-top: 8.5rem;
-  }
-}
 
 .impact__inner {
   display: grid;
@@ -533,11 +360,6 @@
 .together {
   padding-top: calc(var(--br-section-y) * 0.35);
   padding-bottom: calc(var(--br-section-y) * 0.35);
-  scroll-margin-top: 12.5rem;
-
-  @include bp.from(bp.$bp-md) {
-    scroll-margin-top: 8.5rem;
-  }
 }
 
 .together__banner {
@@ -602,14 +424,6 @@
 // Values
 // ---------------------------------------------------------------------------------------
 
-.values {
-  scroll-margin-top: 12.5rem;
-
-  @include bp.from(bp.$bp-md) {
-    scroll-margin-top: 8.5rem;
-  }
-}
-
 .values__header {
   max-width: 36rem;
   margin-bottom: var(--br-space-12);
@@ -656,12 +470,7 @@
 // ---------------------------------------------------------------------------------------
 
 .close {
-  scroll-margin-top: 12.5rem;
   text-align: center;
-
-  @include bp.from(bp.$bp-md) {
-    scroll-margin-top: 8.5rem;
-  }
 }
 
 .close__inner {

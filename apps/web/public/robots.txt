@@ -1,8 +1,7 @@
 User-agent: *
 Allow: /
 
-# Authenticated surfaces are never indexed. These paths arrive in Phases 4 and 5; the rules
-# are in place first so a crawler cannot reach them the moment they ship.
+# Authenticated surfaces are never indexed.
 Disallow: /portal
 Disallow: /admin
 

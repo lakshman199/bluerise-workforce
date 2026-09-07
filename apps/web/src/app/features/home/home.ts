@@ -33,6 +33,9 @@ import {
   HERO_HEADLINE_ACCENT,
   HERO_HEADLINE_PRIMARY,
   HERO_LEAD,
+  HERO_PLATFORM_AREAS,
+  HERO_PLATFORM_LEAD,
+  HERO_PLATFORM_TITLE,
   PURPOSE_EYEBROW,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
@@ -60,6 +63,9 @@ export class Home {
   protected readonly headlinePrimary = HERO_HEADLINE_PRIMARY;
   protected readonly headlineAccentHtml = emphasize(HERO_HEADLINE_ACCENT, 'Futures.');
   protected readonly lead = HERO_LEAD;
+  protected readonly platformTitle = HERO_PLATFORM_TITLE;
+  protected readonly platformLead = HERO_PLATFORM_LEAD;
+  protected readonly platformAreas = HERO_PLATFORM_AREAS;
   protected readonly purposeEyebrow = PURPOSE_EYEBROW;
   protected readonly purposeHeadlineHtml = emphasize(
     PURPOSE_HEADLINE,
