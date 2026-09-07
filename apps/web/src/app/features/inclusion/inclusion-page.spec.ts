@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 
 import {
   INCLUSION_CLOSING,
+  INCLUSION_GOAL_INTRO,
   INCLUSION_GOALS,
   INCLUSION_HEADLINE,
   INCLUSION_PATHWAYS_ITEMS,
@@ -61,6 +62,7 @@ describe('InclusionPage', () => {
     const root = render();
 
     expect(root.querySelectorAll('h1').length).toBe(1);
+    expect(root.textContent).toContain(INCLUSION_GOAL_INTRO);
     expect(root.querySelector('a[href="/contact"]')?.textContent?.trim()).toBe(
       'Contact BlueRise Workforce',
     );

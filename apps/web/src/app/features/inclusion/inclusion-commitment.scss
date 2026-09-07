@@ -32,7 +32,16 @@
   max-width: 62ch;
   color: rgb(255 255 255 / 82%);
   font-size: var(--br-text-lg);
+  font-weight: var(--br-weight-regular);
   line-height: var(--br-leading-relaxed);
+}
+
+h2.commitment__goal-intro {
+  margin: var(--br-space-8) 0 0;
+  color: var(--br-color-text-inverse);
+  font-size: var(--br-text-xl);
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: var(--br-tracking-snug);
 }
 
 .commitment__intro {

@@ -12,7 +12,11 @@
   }
 
   @if (showGoals()) {
-    <p class="commitment__goal-intro">{{ goalIntro }}</p>
+    @if (showHeading()) {
+      <p class="commitment__goal-intro">{{ goalIntro }}</p>
+    } @else {
+      <h2 class="commitment__goal-intro" id="inclusion-goals">{{ goalIntro }}</h2>
+    }
     <ul class="commitment__goals">
       @for (goal of goals; track goal) {
         <li>{{ goal }}</li>
