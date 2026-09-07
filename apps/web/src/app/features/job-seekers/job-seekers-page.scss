@@ -1,0 +1,109 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.seekers__hero {
+  text-align: center;
+}
+
+.seekers__hero-inner {
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.seekers__hero h1 {
+  overflow-wrap: break-word;
+}
+
+.seekers__hero .br-lead {
+  margin-inline: auto;
+}
+
+.seekers__chapters {
+  display: grid;
+  gap: var(--br-space-8);
+  padding-bottom: var(--br-section-y);
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--br-space-10) var(--br-space-16);
+  }
+
+  section {
+    min-width: 0;
+    padding-top: var(--br-space-6);
+    border-top: 1px solid var(--br-color-border);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: var(--br-text-2xl);
+  }
+
+  p {
+    margin: var(--br-space-4) 0 0;
+    max-width: 52ch;
+    color: var(--br-color-text-muted);
+    line-height: var(--br-leading-relaxed);
+  }
+}
+
+.seekers__note {
+  max-width: 46rem;
+  margin-inline: auto;
+  padding: var(--br-space-6);
+  border: 1px solid var(--br-color-border-strong);
+  border-radius: var(--br-radius-xl);
+  background: var(--br-color-surface-sunken);
+
+  h2 {
+    margin: 0;
+    font-size: var(--br-text-xl);
+    overflow-wrap: break-word;
+  }
+
+  p {
+    margin: var(--br-space-4) 0 0;
+    color: var(--br-color-text-muted);
+    line-height: var(--br-leading-relaxed);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--br-space-2);
+    margin: var(--br-space-5) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--br-color-border);
+    border-radius: var(--br-radius-full);
+    background: var(--br-color-surface);
+    font-size: var(--br-text-sm);
+    font-weight: var(--br-weight-semibold);
+  }
+}
+
+.seekers__cta {
+  text-align: center;
+}
+
+.seekers__cta .br-lead,
+.seekers__cta h2 {
+  margin-inline: auto;
+}
+
+.seekers__actions {
+  justify-content: center;
+  margin-top: var(--br-space-8);
+
+  .br-button {
+    white-space: normal;
+    text-align: center;
+  }
+}

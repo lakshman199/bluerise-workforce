@@ -1,0 +1,85 @@
+<article class="solutions">
+  <header class="br-section solutions__hero">
+    <div class="br-container solutions__hero-grid">
+      <div>
+        <p class="br-eyebrow">{{ eyebrow }}</p>
+        <h1>{{ headline }}</h1>
+        <p class="br-lead">{{ intro }}</p>
+      </div>
+      <ol class="solutions__flow" [attr.aria-label]="flowLabel">
+        @for (step of flow; track step; let last = $last) {
+          <li>
+            <p>{{ step }}</p>
+            @if (!last) {
+              <span class="solutions__arrow" aria-hidden="true">↓</span>
+            }
+          </li>
+        }
+      </ol>
+    </div>
+  </header>
+
+  <section class="br-section" aria-labelledby="solutions-overview">
+    <div class="br-container br-container--narrow">
+      <h2 id="solutions-overview">{{ overviewTitle }}</h2>
+      <p class="br-lead">{{ overviewBody }}</p>
+    </div>
+  </section>
+
+  <section class="br-section br-section--sunken" aria-labelledby="solutions-modules">
+    <div class="br-container">
+      <header class="solutions__head">
+        <h2 id="solutions-modules">{{ modulesTitle }}</h2>
+        <p class="br-lead">{{ modulesLead }}</p>
+      </header>
+      <ul class="solutions__modules">
+        @for (item of modules; track item.title) {
+          <li>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="solutions-connect">
+    <div class="br-container br-container--narrow">
+      <h2 id="solutions-connect">{{ connectTitle }}</h2>
+      <p class="br-lead">{{ connectBody }}</p>
+    </div>
+  </section>
+
+  <section class="br-section br-section--sunken" aria-labelledby="solutions-audience">
+    <div class="br-container">
+      <h2 id="solutions-audience">{{ audienceTitle }}</h2>
+      <div class="solutions__audience">
+        <article>
+          <h3>{{ employerTitle }}</h3>
+          <p>{{ employerBody }}</p>
+          <a class="br-button br-button--secondary" routerLink="/employers">For employers</a>
+        </article>
+        <article>
+          <h3>{{ workerTitle }}</h3>
+          <p>{{ workerBody }}</p>
+          <a class="br-button br-button--secondary" routerLink="/job-seekers">For job seekers</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="solutions-cta">
+    <div class="br-container br-container--narrow">
+      <h2 id="solutions-cta">{{ ctaTitle }}</h2>
+      <p class="br-lead">{{ ctaBody }}</p>
+      <div class="br-cluster solutions__actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="primaryHref">
+          {{ primaryCta }}
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+          {{ secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

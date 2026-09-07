@@ -17,10 +17,10 @@ the same items are in the mobile menu.
 | `/`                    | Home          | 2     | Hero, purpose, about / mission / vision, inclusion, community impact, a future built together, values, closing CTA |
 | `/about`               | About Us      | 2     | Mission, vision, Talent Meets Purpose                                                                              |
 | `/inclusion`           | —             | 2     | Inclusion commitment and supported workforce pathways. Not in the public header.                                   |
-| `/employers`           | Employers     | 2     | Workforce operations for businesses                                                                                |
-| `/job-seekers`         | Job Seekers   | 2     | One place for pay, benefits, hours, documents                                                                      |
-| `/our-solutions`       | Our Solutions | 2     | The platform modules as a service offering                                                                         |
-| `/benefits`            | Benefits      | 2     | Benefit categories and how coordination works                                                                      |
+| `/employers`           | Employers     | 2     | Workforce operations for organizations: onboarding through pay, benefits, time, and support                        |
+| `/job-seekers`         | Job Seekers   | 2     | Meaningful employment, development, training, inclusive pathways. No live job board yet.                           |
+| `/our-solutions`       | Our Solutions | 2     | Coordinated platform: payroll, benefits, HR, timekeeping, workers’ compensation                                    |
+| `/benefits`            | Benefits      | 2     | Benefits as a coordination layer, not a carrier                                                                    |
 | `/resources`           | Resources     | 2     | Guides and reference material index                                                                                |
 | `/contact`             | Contact Us    | 2     | Contact form, persisted server-side                                                                                |
 | `/legal/privacy`       | —             | 2     | Placeholder pending legal copy. Not in the header until copy exists.                                               |
@@ -31,9 +31,8 @@ the same items are in the mobile menu.
 | `/**`                  | —             | 1     | 404                                                                                                                |
 
 Legal routes, `/inclusion`, and Login are not primary public navigation. `/inclusion` is
-a full public page, linked from Home and About Us. Employers, Job Seekers, Our
-Solutions, Benefits, Resources, and Contact remain skeletons until those pages are
-written.
+a full public page, linked from Home and About Us. Resources and Contact remain
+skeletons until those pages are written.
 
 ## BlueRise Portal
 

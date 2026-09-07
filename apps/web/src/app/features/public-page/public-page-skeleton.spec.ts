@@ -21,12 +21,12 @@ describe('PublicPageSkeleton', () => {
     });
   });
 
-  it('renders the Employers skeleton for /employers', async () => {
+  it('renders the Resources skeleton for /resources', async () => {
     const harness = await RouterTestingHarness.create();
-    await harness.navigateByUrl('/employers', PublicPageSkeleton);
+    await harness.navigateByUrl('/resources', PublicPageSkeleton);
 
     const text = harness.routeNativeElement?.textContent ?? '';
-    expect(text).toContain('Employers');
+    expect(text).toContain('Resources');
     expect(text).toContain(PUBLIC_PAGE_SKELETONS[0].intro);
   });
 

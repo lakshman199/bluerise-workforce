@@ -9,4 +9,6 @@ Disallow: /admin
 # A developer reference rather than a page anyone should find in search results.
 Disallow: /design-system
 
-# Absolute sitemap URL is added in Phase 2 alongside the public pages it would list.
+# Absolute sitemap URL requires a confirmed public origin. Indexed public routes include
+# /, /about, /inclusion, /employers, /job-seekers, /our-solutions, /benefits, /resources,
+# and /contact. /design-system, /portal, and /admin stay out of the index.

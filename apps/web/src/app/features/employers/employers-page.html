@@ -1,0 +1,86 @@
+<article class="employers">
+  <header class="br-section employers__hero">
+    <div class="br-container br-container--narrow">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1>{{ headline }}</h1>
+      <p class="br-lead">{{ intro }}</p>
+    </div>
+  </header>
+
+  <section class="br-section br-section--sunken" aria-labelledby="employers-needs">
+    <div class="br-container employers__needs-wrap">
+      <header class="employers__section-head">
+        <h2 id="employers-needs">{{ challengesTitle }}</h2>
+        <p class="br-lead">{{ challengesLead }}</p>
+      </header>
+      <ol class="employers__needs">
+        @for (item of challenges; track item; let i = $index) {
+          <li>
+            <span class="employers__num" aria-hidden="true">{{ i + 1 }}</span>
+            <p>{{ item }}</p>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="employers-capabilities">
+    <div class="br-container">
+      <header class="employers__section-head">
+        <h2 id="employers-capabilities">{{ capabilitiesTitle }}</h2>
+        <p class="br-lead">{{ capabilitiesLead }}</p>
+      </header>
+      <ul class="employers__caps">
+        @for (item of capabilities; track item.title) {
+          <li>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section employers__unified-band" aria-labelledby="employers-unified">
+    <div class="br-container">
+      <h2 id="employers-unified">{{ unifiedTitle }}</h2>
+      <div class="employers__split">
+        <article>
+          <h3>For employers</h3>
+          <p>{{ unifiedEmployer }}</p>
+        </article>
+        <article>
+          <h3>For the people you employ</h3>
+          <p>{{ unifiedWorker }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="employers-inclusion">
+    <div class="br-container employers__inclusion">
+      <div>
+        <h2 id="employers-inclusion">{{ inclusionTitle }}</h2>
+        <p class="br-lead">{{ inclusionBody }}</p>
+      </div>
+      <a class="br-button br-button--secondary br-button--lg" routerLink="/inclusion">
+        Read our inclusion commitment
+      </a>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="employers-cta">
+    <div class="br-container br-container--narrow">
+      <h2 id="employers-cta">{{ ctaTitle }}</h2>
+      <p class="br-lead">{{ ctaBody }}</p>
+      <div class="br-cluster employers__actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="primaryHref">
+          {{ primaryCta }}
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+          {{ secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

@@ -7,6 +7,22 @@ import {
   INCLUSION_SEO_TITLE,
 } from './features/inclusion/inclusion-content';
 import { PUBLIC_PAGE_SKELETONS } from './features/public-page/public-page-content';
+import {
+  EMPLOYERS_SEO_DESCRIPTION,
+  EMPLOYERS_SEO_TITLE,
+} from './features/employers/employers-content';
+import {
+  SEEKERS_SEO_DESCRIPTION,
+  SEEKERS_SEO_TITLE,
+} from './features/job-seekers/job-seekers-content';
+import {
+  SOLUTIONS_SEO_DESCRIPTION,
+  SOLUTIONS_SEO_TITLE,
+} from './features/solutions/solutions-content';
+import {
+  BENEFITS_SEO_DESCRIPTION,
+  BENEFITS_SEO_TITLE,
+} from './features/benefits/benefits-content';
 
 /**
  * Every route is lazy-loaded, including the home page. The initial bundle then carries the
@@ -47,6 +63,54 @@ export const routes: Routes = [
       seo: {
         title: INCLUSION_SEO_TITLE,
         description: INCLUSION_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'employers',
+    loadComponent: () =>
+      import('./features/employers/employers-page').then((m) => m.EmployersPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: EMPLOYERS_SEO_TITLE,
+        description: EMPLOYERS_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'job-seekers',
+    loadComponent: () =>
+      import('./features/job-seekers/job-seekers-page').then((m) => m.JobSeekersPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: SEEKERS_SEO_TITLE,
+        description: SEEKERS_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'our-solutions',
+    loadComponent: () =>
+      import('./features/solutions/solutions-page').then((m) => m.SolutionsPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: SOLUTIONS_SEO_TITLE,
+        description: SOLUTIONS_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'benefits',
+    loadComponent: () =>
+      import('./features/benefits/benefits-page').then((m) => m.BenefitsPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: BENEFITS_SEO_TITLE,
+        description: BENEFITS_SEO_DESCRIPTION,
       },
     },
   },

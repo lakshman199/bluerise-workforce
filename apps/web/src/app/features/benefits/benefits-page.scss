@@ -1,0 +1,116 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.benefits__hero h1 {
+  overflow-wrap: break-word;
+}
+
+.benefits__why {
+  background: var(--br-blue-50);
+}
+
+.benefits__why-inner {
+  max-width: 40rem;
+
+  h2 {
+    max-width: 16ch;
+  }
+
+  p {
+    margin-top: var(--br-space-4);
+    font-size: var(--br-text-lg);
+    line-height: var(--br-leading-relaxed);
+    color: var(--br-color-text-muted);
+  }
+}
+
+.benefits__steps {
+  display: grid;
+  gap: var(--br-space-4);
+  margin: var(--br-space-8) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.benefits__steps li {
+  counter-increment: step;
+  min-width: 0;
+  padding: var(--br-space-6);
+  border-radius: var(--br-radius-xl);
+  background: var(--br-color-surface-sunken);
+
+  &::before {
+    content: counter(step);
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: var(--br-space-4);
+    border-radius: var(--br-radius-full);
+    background: var(--br-color-primary);
+    color: var(--br-color-text-inverse);
+    font-size: var(--br-text-sm);
+    font-weight: var(--br-weight-bold);
+  }
+}
+
+.benefits__steps h3 {
+  margin: 0;
+}
+
+.benefits__steps p {
+  margin: var(--br-space-3) 0 0;
+  color: var(--br-color-text-muted);
+  line-height: var(--br-leading-relaxed);
+}
+
+.benefits__connect {
+  display: grid;
+  gap: var(--br-space-10);
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.benefits__note {
+  margin: var(--br-space-3) 0 0;
+  color: var(--br-color-text-muted);
+  font-size: var(--br-text-sm);
+  line-height: var(--br-leading-relaxed);
+}
+
+.benefits__cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--br-space-2);
+  margin: var(--br-space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.benefits__cats li {
+  padding: 0.45rem 0.8rem;
+  border: 1px dashed var(--br-color-border-strong);
+  border-radius: var(--br-radius-full);
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-medium);
+}
+
+.benefits__actions {
+  margin-top: var(--br-space-8);
+
+  .br-button {
+    white-space: normal;
+    text-align: center;
+  }
+}

@@ -1,0 +1,61 @@
+<article class="seekers">
+  <header class="br-section seekers__hero">
+    <div class="br-container seekers__hero-inner">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1>{{ headline }}</h1>
+      <p class="br-lead">{{ intro }}</p>
+    </div>
+  </header>
+
+  <div class="br-container seekers__chapters">
+    <section aria-labelledby="seekers-employment">
+      <h2 id="seekers-employment">{{ employmentTitle }}</h2>
+      <p>{{ employmentBody }}</p>
+    </section>
+    <section aria-labelledby="seekers-career">
+      <h2 id="seekers-career">{{ careerTitle }}</h2>
+      <p>{{ careerBody }}</p>
+    </section>
+    <section aria-labelledby="seekers-training">
+      <h2 id="seekers-training">{{ trainingTitle }}</h2>
+      <p>{{ trainingBody }}</p>
+    </section>
+    <section aria-labelledby="seekers-inclusion">
+      <h2 id="seekers-inclusion">{{ inclusionTitle }}</h2>
+      <p>{{ inclusionBody }}</p>
+    </section>
+    <section aria-labelledby="seekers-support">
+      <h2 id="seekers-support">{{ supportTitle }}</h2>
+      <p>{{ supportBody }}</p>
+    </section>
+  </div>
+
+  <section class="br-section" aria-labelledby="seekers-areas">
+    <div class="br-container">
+      <aside class="seekers__note" role="note">
+        <h2 id="seekers-areas">{{ areasTitle }}</h2>
+        <p>{{ areasBody }}</p>
+        <ul>
+          @for (item of areas; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="br-section seekers__cta" aria-labelledby="seekers-cta">
+    <div class="br-container br-container--narrow">
+      <h2 id="seekers-cta">{{ ctaTitle }}</h2>
+      <p class="br-lead">{{ ctaBody }}</p>
+      <div class="br-cluster seekers__actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="primaryHref">
+          {{ primaryCta }}
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+          {{ secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

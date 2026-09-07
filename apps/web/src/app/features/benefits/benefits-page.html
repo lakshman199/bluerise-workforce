@@ -1,0 +1,70 @@
+<article class="benefits">
+  <header class="br-section benefits__hero">
+    <div class="br-container br-container--narrow">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1>{{ headline }}</h1>
+      <p class="br-lead">{{ intro }}</p>
+    </div>
+  </header>
+
+  <section class="br-section benefits__why" aria-labelledby="benefits-why">
+    <div class="br-container benefits__why-inner">
+      <h2 id="benefits-why">{{ whyTitle }}</h2>
+      <p>{{ whyBody }}</p>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="benefits-experience">
+    <div class="br-container">
+      <h2 id="benefits-experience">{{ experienceTitle }}</h2>
+      <ul class="benefits__steps">
+        @for (item of experience; track item.title) {
+          <li>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section br-section--sunken" aria-labelledby="benefits-support">
+    <div class="br-container br-container--narrow">
+      <h2 id="benefits-support">{{ supportTitle }}</h2>
+      <p class="br-lead">{{ supportBody }}</p>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="benefits-connect">
+    <div class="br-container benefits__connect">
+      <div>
+        <h2 id="benefits-connect">{{ connectTitle }}</h2>
+        <p class="br-lead">{{ connectBody }}</p>
+      </div>
+      <div>
+        <h3 id="benefits-categories">{{ categoriesTitle }}</h3>
+        <p class="benefits__note">{{ categoriesNote }}</p>
+        <ul class="benefits__cats" aria-labelledby="benefits-categories">
+          @for (item of categories; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="benefits-cta">
+    <div class="br-container br-container--narrow">
+      <h2 id="benefits-cta">{{ ctaTitle }}</h2>
+      <p class="br-lead">{{ ctaBody }}</p>
+      <div class="br-cluster benefits__actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="primaryHref">
+          {{ primaryCta }}
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+          {{ secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

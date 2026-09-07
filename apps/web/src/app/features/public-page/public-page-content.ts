@@ -15,42 +15,6 @@ export interface PublicPageSkeletonContent {
  */
 export const PUBLIC_PAGE_SKELETONS: readonly PublicPageSkeletonContent[] = [
   {
-    path: 'employers',
-    heading: 'Employers',
-    intro:
-      'This page will explain how BlueRise Workforce supports employers. The full content is being written next.',
-    seoTitle: 'Employers',
-    seoDescription:
-      'How BlueRise Workforce supports employers coordinating payroll, benefits, HR, timekeeping, and workers’ compensation.',
-  },
-  {
-    path: 'job-seekers',
-    heading: 'Job Seekers',
-    intro:
-      'This page will explain how BlueRise Workforce supports job seekers. The full content is being written next.',
-    seoTitle: 'Job Seekers',
-    seoDescription:
-      'How BlueRise Workforce supports job seekers with employment, benefits, and a single place to see their work.',
-  },
-  {
-    path: 'our-solutions',
-    heading: 'Our Solutions',
-    intro:
-      'This page will describe the BlueRise Workforce solutions for employers and the people they employ. The full content is being written next.',
-    seoTitle: 'Our Solutions',
-    seoDescription:
-      'BlueRise Workforce solutions covering onboarding, payroll, benefits, HR and compliance, timekeeping, and workers’ compensation.',
-  },
-  {
-    path: 'benefits',
-    heading: 'Benefits',
-    intro:
-      'This page will describe how BlueRise Workforce coordinates employee benefits. The full content is being written next.',
-    seoTitle: 'Benefits',
-    seoDescription:
-      'How BlueRise Workforce coordinates employee benefits with brokers and carriers in one place.',
-  },
-  {
     path: 'resources',
     heading: 'Resources',
     intro:
