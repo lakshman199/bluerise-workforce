@@ -32,7 +32,7 @@ describe('JobSeekersPage', () => {
     expect(root.querySelector('h1')?.textContent).toContain(SEEKERS_HEADLINE);
     expect(text).toContain('dignity');
     expect(text).toContain('career development');
-    expect(text).toContain('inclusive employment pathways');
+    expect(text).toContain('Inclusive employment pathways');
     for (const area of SEEKERS_AREAS) {
       expect(text).toContain(area);
     }

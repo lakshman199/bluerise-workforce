@@ -33,7 +33,7 @@ describe('EmployersPage', () => {
     expect(root.textContent).toContain('designed to support');
     expect(root.textContent).toContain('payroll');
     expect(root.textContent).toContain('workers’ compensation');
-    expect(root.textContent).toContain('workforce inclusion');
+    expect(root.textContent).toContain('Workforce inclusion');
     expect(root.querySelectorAll('h3').length).toBeGreaterThanOrEqual(
       EMPLOYERS_CAPABILITIES.length,
     );
