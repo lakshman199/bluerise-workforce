@@ -13,34 +13,52 @@
   padding-bottom: var(--br-space-10);
   border-bottom: 1px solid rgb(255 255 255 / 12%);
 
-  @include bp.from(bp.$bp-md) {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
     gap: var(--br-space-16);
+    align-items: start;
   }
 }
 
-.footer__name {
-  display: block;
-  font-size: var(--br-text-lg);
-  font-weight: var(--br-weight-bold);
-  letter-spacing: var(--br-tracking-tight);
-  color: var(--br-neutral-0);
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  max-width: 16rem;
+  padding: var(--br-space-3) var(--br-space-4);
+  border-radius: var(--br-radius-md);
+  background: var(--br-neutral-0);
+  --br-logo-height: 2.5rem;
 }
 
-.footer__tagline {
-  margin-top: var(--br-space-2);
-  font-size: var(--br-text-lg);
-  font-weight: var(--br-weight-medium);
-  color: var(--br-blue-200);
-  max-width: 30ch;
-}
-
-.footer__mission {
-  margin-top: var(--br-space-4);
-  max-width: 46ch;
+.footer__motto {
+  margin-top: var(--br-space-5);
+  max-width: 36ch;
   font-size: var(--br-text-sm);
   line-height: var(--br-leading-relaxed);
-  color: var(--br-neutral-400);
+  color: var(--br-neutral-300);
+}
+
+.footer__email {
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--br-space-4);
+  min-height: var(--br-touch-target);
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-medium);
+  color: var(--br-neutral-0);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+
+  &:hover {
+    color: var(--br-neutral-0);
+    text-decoration: underline;
+  }
+}
+
+.footer__nav {
+  display: grid;
+  gap: var(--br-space-8);
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
 }
 
 .footer__heading {
@@ -49,10 +67,10 @@
   letter-spacing: var(--br-tracking-wide);
   text-transform: uppercase;
   color: var(--br-neutral-400);
-  margin-bottom: var(--br-space-4);
+  margin-bottom: var(--br-space-3);
 }
 
-.footer__links ul {
+.footer__column ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -61,7 +79,7 @@
   gap: var(--br-space-1);
 }
 
-.footer__links a {
+.footer__column a {
   display: inline-flex;
   align-items: center;
   min-height: var(--br-touch-target);
@@ -76,15 +94,7 @@
 }
 
 .footer__legal {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--br-space-3);
   padding-top: var(--br-space-6);
   font-size: var(--br-text-sm);
   color: var(--br-neutral-500);
-}
-
-.footer__note {
-  max-width: 52ch;
 }

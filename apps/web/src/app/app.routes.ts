@@ -1,6 +1,7 @@
 import { type Routes } from '@angular/router';
 
 import { seoResolver } from './core/seo/seo';
+import { PUBLIC_PAGE_SKELETONS } from './features/public-page/public-page-content';
 
 /**
  * Every route is lazy-loaded, including the home page. The initial bundle then carries the
@@ -21,6 +22,20 @@ export const routes: Routes = [
       },
     },
   },
+  ...PUBLIC_PAGE_SKELETONS.map((page) => ({
+    path: page.path,
+    loadComponent: () =>
+      import('./features/public-page/public-page-skeleton').then(
+        (m) => m.PublicPageSkeleton,
+      ),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: page.seoTitle,
+        description: page.seoDescription,
+      },
+    },
+  })),
   {
     path: 'design-system',
     loadComponent: () =>

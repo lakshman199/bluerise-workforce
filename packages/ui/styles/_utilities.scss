@@ -73,3 +73,15 @@
     display: none !important;
   }
 }
+
+.br-hide-below-xl {
+  @include bp.until(bp.$bp-xl) {
+    display: none !important;
+  }
+}
+
+.br-hide-from-xl {
+  @include bp.from(bp.$bp-xl) {
+    display: none !important;
+  }
+}

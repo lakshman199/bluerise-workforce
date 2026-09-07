@@ -1,0 +1,21 @@
+.skeleton {
+  min-height: 50dvh;
+}
+
+.skeleton h1 {
+  margin-top: var(--br-space-3);
+}
+
+.skeleton .br-lead {
+  margin-top: var(--br-space-4);
+}
+
+.skeleton__email {
+  margin-top: var(--br-space-4);
+  font-size: var(--br-text-lg);
+  font-weight: var(--br-weight-medium);
+}
+
+.skeleton__actions {
+  margin-top: var(--br-space-8);
+}

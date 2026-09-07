@@ -1,37 +1,37 @@
 # BlueRise Workforce — Sitemap
 
-Three route groups live in `apps/web`, each lazy-loaded. Only the Phase 1 routes exist
-today; the rest are the planned information architecture and are listed here so routing,
-navigation, and permissions can be designed against a stable target.
+Three route groups live in `apps/web`, each lazy-loaded. Public navigation labels follow
+the approved content-site terminology. Development destinations are not part of the
+public header.
 
 ## Public website
 
 Indexed, anonymous, server-cacheable.
 
-| Route                  | Page                    | Phase | Purpose                                                                                                          |
-| ---------------------- | ----------------------- | ----- | ---------------------------------------------------------------------------------------------------------------- |
-| `/`                    | Home                    | 2     | Brand, platform overview, purpose, employer and employee value, inclusion, community impact, values, closing CTA |
-| `/about`               | About                   | 2     | Mission, vision, purpose, values                                                                                 |
-| `/employers`           | For Employers           | 2     | Workforce operations for businesses                                                                              |
-| `/employees`           | For Employees           | 2     | One place for pay, benefits, hours, documents                                                                    |
-| `/benefits`            | Benefits                | 2     | Benefit categories and how coordination works                                                                    |
-| `/workforce-solutions` | Workforce Solutions     | 2     | The platform modules as a service offering                                                                       |
-| `/inclusion`           | Inclusion               | 2     | Special-needs and neurodiverse workforce initiative                                                              |
-| `/resources`           | Resources               | 2     | Guides and reference material index                                                                              |
-| `/contact`             | Contact                 | 2     | Contact form, persisted server-side                                                                              |
-| `/legal/privacy`       | Privacy Policy          | 2     | Placeholder pending legal copy                                                                                   |
-| `/legal/terms`         | Terms of Service        | 2     | Placeholder pending legal copy                                                                                   |
-| `/legal/accessibility` | Accessibility Statement | 2     | Conformance target and contact route                                                                             |
-| `/login`               | Login                   | 3     | Entry to Portal and Admin                                                                                        |
-| `/design-system`       | Design system reference | 1     | Token and component gallery, `noindex`                                                                           |
-| `/**`                  | Not found               | 1     | 404                                                                                                              |
+Primary navigation: **Home · About Us · Employers · Job Seekers · Our Solutions ·
+Benefits · Resources · Contact Us**. Desktop navigation is shown from 1280px; below that
+the same items are in the mobile menu.
 
-Primary calls to action: **Get Started**, **Explore Benefits**, **Contact BlueRise**.
-Secondary: **For Employers**, **For Employees**, **Learn More**.
+| Route                  | Nav label     | Phase | Purpose                                                                                                            |
+| ---------------------- | ------------- | ----- | ------------------------------------------------------------------------------------------------------------------ |
+| `/`                    | Home          | 2     | Brand, platform overview, purpose, employer and job-seeker value, inclusion, community impact, values, closing CTA |
+| `/about`               | About Us      | 2     | Mission, vision, purpose, values                                                                                   |
+| `/employers`           | Employers     | 2     | Workforce operations for businesses                                                                                |
+| `/job-seekers`         | Job Seekers   | 2     | One place for pay, benefits, hours, documents                                                                      |
+| `/our-solutions`       | Our Solutions | 2     | The platform modules as a service offering                                                                         |
+| `/benefits`            | Benefits      | 2     | Benefit categories and how coordination works                                                                      |
+| `/resources`           | Resources     | 2     | Guides and reference material index                                                                                |
+| `/contact`             | Contact Us    | 2     | Contact form, persisted server-side                                                                                |
+| `/legal/privacy`       | —             | 2     | Placeholder pending legal copy. Not in the header until copy exists.                                               |
+| `/legal/terms`         | —             | 2     | Placeholder pending legal copy. Not in the header until copy exists.                                               |
+| `/legal/accessibility` | —             | 2     | Conformance target and contact route. Not in the header until copy exists.                                         |
+| `/login`               | —             | 3     | Entry to Portal and Admin. Not in the public header.                                                               |
+| `/design-system`       | —             | 1     | Token and component gallery, `noindex`. Not in the public header.                                                  |
+| `/**`                  | —             | 1     | 404                                                                                                                |
 
-Navigation carries nine items plus Login. That is at the upper limit of what a single
-desktop bar holds comfortably, so Resources and Inclusion collapse into an "About" group
-on tablet widths rather than wrapping to a second line.
+Legal routes, `/inclusion` as a dedicated URL, and Login are not primary public
+navigation. Inclusion copy still belongs on the public site (home and about) when those
+pages are written.
 
 ## BlueRise Portal
 

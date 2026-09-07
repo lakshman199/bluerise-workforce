@@ -1,34 +1,30 @@
 <footer class="footer">
   <div class="br-container footer__inner">
     <div class="footer__brand">
-      <span class="footer__name">BlueRise Workforce</span>
-      <p class="footer__tagline">Building Stronger Workforces. Creating Brighter Futures.</p>
-      <p class="footer__mission">
-        Work is more than employment. It is a pathway to dignity, stability, growth, and
-        opportunity.
-      </p>
+      <a class="footer__logo" routerLink="/" aria-label="BlueRise Workforce home">
+        <br-brand-logo />
+      </a>
+      <p class="footer__motto">{{ motto }}</p>
+      <a class="footer__email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
     </div>
 
-    <nav class="footer__links" aria-label="Footer">
-      <h2 class="footer__heading">This build</h2>
-      <ul>
-        <li><a routerLink="/">Platform overview</a></li>
-        <li><a routerLink="/design-system">Design system</a></li>
-        <li><a href="#status">System status</a></li>
-      </ul>
+    <nav class="footer__nav" aria-label="Footer">
+      @for (column of columns; track column.heading) {
+        <div class="footer__column">
+          <h2 class="footer__heading">{{ column.heading }}</h2>
+          <ul>
+            @for (item of column.items; track item.path) {
+              <li>
+                <a [routerLink]="item.path">{{ item.label }}</a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
     </nav>
   </div>
 
   <div class="br-container footer__legal">
-    <p>&copy; {{ year }} BlueRise Workforce LLC. All rights reserved.</p>
-    <!--
-      Address, phone, social accounts, and legal pages are deliberately absent: no verified
-      values have been supplied, and inventing them would put false company information in
-      front of visitors. They are added in Phase 2 once real details are available.
-    -->
-    <p class="footer__note">
-      Contact details, legal pages, and social accounts are added once verified information is
-      supplied.
-    </p>
+    <p>&copy; {{ year }} BlueRise Workforce. All rights reserved.</p>
   </div>
 </footer>

@@ -7,9 +7,55 @@
   z-index: var(--br-z-header);
 }
 
+// ---------------------------------------------------------------------------------------
+// Utility bar
+// ---------------------------------------------------------------------------------------
+
+.utility {
+  background: var(--br-color-surface-inverse);
+  color: var(--br-color-text-inverse);
+}
+
+.utility__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--br-space-2) var(--br-space-6);
+  padding-block: var(--br-space-2);
+  min-height: 2.5rem;
+}
+
+.utility__motto {
+  margin: 0;
+  font-size: var(--br-text-xs);
+  font-weight: var(--br-weight-medium);
+  letter-spacing: var(--br-tracking-wide);
+  line-height: var(--br-leading-snug);
+  max-width: 52ch;
+}
+
+.utility__email {
+  font-size: var(--br-text-xs);
+  font-weight: var(--br-weight-medium);
+  color: var(--br-color-text-inverse);
+  text-decoration: none;
+  min-height: var(--br-touch-target);
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--br-color-text-inverse);
+  }
+}
+
+// ---------------------------------------------------------------------------------------
+// Main bar
+// ---------------------------------------------------------------------------------------
+
 .header {
-  background: rgb(255 255 255 / 88%);
-  backdrop-filter: blur(12px);
+  background: rgb(255 255 255 / 96%);
   border-bottom: 1px solid var(--br-color-border);
 }
 
@@ -17,14 +63,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--br-space-6);
-  min-height: 72px;
+  gap: var(--br-space-4);
+  min-height: 4.5rem;
 }
 
 .header__actions {
   display: flex;
   align-items: center;
-  gap: var(--br-space-2);
+  flex-shrink: 0;
 }
 
 // ---------------------------------------------------------------------------------------
@@ -34,62 +80,33 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--br-space-3);
-  text-decoration: none;
-  color: var(--br-color-text);
-  flex-shrink: 0;
-  // The logo is the route home from every page, so it is a primary target and gets the
-  // full 44px even though its content is shorter than that.
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: min(17.5rem, 70%);
   min-height: var(--br-touch-target);
+  text-decoration: none;
 
-  &:hover {
-    color: var(--br-color-text);
+  --br-logo-height: 2.5rem;
+
+  @include bp.from(bp.$bp-md) {
+    --br-logo-height: 2.85rem;
+    max-width: 18.5rem;
   }
-}
-
-.brand__mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: var(--br-radius-md);
-  background: var(--br-color-primary);
-  color: var(--br-color-text-inverse);
-
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-}
-
-.brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-}
-
-.brand__name {
-  font-size: var(--br-text-lg);
-  font-weight: var(--br-weight-bold);
-  letter-spacing: var(--br-tracking-tight);
-}
-
-.brand__suffix {
-  font-size: var(--br-text-xs);
-  font-weight: var(--br-weight-medium);
-  letter-spacing: var(--br-tracking-wide);
-  text-transform: uppercase;
-  color: var(--br-color-text-muted);
 }
 
 // ---------------------------------------------------------------------------------------
 // Desktop navigation
 // ---------------------------------------------------------------------------------------
 
+.nav {
+  min-width: 0;
+}
+
 .nav__list {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--br-space-1);
   list-style: none;
   margin: 0;
@@ -99,13 +116,14 @@
 .nav__link {
   display: inline-flex;
   align-items: center;
-  height: 40px;
-  padding-inline: var(--br-space-3);
+  min-height: var(--br-touch-target);
+  padding-inline: var(--br-space-2);
   border-radius: var(--br-radius-sm);
   font-size: var(--br-text-sm);
   font-weight: var(--br-weight-medium);
   color: var(--br-color-text-muted);
   text-decoration: none;
+  white-space: nowrap;
   transition:
     background-color var(--br-duration-fast) var(--br-ease-out),
     color var(--br-duration-fast) var(--br-ease-out);
@@ -130,15 +148,13 @@
   background: var(--br-color-surface);
   box-shadow: var(--br-shadow-md);
   padding-block: var(--br-space-4) var(--br-space-6);
-  // Never taller than the space below the header, so a long menu scrolls rather than
-  // pushing its last item off screen on a short viewport.
-  max-height: calc(100dvh - 72px);
+  max-height: calc(100dvh - 7.5rem);
   overflow-y: auto;
 }
 
 .mobile-menu__list {
   list-style: none;
-  margin: 0 0 var(--br-space-4);
+  margin: 0;
   padding: 0;
 }
 
@@ -157,4 +173,9 @@
     background: var(--br-color-surface-muted);
     color: var(--br-color-text);
   }
+}
+
+.mobile-menu__link--active {
+  color: var(--br-color-primary);
+  background: var(--br-color-primary-surface);
 }

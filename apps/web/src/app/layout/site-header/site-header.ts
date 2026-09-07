@@ -7,11 +7,12 @@ import {
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
-import { PRIMARY_NAV } from '../navigation';
+import { BrandLogo } from '../brand-logo/brand-logo';
+import { PRIMARY_NAV, PUBLIC_CONTACT_EMAIL, PUBLIC_MOTTO } from '../navigation';
 
 @Component({
   selector: 'br-site-header',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, BrandLogo],
   templateUrl: './site-header.html',
   styleUrl: './site-header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,6 +22,8 @@ import { PRIMARY_NAV } from '../navigation';
 })
 export class SiteHeader {
   protected readonly navItems = PRIMARY_NAV;
+  protected readonly motto = PUBLIC_MOTTO;
+  protected readonly contactEmail = PUBLIC_CONTACT_EMAIL;
   protected readonly menuOpen = signal(false);
 
   private readonly menuToggle = viewChild<ElementRef<HTMLButtonElement>>('menuToggle');

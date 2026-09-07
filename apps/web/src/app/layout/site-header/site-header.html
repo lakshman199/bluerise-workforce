@@ -1,63 +1,39 @@
+<div class="utility">
+  <div class="br-container utility__inner">
+    <p class="utility__motto">{{ motto }}</p>
+    <a class="utility__email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+  </div>
+</div>
+
 <header class="header">
   <div class="br-container header__inner">
     <a class="brand" routerLink="/" (click)="closeMenu()">
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M6 22.5 12.5 12l4.5 6.5L21.5 11 27 22.5"
-            stroke="currentColor"
-            stroke-width="2.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <circle cx="21.5" cy="7.5" r="2.6" fill="currentColor" />
-        </svg>
-      </span>
-      <span class="brand__text">
-        <span class="brand__name">BlueRise</span>
-        <span class="brand__suffix">Workforce</span>
-      </span>
+      <br-brand-logo />
     </a>
 
-    <nav class="nav br-hide-below-lg" aria-label="Primary">
+    <nav class="nav br-hide-below-xl" aria-label="Primary">
       <ul class="nav__list">
-        @for (item of navItems; track item.label) {
+        @for (item of navItems; track item.path) {
           <li>
-            <!--
-              Only a link to a distinct route carries an active state. A fragment link
-              points at a section of the page it is already on, so `routerLinkActive` would
-              mark every one of them active at once; tracking which section is in view is a
-              scroll-position question, not a routing one.
-            -->
-            @if (item.fragment) {
-              <a class="nav__link" [routerLink]="item.path" [fragment]="item.fragment">
-                {{ item.label }}
-              </a>
-            } @else {
-              <a
-                class="nav__link"
-                [routerLink]="item.path"
-                routerLinkActive="nav__link--active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                ariaCurrentWhenActive="page"
-              >
-                {{ item.label }}
-              </a>
-            }
+            <a
+              class="nav__link"
+              [routerLink]="item.path"
+              routerLinkActive="nav__link--active"
+              [routerLinkActiveOptions]="{ exact: item.exact === true }"
+              ariaCurrentWhenActive="page"
+            >
+              {{ item.label }}
+            </a>
           </li>
         }
       </ul>
     </nav>
 
     <div class="header__actions">
-      <a class="br-button br-button--primary br-button--sm br-hide-below-lg" href="#status">
-        Live system status
-      </a>
-
       <button
         #menuToggle
         type="button"
-        class="br-button br-button--ghost br-button--icon br-hide-from-lg"
+        class="br-button br-button--ghost br-button--icon br-hide-from-xl"
         [attr.aria-expanded]="menuOpen()"
         aria-controls="mobile-menu"
         (click)="toggleMenu()"
@@ -89,15 +65,17 @@
   </div>
 
   @if (menuOpen()) {
-    <div id="mobile-menu" class="mobile-menu br-hide-from-lg">
+    <div id="mobile-menu" class="mobile-menu br-hide-from-xl">
       <nav class="br-container" aria-label="Primary, mobile">
         <ul class="mobile-menu__list">
-          @for (item of navItems; track item.label) {
+          @for (item of navItems; track item.path) {
             <li>
               <a
                 class="mobile-menu__link"
                 [routerLink]="item.path"
-                [fragment]="item.fragment"
+                routerLinkActive="mobile-menu__link--active"
+                [routerLinkActiveOptions]="{ exact: item.exact === true }"
+                ariaCurrentWhenActive="page"
                 (click)="closeMenu()"
               >
                 {{ item.label }}
@@ -105,13 +83,6 @@
             </li>
           }
         </ul>
-        <a
-          class="br-button br-button--primary br-button--block"
-          href="#status"
-          (click)="closeMenu()"
-        >
-          Live system status
-        </a>
       </nav>
     </div>
   }
