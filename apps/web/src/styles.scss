@@ -1,0 +1,4 @@
+// The whole design system: tokens, reset, base typography, layout, components, states,
+// and utilities. Resolved through `stylePreprocessorOptions.includePaths`, which points at
+// `packages/ui/styles`.
+@use 'index' as *;

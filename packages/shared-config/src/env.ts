@@ -15,7 +15,10 @@ export class MissingEnvironmentVariableError extends Error {
   }
 }
 
-export function requireEnv(name: string, source: NodeJS.ProcessEnv = process.env): string {
+export function requireEnv(
+  name: string,
+  source: NodeJS.ProcessEnv = process.env,
+): string {
   const value = source[name];
   if (value === undefined || value.trim() === '') {
     throw new MissingEnvironmentVariableError(name);

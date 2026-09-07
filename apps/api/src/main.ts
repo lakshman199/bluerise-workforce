@@ -10,6 +10,7 @@ import {
   MAX_REQUEST_BODY_BYTES,
   OPENAPI_PATH,
 } from '@bluerise/shared-config';
+import express from 'express';
 import helmet from 'helmet';
 import { Logger as PinoLogger } from 'nestjs-pino';
 
@@ -50,13 +51,8 @@ async function bootstrap(): Promise<void> {
     maxAge: 86_400,
   });
 
-  app.use((await import('express')).json({ limit: MAX_REQUEST_BODY_BYTES }));
-  app.use(
-    (await import('express')).urlencoded({
-      extended: false,
-      limit: MAX_REQUEST_BODY_BYTES,
-    }),
-  );
+  app.use(express.json({ limit: MAX_REQUEST_BODY_BYTES }));
+  app.use(express.urlencoded({ extended: false, limit: MAX_REQUEST_BODY_BYTES }));
 
   // Behind a load balancer, `req.ip` must reflect the client rather than the proxy, or
   // rate limiting keys every request to the same address.

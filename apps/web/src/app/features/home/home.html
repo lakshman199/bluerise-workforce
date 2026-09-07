@@ -1,0 +1,267 @@
+<!-- ===================================================================================== -->
+<!-- Hero                                                                                  -->
+<!-- ===================================================================================== -->
+<section class="hero">
+  <div class="br-container hero__inner">
+    <div class="hero__copy">
+      <p class="br-eyebrow">Unified workforce platform</p>
+
+      <h1 class="hero__title">
+        Building Stronger Workforces.
+        <br />
+        <span class="hero__title-accent">Creating Brighter Futures.</span>
+      </h1>
+
+      <p class="br-lead hero__lead">
+        At BlueRise Workforce we believe that work is more than employment — it is a pathway to
+        dignity, stability, growth, and opportunity. BlueRise connects businesses with talent while
+        making sure every individual we serve is treated with respect and given the chance to reach
+        their full potential.
+      </p>
+
+      <p class="hero__support">
+        One platform brings together onboarding, payroll, benefits, HR and compliance, timekeeping,
+        and workers' compensation — so an employer runs workforce operations in one place, and a
+        worker sees their employment in one place.
+      </p>
+
+      <div class="br-cluster hero__actions">
+        <a class="br-button br-button--primary br-button--lg" routerLink="/design-system">
+          Explore the design system
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" href="#platform">
+          See the platform
+        </a>
+      </div>
+    </div>
+
+    <!-- =================================================================================== -->
+    <!-- Live system status. Not an illustration: this is the real /api/v1/health response.    -->
+    <!-- =================================================================================== -->
+    <div class="hero__visual" id="status">
+      <div class="status-card">
+        <div class="status-card__head">
+          <div>
+            <p class="status-card__eyebrow">BlueRise API</p>
+            <h2 class="status-card__title">Live system status</h2>
+          </div>
+
+          @switch (state()) {
+            @case ('loading') {
+              <span class="br-badge br-badge--neutral">Checking</span>
+            }
+            @case ('loaded') {
+              <span [class]="badgeClassFor(health()!.status)">{{ health()!.status }}</span>
+            }
+            @case ('error') {
+              <span class="br-badge br-badge--danger">Unreachable</span>
+            }
+          }
+        </div>
+
+        @switch (state()) {
+          @case ('loading') {
+            <div class="status-card__body" aria-busy="true">
+              <span class="br-sr-only">Checking the BlueRise API…</span>
+              <div class="br-skeleton br-skeleton--text" style="width: 70%"></div>
+              <div class="br-skeleton br-skeleton--text" style="width: 90%"></div>
+              <div class="br-skeleton br-skeleton--text" style="width: 55%"></div>
+            </div>
+          }
+
+          @case ('loaded') {
+            <dl class="status-card__meta">
+              <div>
+                <dt>Service</dt>
+                <dd>{{ health()!.service }}</dd>
+              </div>
+              <div>
+                <dt>Version</dt>
+                <dd>{{ health()!.version }}</dd>
+              </div>
+              <div>
+                <dt>Environment</dt>
+                <dd>{{ health()!.environment }}</dd>
+              </div>
+              <div>
+                <dt>Uptime</dt>
+                <dd>{{ health()!.uptimeSeconds }}s</dd>
+              </div>
+            </dl>
+
+            <ul class="status-card__deps">
+              @for (dependency of health()!.dependencies; track dependency.name) {
+                <li class="dep">
+                  <span class="dep__dot" [attr.data-status]="dependency.status"></span>
+                  <span class="dep__name">{{ dependency.name }}</span>
+                  <span class="dep__detail">{{ dependency.detail }}</span>
+                  <span class="dep__timing br-numeric">{{ dependency.durationMs }} ms</span>
+                </li>
+              }
+            </ul>
+          }
+
+          @case ('error') {
+            <div class="status-card__error" role="alert">
+              <p class="status-card__error-message">{{ error()!.message }}</p>
+              @if (error()!.requestId) {
+                <p class="status-card__error-id">Request {{ error()!.requestId }}</p>
+              }
+              <button
+                type="button"
+                class="br-button br-button--secondary br-button--sm"
+                (click)="loadHealth()"
+              >
+                Try again
+              </button>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Platform modules                                                                       -->
+<!-- ===================================================================================== -->
+<section class="br-section br-section--sunken" id="platform">
+  <div class="br-container">
+    <div class="br-section__header">
+      <p class="br-eyebrow">The platform</p>
+      <h2>Six workforce services, one place to run them</h2>
+      <p class="br-lead">
+        BlueRise sits between an employer and the specialist providers that handle each part of
+        employment. Each service below is a module of the platform, with its data model and its
+        provider boundary already designed.
+      </p>
+    </div>
+
+    <div class="br-grid br-grid--wide-cells">
+      @for (module of modules; track module.name) {
+        <article class="br-card br-card--interactive module">
+          <div class="module__head">
+            <h3 class="br-card__title">{{ module.name }}</h3>
+            <span class="br-badge br-badge--neutral">{{ module.phase }}</span>
+          </div>
+          <p class="br-card__body">{{ module.summary }}</p>
+          <ul class="module__capabilities">
+            @for (capability of module.capabilities; track capability) {
+              <li>{{ capability }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Architecture                                                                           -->
+<!-- ===================================================================================== -->
+<section class="br-section" id="architecture">
+  <div class="br-container">
+    <div class="br-split">
+      <div>
+        <p class="br-eyebrow">Architecture</p>
+        <h2>Built so no single vendor can hold the platform hostage</h2>
+        <p class="br-lead">
+          Payroll and benefits vendors are sticky, expensive, and slow to change — which is exactly
+          why an architecture that assumes one of them is a liability.
+        </p>
+        <p class="architecture__body">
+          Nothing in BlueRise talks to a vendor SDK. A request reaches a BlueRise domain service,
+          the service depends on a provider interface written in BlueRise's own vocabulary, and an
+          adapter translates that interface to one vendor. Moving a customer from Gusto to ADP is a
+          configuration change and one new adapter, not a rewrite.
+        </p>
+        <p class="architecture__body">
+          Every row that belongs to a customer carries an organization identifier, and tenant
+          scoping is enforced in the API and again at the data layer — never in the browser.
+        </p>
+      </div>
+
+      <div class="stack" aria-hidden="true">
+        <div class="stack__row stack__row--surface">
+          <span>Public website</span>
+          <span>Portal</span>
+          <span>Admin</span>
+        </div>
+        <div class="stack__arrow"></div>
+        <div class="stack__row stack__row--api">
+          <span>BlueRise API · /api/v1</span>
+        </div>
+        <div class="stack__arrow"></div>
+        <div class="stack__row stack__row--services">
+          <span>Payroll</span>
+          <span>Benefits</span>
+          <span>HR</span>
+          <span>Time</span>
+          <span>Comp</span>
+        </div>
+        <div class="stack__arrow"></div>
+        <div class="stack__row stack__row--adapters">
+          <span>Provider interfaces &amp; adapters</span>
+        </div>
+        <div class="stack__arrow"></div>
+        <div class="stack__row stack__row--external">
+          <span>Gusto / ADP</span>
+          <span>Broker / Carrier</span>
+          <span>POS / Clock</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Roadmap                                                                                -->
+<!-- ===================================================================================== -->
+<section class="br-section br-section--sunken" id="roadmap">
+  <div class="br-container">
+    <div class="br-section__header">
+      <p class="br-eyebrow">Delivery</p>
+      <h2>What is built, and what comes next</h2>
+      <p class="br-lead">
+        The platform is delivered in sequence rather than all at once. This is the current state,
+        stated plainly.
+      </p>
+    </div>
+
+    <ol class="phases">
+      @for (phase of phases; track phase.id) {
+        <li class="phase" [attr.data-status]="phase.status">
+          <div class="phase__marker" aria-hidden="true">{{ phase.id }}</div>
+          <div class="phase__content">
+            <div class="phase__head">
+              <h3 class="phase__name">{{ phase.name }}</h3>
+              <span class="phase__status">{{ phase.statusLabel }}</span>
+            </div>
+            <p class="phase__scope">{{ phase.scope }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+
+    <div class="br-alert br-alert--info roadmap__note">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 11v5M12 8h.01" stroke-linecap="round" />
+      </svg>
+      <div>
+        <p class="br-alert__title">Provider integrations have not started</p>
+        <p class="br-alert__body">
+          No credentials or API specifications have been supplied for any payroll, benefits, HR,
+          timekeeping, or workers' compensation provider. Nothing in this build connects to an
+          external system, and no page presents fabricated data as if it were live.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

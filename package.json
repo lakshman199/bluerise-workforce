@@ -5,8 +5,8 @@
   "description": "BlueRise Workforce — a modular workforce platform for employers and the people they employ.",
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=22.0.0",
-    "npm": ">=10.0.0"
+    "node": ">=22.22.3",
+    "npm": ">=12.0.0"
   },
   "workspaces": [
     "packages/*",
@@ -35,7 +35,15 @@
     "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.6.2",
-    "typescript": "~5.9.3",
+    "typescript": "~6.0.2",
     "typescript-eslint": "^8.46.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "@parcel/watcher@2.6.0": true,
+    "lmdb@3.5.6": true,
+    "msgpackr-extract@3.0.4": true,
+    "unrs-resolver@1.12.2": true,
+    "@scarf/scarf": false
   }
 }

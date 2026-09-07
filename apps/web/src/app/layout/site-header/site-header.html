@@ -1,0 +1,106 @@
+<header class="header">
+  <div class="br-container header__inner">
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6 22.5 12.5 12l4.5 6.5L21.5 11 27 22.5"
+            stroke="currentColor"
+            stroke-width="2.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="21.5" cy="7.5" r="2.6" fill="currentColor" />
+        </svg>
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">BlueRise</span>
+        <span class="brand__suffix">Workforce</span>
+      </span>
+    </a>
+
+    <nav class="nav br-hide-below-lg" aria-label="Primary">
+      <ul class="nav__list">
+        @for (item of navItems; track item.label) {
+          <li>
+            <a
+              class="nav__link"
+              [routerLink]="item.path"
+              [fragment]="item.fragment"
+              routerLinkActive="nav__link--active"
+              [routerLinkActiveOptions]="{ exact: !item.fragment }"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="br-button br-button--primary br-button--sm br-hide-below-lg" href="#status">
+        Live system status
+      </a>
+
+      <button
+        #menuToggle
+        type="button"
+        class="br-button br-button--ghost br-button--icon br-hide-from-lg"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-menu"
+        (click)="toggleMenu()"
+      >
+        <span class="br-sr-only">{{ menuOpen() ? 'Close menu' : 'Open menu' }}</span>
+        @if (menuOpen()) {
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" />
+          </svg>
+        } @else {
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+          </svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  @if (menuOpen()) {
+    <div id="mobile-menu" class="mobile-menu br-hide-from-lg">
+      <nav class="br-container" aria-label="Primary, mobile">
+        <ul class="mobile-menu__list">
+          @for (item of navItems; track item.label) {
+            <li>
+              <a
+                class="mobile-menu__link"
+                [routerLink]="item.path"
+                [fragment]="item.fragment"
+                (click)="closeMenu()"
+              >
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+        <a
+          class="br-button br-button--primary br-button--block"
+          href="#status"
+          (click)="closeMenu()"
+        >
+          Live system status
+        </a>
+      </nav>
+    </div>
+  }
+</header>

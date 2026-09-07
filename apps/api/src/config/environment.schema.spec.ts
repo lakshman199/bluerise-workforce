@@ -46,18 +46,15 @@ describe('validateEnvironment', () => {
     expect(result.CORS_ALLOWED_ORIGINS).toBe('*');
   });
 
-  it.each(['staging', 'production'])(
-    'rejects a wildcard cors origin in %s',
-    (appEnv) => {
-      expect(() =>
-        validateEnvironment({
-          ...baseEnv,
-          APP_ENV: appEnv,
-          CORS_ALLOWED_ORIGINS: '*',
-        }),
-      ).toThrow(/CORS_ALLOWED_ORIGINS/);
-    },
-  );
+  it.each(['staging', 'production'])('rejects a wildcard cors origin in %s', (appEnv) => {
+    expect(() =>
+      validateEnvironment({
+        ...baseEnv,
+        APP_ENV: appEnv,
+        CORS_ALLOWED_ORIGINS: '*',
+      }),
+    ).toThrow(/CORS_ALLOWED_ORIGINS/);
+  });
 
   it('reports every problem at once rather than one per run', () => {
     let message = '';

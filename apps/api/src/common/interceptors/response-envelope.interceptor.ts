@@ -1,13 +1,13 @@
 import {
-  CallHandler,
-  ExecutionContext,
+  type CallHandler,
+  type ExecutionContext,
   Injectable,
-  NestInterceptor,
+  type NestInterceptor,
 } from '@nestjs/common';
 import { REQUEST_ID_HEADER } from '@bluerise/shared-config';
 import type { ApiResponse } from '@bluerise/shared-types';
 import type { Request, Response } from 'express';
-import { Observable, map } from 'rxjs';
+import { type Observable, map } from 'rxjs';
 
 import { getRequestId } from '../request-context';
 
@@ -19,9 +19,10 @@ import { getRequestId } from '../request-context';
  * A handler that has already produced the envelope is passed through untouched.
  */
 @Injectable()
-export class ResponseEnvelopeInterceptor<T>
-  implements NestInterceptor<T, ApiResponse<T> | T>
-{
+export class ResponseEnvelopeInterceptor<T> implements NestInterceptor<
+  T,
+  ApiResponse<T> | T
+> {
   intercept(
     context: ExecutionContext,
     next: CallHandler<T>,

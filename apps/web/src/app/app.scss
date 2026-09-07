@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+  // Focusable for the skip link, but the outline would otherwise draw around the entire
+  // page when focus lands here programmatically.
+  outline: none;
+}

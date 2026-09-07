@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Authenticated surfaces are never indexed. These paths arrive in Phases 4 and 5; the rules
+# are in place first so a crawler cannot reach them the moment they ship.
+Disallow: /portal
+Disallow: /admin
+
+# A developer reference rather than a page anyone should find in search results.
+Disallow: /design-system
+
+# Absolute sitemap URL is added in Phase 2 alongside the public pages it would list.

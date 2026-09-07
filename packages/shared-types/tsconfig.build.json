@@ -2,7 +2,7 @@
   "extends": "@bluerise/shared-config/tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "./dist/cjs",
     "types": []
   },
   "include": ["src/**/*.ts"]

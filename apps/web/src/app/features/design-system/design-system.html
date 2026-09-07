@@ -1,0 +1,755 @@
+<section class="ds-hero">
+  <div class="br-container">
+    <p class="br-eyebrow">Foundation</p>
+    <h1>BlueRise Workforce design system</h1>
+    <p class="br-lead">
+      Tokens and component patterns shared by the public website, the Portal, and the Admin
+      application. Everything on this page renders from
+      <code>packages/ui</code>
+      — the same stylesheet those surfaces consume, not a copy.
+    </p>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Colour                                                                                 -->
+<!-- ===================================================================================== -->
+<section class="br-section" id="colour">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Colour</h2>
+      <p class="br-lead">
+        A single blue ramp, a neutral ramp warmed slightly toward blue, and four semantic hues.
+        Components reference semantic aliases such as
+        <code>--br-color-primary</code>
+        , never a ramp step directly, so a surface can be re-themed without touching a component.
+      </p>
+    </div>
+
+    <h3 class="ds-subhead">Primary ramp</h3>
+    <div class="swatches">
+      @for (swatch of blueRamp; track swatch.variable) {
+        <div class="swatch">
+          <span class="swatch__chip" [style.background]="'var(' + swatch.variable + ')'"></span>
+          <span class="swatch__name">{{ swatch.name }}</span>
+        </div>
+      }
+    </div>
+
+    <h3 class="ds-subhead">Neutrals</h3>
+    <div class="swatches">
+      @for (swatch of neutralRamp; track swatch.variable) {
+        <div class="swatch">
+          <span class="swatch__chip" [style.background]="'var(' + swatch.variable + ')'"></span>
+          <span class="swatch__name">{{ swatch.name }}</span>
+        </div>
+      }
+    </div>
+
+    <h3 class="ds-subhead">Semantic</h3>
+    <div class="swatches">
+      @for (swatch of semanticSwatches; track swatch.variable) {
+        <div class="swatch">
+          <span class="swatch__chip" [style.background]="'var(' + swatch.variable + ')'"></span>
+          <span class="swatch__name">{{ swatch.name }}</span>
+          <span class="swatch__note">{{ swatch.note }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Typography                                                                             -->
+<!-- ===================================================================================== -->
+<section class="br-section br-section--sunken" id="typography">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Typography</h2>
+      <p class="br-lead">
+        Inter with a system fallback, on a fluid scale built with
+        <code>clamp()</code>
+        so headings shrink on small screens without a cascade of breakpoint overrides. Body copy
+        never drops below 16px, and line length is capped near 68 characters.
+      </p>
+    </div>
+
+    <div class="type-scale">
+      @for (item of typeScale; track item.token) {
+        <div class="type-row">
+          <span class="type-row__meta">
+            <span class="type-row__label">{{ item.label }}</span>
+            <code>{{ item.token }}</code>
+          </span>
+          <span class="type-row__sample" [style.font-size]="'var(' + item.token + ')'">
+            Stronger workforces
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Spacing, radius, elevation                                                             -->
+<!-- ===================================================================================== -->
+<section class="br-section" id="scale">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Spacing, radius, and elevation</h2>
+      <p class="br-lead">
+        A 4px spacing base, six radii, and four low-contrast shadow levels. Heavy drop shadows read
+        as dated, so elevation stays subtle.
+      </p>
+    </div>
+
+    <h3 class="ds-subhead">Spacing</h3>
+    <div class="spacing">
+      @for (step of spacingScale; track step) {
+        <div class="spacing__row">
+          <code>--br-space-{{ step }}</code>
+          <span class="spacing__bar" [style.width]="'var(--br-space-' + step + ')'"></span>
+        </div>
+      }
+    </div>
+
+    <h3 class="ds-subhead">Radius</h3>
+    <div class="br-cluster">
+      @for (radius of radiusScale; track radius) {
+        <div class="radius-tile" [style.border-radius]="'var(--br-radius-' + radius + ')'">
+          {{ radius }}
+        </div>
+      }
+    </div>
+
+    <h3 class="ds-subhead">Elevation</h3>
+    <div class="br-cluster">
+      @for (shadow of shadowScale; track shadow) {
+        <div class="shadow-tile" [style.box-shadow]="'var(--br-shadow-' + shadow + ')'">
+          {{ shadow }}
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Buttons                                                                                -->
+<!-- ===================================================================================== -->
+<section class="br-section br-section--sunken" id="buttons">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Buttons</h2>
+      <p class="br-lead">
+        Every button clears a 44×44 pixel target, keeps a visible focus ring, and states its
+        disabled reason through
+        <code>aria-disabled</code>
+        rather than disappearing.
+      </p>
+    </div>
+
+    <div class="br-stack br-stack--lg">
+      <div class="br-cluster">
+        <button type="button" class="br-button br-button--primary">Get started</button>
+        <button type="button" class="br-button br-button--secondary">Learn more</button>
+        <button type="button" class="br-button br-button--ghost">Cancel</button>
+        <button type="button" class="br-button br-button--danger">Revoke access</button>
+      </div>
+
+      <div class="br-cluster">
+        <button type="button" class="br-button br-button--primary br-button--sm">Small</button>
+        <button type="button" class="br-button br-button--primary">Medium</button>
+        <button type="button" class="br-button br-button--primary br-button--lg">Large</button>
+      </div>
+
+      <div class="br-cluster">
+        <button type="button" class="br-button br-button--primary" disabled>Disabled</button>
+        <button type="button" class="br-button br-button--primary">
+          <span class="br-button__spinner" aria-hidden="true"></span>
+          Saving
+        </button>
+        <button type="button" class="br-button br-button--secondary br-button--icon">
+          <span class="br-sr-only">Settings</span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Forms                                                                                  -->
+<!-- ===================================================================================== -->
+<section class="br-section" id="forms">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Forms</h2>
+      <p class="br-lead">
+        A working reactive form, so the validation, error, pending, and success states below are the
+        ones a real page produces. Every field has a persistent label — a placeholder is not a label
+        — and every error is announced, not just coloured red.
+      </p>
+    </div>
+
+    <form class="ds-form br-card" [formGroup]="exampleForm" (ngSubmit)="submitExample()" novalidate>
+      @if (submitted()) {
+        <div class="br-alert br-alert--success" role="status">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="m20 6-11 11-5-5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div>
+            <p class="br-alert__title">Form validated</p>
+            <p class="br-alert__body">
+              This example does not submit anywhere. The contact endpoint arrives in Phase 2.
+            </p>
+          </div>
+        </div>
+      }
+
+      <div class="br-form-grid">
+        <div class="br-field">
+          <label class="br-label" for="ds-name">
+            Full name
+            <span class="br-label__required" aria-hidden="true">*</span>
+            <span class="br-sr-only">(required)</span>
+          </label>
+          <input
+            id="ds-name"
+            type="text"
+            class="br-input"
+            formControlName="fullName"
+            autocomplete="name"
+            [attr.aria-invalid]="showError('fullName')"
+            [attr.aria-describedby]="showError('fullName') ? 'ds-name-error' : null"
+          />
+          @if (showError('fullName')) {
+            <p class="br-error-text" id="ds-name-error">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+              </svg>
+              {{ errorFor('fullName') }}
+            </p>
+          }
+        </div>
+
+        <div class="br-field">
+          <label class="br-label" for="ds-email">
+            Email
+            <span class="br-label__required" aria-hidden="true">*</span>
+            <span class="br-sr-only">(required)</span>
+          </label>
+          <input
+            id="ds-email"
+            type="email"
+            class="br-input"
+            formControlName="email"
+            autocomplete="email"
+            [attr.aria-invalid]="showError('email')"
+            [attr.aria-describedby]="showError('email') ? 'ds-email-error' : 'ds-email-hint'"
+          />
+          @if (showError('email')) {
+            <p class="br-error-text" id="ds-email-error">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+              </svg>
+              {{ errorFor('email') }}
+            </p>
+          } @else {
+            <p class="br-hint" id="ds-email-hint">We reply to this address.</p>
+          }
+        </div>
+
+        <div class="br-field br-form-grid__full">
+          <label class="br-label" for="ds-subject">
+            Subject
+            <span class="br-label__required" aria-hidden="true">*</span>
+            <span class="br-sr-only">(required)</span>
+          </label>
+          <select
+            id="ds-subject"
+            class="br-select"
+            formControlName="subject"
+            [attr.aria-invalid]="showError('subject')"
+          >
+            <option value="" disabled>Choose a subject</option>
+            @for (subject of subjects; track subject) {
+              <option [value]="subject">{{ subject }}</option>
+            }
+          </select>
+          @if (showError('subject')) {
+            <p class="br-error-text">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+              </svg>
+              {{ errorFor('subject') }}
+            </p>
+          }
+        </div>
+
+        <div class="br-field br-form-grid__full">
+          <label class="br-label" for="ds-message">
+            Message
+            <span class="br-label__required" aria-hidden="true">*</span>
+            <span class="br-sr-only">(required)</span>
+          </label>
+          <textarea
+            id="ds-message"
+            class="br-textarea"
+            formControlName="message"
+            [attr.aria-invalid]="showError('message')"
+          ></textarea>
+          @if (showError('message')) {
+            <p class="br-error-text">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+              </svg>
+              {{ errorFor('message') }}
+            </p>
+          }
+        </div>
+
+        <div class="br-field br-form-grid__full">
+          <label class="br-checkbox">
+            <input type="checkbox" formControlName="consent" />
+            <span>I confirm that I want to submit this form and be contacted about it.</span>
+          </label>
+          @if (showError('consent')) {
+            <p class="br-error-text">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+              </svg>
+              {{ errorFor('consent') }}
+            </p>
+          }
+        </div>
+      </div>
+
+      <div class="br-cluster ds-form__actions">
+        <button type="submit" class="br-button br-button--primary" [disabled]="submitting()">
+          @if (submitting()) {
+            <span class="br-button__spinner" aria-hidden="true"></span>
+            Validating
+          } @else {
+            Submit example
+          }
+        </button>
+        <button type="button" class="br-button br-button--ghost" (click)="resetExample()">
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Feedback: badges, alerts                                                               -->
+<!-- ===================================================================================== -->
+<section class="br-section br-section--sunken" id="feedback">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Badges and alerts</h2>
+      <p class="br-lead">
+        Status is never carried by colour alone. Every badge and alert pairs its hue with a word,
+        and alerts pair it with an icon too.
+      </p>
+    </div>
+
+    <div class="br-cluster">
+      <span class="br-badge br-badge--neutral">Draft</span>
+      <span class="br-badge br-badge--info">In review</span>
+      <span class="br-badge br-badge--success">Active</span>
+      <span class="br-badge br-badge--warning">Expiring</span>
+      <span class="br-badge br-badge--danger">Overdue</span>
+    </div>
+
+    <div class="br-stack br-stack--lg ds-alerts">
+      <div class="br-alert br-alert--info">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 11v5M12 8h.01" stroke-linecap="round" />
+        </svg>
+        <div>
+          <p class="br-alert__title">Open enrollment closes on 30 November</p>
+          <p class="br-alert__body">
+            Changes made after that date take effect in the following plan year.
+          </p>
+        </div>
+      </div>
+
+      <div class="br-alert br-alert--success">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="m20 6-11 11-5-5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div>
+          <p class="br-alert__title">Direct deposit verified</p>
+          <p class="br-alert__body">Your next payment will go to the account ending 4417.</p>
+        </div>
+      </div>
+
+      <div class="br-alert br-alert--warning">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path
+            d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"
+            stroke-linejoin="round"
+          />
+          <path d="M12 9v4M12 17h.01" stroke-linecap="round" />
+        </svg>
+        <div>
+          <p class="br-alert__title">Two documents expire within 30 days</p>
+          <p class="br-alert__body">
+            Upload a replacement before the expiry date to stay compliant.
+          </p>
+        </div>
+      </div>
+
+      <div class="br-alert br-alert--danger">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round" />
+        </svg>
+        <div>
+          <p class="br-alert__title">Timesheet rejected</p>
+          <p class="br-alert__body">Thursday's entry has no clock-out. Correct it and resubmit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Tables, tabs, pagination, breadcrumbs                                                  -->
+<!-- ===================================================================================== -->
+<section class="br-section" id="data">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Data display</h2>
+      <p class="br-lead">
+        Tables scroll horizontally inside a focusable wrapper rather than overflowing the page, so a
+        narrow screen degrades gracefully and a keyboard user can still reach the scroll region.
+      </p>
+    </div>
+
+    <nav class="br-breadcrumb ds-breadcrumb" aria-label="Breadcrumb">
+      <a href="#data">Portal</a>
+      <span class="br-breadcrumb__separator" aria-hidden="true">/</span>
+      <a href="#data">Payroll</a>
+      <span class="br-breadcrumb__separator" aria-hidden="true">/</span>
+      <span aria-current="page">Pay statements</span>
+    </nav>
+
+    <div class="br-tabs ds-tabs" role="tablist" aria-label="Example tabs">
+      <button
+        type="button"
+        class="br-tab"
+        role="tab"
+        [attr.aria-selected]="activeTab() === 'preview'"
+        (click)="activeTab.set('preview')"
+      >
+        Preview
+      </button>
+      <button
+        type="button"
+        class="br-tab"
+        role="tab"
+        [attr.aria-selected]="activeTab() === 'usage'"
+        (click)="activeTab.set('usage')"
+      >
+        Usage
+      </button>
+    </div>
+
+    @if (activeTab() === 'preview') {
+      <div class="br-table-wrap" tabindex="0" role="region" aria-label="Example pay statements">
+        <table class="br-table br-table--numeric">
+          <caption>An illustration of the table pattern. These are not real records.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Pay period</th>
+              <th scope="col">Pay date</th>
+              <th scope="col" class="br-numeric">Hours</th>
+              <th scope="col" class="br-numeric">Gross</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 – 15 Aug</td>
+              <td>20 Aug</td>
+              <td class="br-numeric">78.5</td>
+              <td class="br-numeric">$2,041.00</td>
+              <td><span class="br-badge br-badge--success">Paid</span></td>
+            </tr>
+            <tr>
+              <td>16 – 31 Aug</td>
+              <td>5 Sep</td>
+              <td class="br-numeric">80.0</td>
+              <td class="br-numeric">$2,080.00</td>
+              <td><span class="br-badge br-badge--success">Paid</span></td>
+            </tr>
+            <tr>
+              <td>1 – 15 Sep</td>
+              <td>20 Sep</td>
+              <td class="br-numeric">72.25</td>
+              <td class="br-numeric">$1,878.50</td>
+              <td><span class="br-badge br-badge--info">Scheduled</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <nav class="br-pagination ds-pagination" aria-label="Pagination">
+        <button type="button" class="br-pagination__page" disabled>Previous</button>
+        <button type="button" class="br-pagination__page" aria-current="page">1</button>
+        <button type="button" class="br-pagination__page">2</button>
+        <button type="button" class="br-pagination__page">3</button>
+        <button type="button" class="br-pagination__page">Next</button>
+      </nav>
+    } @else {
+      <div class="br-card">
+        <p class="br-card__body">
+          Wrap every table in
+          <code>.br-table-wrap</code>
+          with
+          <code>tabindex="0"</code>
+          . Give the table a
+          <code>&lt;caption&gt;</code>
+          , mark header cells with
+          <code>scope</code>
+          , and add
+          <code>.br-numeric</code>
+          to numeric columns so figures align on their digits.
+        </p>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Empty, loading, and error states                                                       -->
+<!-- ===================================================================================== -->
+<section class="br-section br-section--sunken" id="states">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Empty, loading, and error states</h2>
+      <p class="br-lead">
+        These are part of the design system rather than something each screen improvises, because
+        they are what a person sees most often when something is wrong.
+      </p>
+    </div>
+
+    <div class="br-grid br-grid--wide-cells">
+      <div class="br-state">
+        <span class="br-state__icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <p class="br-state__title">No documents yet</p>
+        <p class="br-state__body">
+          When your employer requests a document, it will appear here with its due date.
+        </p>
+      </div>
+
+      <div class="br-state br-state--loading" aria-busy="true">
+        <span class="br-spinner br-spinner--lg" aria-hidden="true"></span>
+        <p class="br-state__title">Loading pay statements</p>
+        <p class="br-state__body">This usually takes a moment.</p>
+      </div>
+
+      <div class="br-state br-state--error" role="alert">
+        <span class="br-state__icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v6M12 16h.01" stroke-linecap="round" />
+          </svg>
+        </span>
+        <p class="br-state__title">We could not load your benefits</p>
+        <p class="br-state__body">
+          The benefits provider did not respond. Your enrollment has not changed.
+        </p>
+        <button type="button" class="br-button br-button--secondary br-button--sm">
+          Try again
+        </button>
+      </div>
+    </div>
+
+    <h3 class="ds-subhead">Skeletons</h3>
+    <div class="br-card ds-skeleton-demo">
+      <div class="br-cluster">
+        <span class="br-skeleton br-skeleton--circle"></span>
+        <span class="br-skeleton br-skeleton--title" style="width: 12rem"></span>
+      </div>
+      <span class="br-skeleton br-skeleton--text" style="width: 100%"></span>
+      <span class="br-skeleton br-skeleton--text" style="width: 88%"></span>
+      <span class="br-skeleton br-skeleton--text" style="width: 64%"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================================== -->
+<!-- Overlays                                                                               -->
+<!-- ===================================================================================== -->
+<section class="br-section" id="overlays">
+  <div class="br-container">
+    <div class="br-section__header">
+      <h2>Overlays and tooltips</h2>
+      <p class="br-lead">
+        The modal closes on
+        <kbd>Escape</kbd>
+        and on a click outside it. Tooltips appear on hover and on focus, so they are reachable
+        without a pointer.
+      </p>
+    </div>
+
+    <div class="br-cluster">
+      <button type="button" class="br-button br-button--secondary" (click)="modalOpen.set(true)">
+        Open modal
+      </button>
+
+      <span class="br-tooltip">
+        <button type="button" class="br-button br-button--ghost br-button--sm">
+          Hover or focus me
+        </button>
+        <span class="br-tooltip__bubble" role="tooltip">Shown on hover and on focus</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+@if (modalOpen()) {
+  <div class="br-modal-overlay">
+    <!--
+      The backdrop is a real button rather than a div with a click handler, so dismissing
+      the dialog by clicking outside it is also reachable by keyboard and announced by a
+      screen reader.
+    -->
+    <button type="button" class="br-modal-overlay__backdrop" (click)="modalOpen.set(false)">
+      <span class="br-sr-only">Close dialog</span>
+    </button>
+
+    <div class="br-modal" role="dialog" aria-modal="true" aria-labelledby="ds-modal-title">
+      <div class="br-modal__header">
+        <h2 class="br-card__title" id="ds-modal-title">Confirm this change</h2>
+        <button
+          type="button"
+          class="br-button br-button--ghost br-button--icon"
+          (click)="modalOpen.set(false)"
+        >
+          <span class="br-sr-only">Close</span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <p class="br-card__body">
+        The modal pattern: a labelled dialog, a close control, and actions in the footer ordered so
+        the confirming action sits last.
+      </p>
+      <div class="br-modal__footer">
+        <button type="button" class="br-button br-button--ghost" (click)="modalOpen.set(false)">
+          Cancel
+        </button>
+        <button type="button" class="br-button br-button--primary" (click)="modalOpen.set(false)">
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+}

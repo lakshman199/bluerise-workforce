@@ -1,0 +1,186 @@
+@use 'breakpoints' as bp;
+
+.ds-hero {
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+  background: linear-gradient(180deg, var(--br-blue-50), transparent);
+  border-bottom: 1px solid var(--br-color-border);
+
+  h1 {
+    margin-top: var(--br-space-3);
+  }
+
+  .br-lead {
+    margin-top: var(--br-space-4);
+  }
+}
+
+.ds-subhead {
+  margin-top: var(--br-space-10);
+  margin-bottom: var(--br-space-4);
+  font-size: var(--br-text-lg);
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+code {
+  padding: 0.1em 0.4em;
+  border-radius: var(--br-radius-xs);
+  background: var(--br-color-surface-muted);
+  color: var(--br-color-text);
+}
+
+// ---------------------------------------------------------------------------------------
+// Colour
+// ---------------------------------------------------------------------------------------
+
+.swatches {
+  display: grid;
+  gap: var(--br-space-3);
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+}
+
+.swatch__chip {
+  height: 3.25rem;
+  border: 1px solid var(--br-color-border);
+  border-radius: var(--br-radius-md);
+}
+
+.swatch__name {
+  font-size: var(--br-text-xs);
+  font-weight: var(--br-weight-medium);
+  color: var(--br-color-text-muted);
+}
+
+.swatch__note {
+  font-size: var(--br-text-xs);
+  color: var(--br-color-text-subtle);
+}
+
+// ---------------------------------------------------------------------------------------
+// Typography
+// ---------------------------------------------------------------------------------------
+
+.type-scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-4);
+}
+
+.type-row {
+  display: grid;
+  gap: var(--br-space-2);
+  padding-bottom: var(--br-space-4);
+  border-bottom: 1px solid var(--br-color-border);
+
+  @include bp.from(bp.$bp-md) {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--br-space-6);
+  }
+}
+
+.type-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-1);
+  align-items: flex-start;
+}
+
+.type-row__label {
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-semibold);
+}
+
+.type-row__sample {
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: var(--br-tracking-tight);
+  line-height: var(--br-leading-tight);
+  // Long samples must never widen the page on a narrow screen.
+  overflow-wrap: anywhere;
+}
+
+// ---------------------------------------------------------------------------------------
+// Spacing, radius, elevation
+// ---------------------------------------------------------------------------------------
+
+.spacing {
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-space-2);
+}
+
+.spacing__row {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--br-space-4);
+  font-size: var(--br-text-sm);
+}
+
+.spacing__bar {
+  height: 0.9rem;
+  border-radius: var(--br-radius-xs);
+  background: var(--br-color-primary);
+}
+
+.radius-tile,
+.shadow-tile {
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 4.25rem;
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-medium);
+  color: var(--br-color-text-muted);
+  background: var(--br-color-surface);
+  border: 1px solid var(--br-color-border);
+}
+
+.shadow-tile {
+  border-radius: var(--br-radius-lg);
+  border-color: transparent;
+}
+
+// ---------------------------------------------------------------------------------------
+// Forms, feedback, data
+// ---------------------------------------------------------------------------------------
+
+.ds-form {
+  max-width: 46rem;
+  gap: var(--br-space-6);
+}
+
+.ds-form__actions {
+  margin-top: var(--br-space-2);
+}
+
+.ds-alerts {
+  margin-top: var(--br-space-8);
+  max-width: 46rem;
+}
+
+.ds-breadcrumb {
+  margin-bottom: var(--br-space-6);
+}
+
+.ds-tabs {
+  max-width: 22rem;
+  margin-bottom: var(--br-space-6);
+}
+
+.ds-pagination {
+  margin-top: var(--br-space-5);
+}
+
+.ds-skeleton-demo {
+  max-width: 34rem;
+  gap: var(--br-space-2);
+}

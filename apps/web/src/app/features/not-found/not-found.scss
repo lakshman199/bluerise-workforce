@@ -1,0 +1,27 @@
+.not-found {
+  display: grid;
+  place-items: center;
+  min-height: 60dvh;
+  text-align: center;
+}
+
+.not-found__code {
+  font-size: var(--br-text-6xl);
+  font-weight: var(--br-weight-bold);
+  line-height: 1;
+  letter-spacing: var(--br-tracking-tight);
+  color: var(--br-color-primary-border);
+}
+
+.not-found h1 {
+  margin-top: var(--br-space-4);
+}
+
+.not-found .br-lead {
+  margin: var(--br-space-4) auto 0;
+}
+
+.not-found__actions {
+  justify-content: center;
+  margin-top: var(--br-space-8);
+}

@@ -1,0 +1,13 @@
+<!--
+  The skip link is the first focusable element on every page, so a keyboard or screen-reader
+  user can bypass the header without tabbing through the whole navigation.
+-->
+<a class="br-skip-link" href="#main-content">Skip to main content</a>
+
+<br-site-header />
+
+<main id="main-content" tabindex="-1">
+  <router-outlet />
+</main>
+
+<br-site-footer />

@@ -1,20 +1,15 @@
 {
   "extends": "@bluerise/shared-config/tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
     "target": "ES2023",
     "lib": ["ES2023"],
     "rootDir": "./",
     "outDir": "./dist",
-    "baseUrl": "./",
     "types": ["node", "jest"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "incremental": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "incremental": true
   },
   "include": ["src/**/*.ts", "test/**/*.ts"],
   "exclude": ["node_modules", "dist"]

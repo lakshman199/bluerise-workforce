@@ -1,7 +1,7 @@
 import {
-  ArgumentsHost,
+  type ArgumentsHost,
   Catch,
-  ExceptionFilter,
+  type ExceptionFilter,
   HttpException,
   HttpStatus,
   Logger,
@@ -9,7 +9,7 @@ import {
 import type { ApiErrorResponse } from '@bluerise/shared-types';
 import type { Request, Response } from 'express';
 
-import { AppConfigService } from '../../config/app-config.service';
+import { type AppConfigService } from '../../config/app-config.service';
 import { getRequestId } from '../request-context';
 
 /**

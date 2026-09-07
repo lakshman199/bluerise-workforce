@@ -3,8 +3,11 @@
   "compilerOptions": {
     "target": "ES2023",
     "lib": ["ES2023"],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    // `node16` rather than the classic `node10` resolution, which TypeScript 6 deprecated
+    // and TypeScript 7 removes. These packages have no `"type": "module"`, so `node16`
+    // still emits CommonJS, which is what Nest and the TypeORM CLI expect.
+    "module": "node16",
+    "moduleResolution": "node16",
 
     "strict": true,
     "noImplicitAny": true,
@@ -27,6 +30,9 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    // Required by `node16` module emit, and it keeps every file independently
+    // transpilable, which is what ts-jest and esbuild-based tooling assume.
+    "isolatedModules": true,
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,

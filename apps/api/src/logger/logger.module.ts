@@ -24,7 +24,9 @@ import { AppConfigService } from '../config/app-config.service';
           genReqId: (request: IncomingMessage, response: ServerResponse) => {
             const existing = request.headers[REQUEST_ID_HEADER];
             const id =
-              typeof existing === 'string' && existing.length > 0 ? existing : randomUUID();
+              typeof existing === 'string' && existing.length > 0
+                ? existing
+                : randomUUID();
             response.setHeader(REQUEST_ID_HEADER, id);
             return id;
           },

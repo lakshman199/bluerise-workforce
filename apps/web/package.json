@@ -1,0 +1,35 @@
+{
+  "name": "@bluerise/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "BlueRise Workforce web application: public website, and later the Portal and Admin surfaces.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "ng": "ng",
+    "dev": "ng serve --host 0.0.0.0 --port 4310",
+    "build": "ng build",
+    "build:dev": "ng build --configuration development",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test --watch=false",
+    "typecheck": "tsc --project tsconfig.app.json --noEmit"
+  },
+  "dependencies": {
+    "@angular/common": "^22.1.0",
+    "@angular/compiler": "^22.1.0",
+    "@angular/core": "^22.1.0",
+    "@angular/forms": "^22.1.0",
+    "@angular/platform-browser": "^22.1.0",
+    "@angular/router": "^22.1.0",
+    "@bluerise/shared-types": "0.1.0",
+    "@bluerise/ui": "0.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.1.7",
+    "@angular/cli": "^22.1.7",
+    "@angular/compiler-cli": "^22.1.0",
+    "jsdom": "28.0.0",
+    "vitest": "4.1.11"
+  }
+}

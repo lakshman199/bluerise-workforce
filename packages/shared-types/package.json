@@ -4,26 +4,28 @@
   "private": true,
   "description": "Domain enums and API contracts shared between the BlueRise Workforce API and web application.",
   "license": "UNLICENSED",
-  "type": "commonjs",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/cjs/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
+  "sideEffects": false,
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.build.json && tsc --project tsconfig.esm.json && node scripts/write-module-markers.mjs",
     "typecheck": "tsc --project tsconfig.build.json --noEmit"
   },
   "dependencies": {
     "@bluerise/shared-config": "0.1.0"
   },
   "devDependencies": {
-    "typescript": "~5.9.3"
+    "typescript": "~6.0.2"
   }
 }

@@ -629,6 +629,19 @@
   background: rgb(12 17 27 / 55%);
 }
 
+// A real button rather than a click handler on the overlay, so dismissing the dialog from
+// outside it works by keyboard as well as by pointer.
+.br-modal-overlay__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
 .br-modal {
   position: relative;
   z-index: var(--br-z-modal);

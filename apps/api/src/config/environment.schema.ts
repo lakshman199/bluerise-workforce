@@ -40,7 +40,8 @@ export const environmentSchema = z
   .superRefine((value, ctx) => {
     // A wildcard origin on a credentialed API defeats the point of CORS. Blocking it in
     // the schema means it cannot be reached by a hurried environment edit.
-    const isProductionLike = value.APP_ENV === 'production' || value.APP_ENV === 'staging';
+    const isProductionLike =
+      value.APP_ENV === 'production' || value.APP_ENV === 'staging';
     if (isProductionLike && value.CORS_ALLOWED_ORIGINS.trim() === '*') {
       ctx.addIssue({
         code: 'custom',

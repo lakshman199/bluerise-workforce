@@ -1,0 +1,25 @@
+{
+  "printWidth": 90,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "printWidth": 100,
+        "parser": "angular",
+        "htmlWhitespaceSensitivity": "ignore"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "printWidth": 88,
+        "proseWrap": "always"
+      }
+    }
+  ]
+}

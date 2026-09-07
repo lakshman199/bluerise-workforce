@@ -1,0 +1,15 @@
+{
+  "extends": "@bluerise/shared-config/tsconfig.base.json",
+  "compilerOptions": {
+    // ESM output for bundler consumers. Without it the Angular build reports a CommonJS
+    // optimization bailout and cannot tree-shake this package.
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "rootDir": "./src",
+    "outDir": "./dist/esm",
+    "declaration": false,
+    "declarationMap": false,
+    "types": []
+  },
+  "include": ["src/**/*.ts"]
+}
