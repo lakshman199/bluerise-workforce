@@ -40,18 +40,31 @@
   flex-direction: column;
   gap: var(--br-space-4);
   max-width: 62ch;
-  margin-bottom: var(--br-space-10);
+  margin-bottom: var(--br-space-12);
 }
 
 .br-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: var(--br-space-2);
-  font-size: var(--br-text-sm);
+  gap: 0.45rem;
+  width: fit-content;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--br-radius-full);
+  background: rgb(231 240 255 / 78%);
+  font-size: 0.6875rem;
   font-weight: var(--br-weight-semibold);
   letter-spacing: var(--br-tracking-wide);
   text-transform: uppercase;
-  color: var(--br-color-primary);
+  color: var(--br-blue-800);
+
+  &::before {
+    content: '';
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: var(--br-radius-full);
+    background: currentcolor;
+    opacity: 0.7;
+  }
 }
 
 .br-lead {

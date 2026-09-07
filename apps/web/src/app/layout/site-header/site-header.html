@@ -6,84 +6,90 @@
 </div>
 
 <header class="header">
-  <div class="br-container header__inner">
-    <a class="brand" routerLink="/" (click)="closeMenu()">
-      <br-brand-logo />
-    </a>
+  <div class="br-container header__frame">
+    <div class="header__shell">
+      <div class="header__bar">
+        <a class="brand" routerLink="/" (click)="closeMenu()">
+          <br-brand-logo />
+        </a>
 
-    <nav class="nav br-hide-below-xl" aria-label="Primary">
-      <ul class="nav__list">
-        @for (item of navItems; track item.path) {
-          <li>
-            <a
-              class="nav__link"
-              [routerLink]="item.path"
-              routerLinkActive="nav__link--active"
-              [routerLinkActiveOptions]="{ exact: item.exact === true }"
-              ariaCurrentWhenActive="page"
-            >
-              {{ item.label }}
-            </a>
-          </li>
-        }
-      </ul>
-    </nav>
+        <nav class="nav br-hide-below-xl" aria-label="Primary">
+          <ul class="nav__list">
+            @for (item of navItems; track item.path) {
+              <li>
+                <a
+                  class="nav__link"
+                  [class.nav__link--cta]="item.path === '/contact'"
+                  [routerLink]="item.path"
+                  routerLinkActive="nav__link--active"
+                  [routerLinkActiveOptions]="{ exact: item.exact === true }"
+                  ariaCurrentWhenActive="page"
+                >
+                  {{ item.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
 
-    <div class="header__actions">
-      <button
-        #menuToggle
-        type="button"
-        class="br-button br-button--ghost br-button--icon br-hide-from-xl"
-        [attr.aria-expanded]="menuOpen()"
-        aria-controls="mobile-menu"
-        (click)="toggleMenu()"
-      >
-        <span class="br-sr-only">{{ menuOpen() ? 'Close menu' : 'Open menu' }}</span>
-        @if (menuOpen()) {
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
+        <div class="header__actions">
+          <button
+            #menuToggle
+            type="button"
+            class="br-button br-button--ghost br-button--icon br-hide-from-xl"
+            [attr.aria-expanded]="menuOpen()"
+            aria-controls="mobile-menu"
+            (click)="toggleMenu()"
           >
-            <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" />
-          </svg>
-        } @else {
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
-          </svg>
-        }
-      </button>
+            <span class="br-sr-only">{{ menuOpen() ? 'Close menu' : 'Open menu' }}</span>
+            @if (menuOpen()) {
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" />
+              </svg>
+            } @else {
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+              </svg>
+            }
+          </button>
+        </div>
+      </div>
+
+      @if (menuOpen()) {
+        <div id="mobile-menu" class="mobile-menu br-hide-from-xl">
+          <nav aria-label="Primary, mobile">
+            <ul class="mobile-menu__list">
+              @for (item of navItems; track item.path) {
+                <li>
+                  <a
+                    class="mobile-menu__link"
+                    [class.mobile-menu__link--cta]="item.path === '/contact'"
+                    [routerLink]="item.path"
+                    routerLinkActive="mobile-menu__link--active"
+                    [routerLinkActiveOptions]="{ exact: item.exact === true }"
+                    ariaCurrentWhenActive="page"
+                    (click)="closeMenu()"
+                  >
+                    {{ item.label }}
+                  </a>
+                </li>
+              }
+            </ul>
+          </nav>
+        </div>
+      }
     </div>
   </div>
-
-  @if (menuOpen()) {
-    <div id="mobile-menu" class="mobile-menu br-hide-from-xl">
-      <nav class="br-container" aria-label="Primary, mobile">
-        <ul class="mobile-menu__list">
-          @for (item of navItems; track item.path) {
-            <li>
-              <a
-                class="mobile-menu__link"
-                [routerLink]="item.path"
-                routerLinkActive="mobile-menu__link--active"
-                [routerLinkActiveOptions]="{ exact: item.exact === true }"
-                ariaCurrentWhenActive="page"
-                (click)="closeMenu()"
-              >
-                {{ item.label }}
-              </a>
-            </li>
-          }
-        </ul>
-      </nav>
-    </div>
-  }
 </header>

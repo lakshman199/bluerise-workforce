@@ -22,24 +22,28 @@
   --br-blue-900: #17346f;
 
   // ---------------------------------------------------------------------------
-  // Neutrals, warmed very slightly toward blue so they sit with the primary ramp
+  // Neutrals. Warm ivory for public surfaces; navy remains for inverse bands.
   // ---------------------------------------------------------------------------
-  --br-neutral-0: #ffffff;
-  --br-neutral-25: #fbfcfe;
-  --br-neutral-50: #f6f8fb;
-  --br-neutral-100: #eef1f6;
-  --br-neutral-200: #e2e7ef;
-  --br-neutral-300: #cbd3e1;
-  --br-neutral-400: #97a3b8;
-  --br-neutral-500: #6b7890;
-  --br-neutral-600: #4d5a72;
-  --br-neutral-700: #3a4558;
-  --br-neutral-800: #253044;
-  --br-neutral-900: #161e2d;
-  --br-neutral-950: #0c111b;
+  --br-neutral-0: #fffdf8;
+  --br-neutral-25: #fbf6ee;
+  --br-neutral-50: #f4eee3;
+  --br-neutral-100: #ebe3d4;
+  --br-neutral-200: #ddd2c0;
+  --br-neutral-300: #c5b8a4;
+  --br-neutral-400: #948675;
+  --br-neutral-500: #6d6356;
+  --br-neutral-600: #4f473e;
+  --br-neutral-700: #3b342d;
+  --br-neutral-800: #221e1a;
+  --br-neutral-900: #161310;
+  --br-neutral-950: #0d0b09;
+
+  --br-navy-800: #1c2740;
+  --br-navy-900: #141c2e;
+  --br-navy-950: #0d1320;
 
   // ---------------------------------------------------------------------------
-  // Semantic hues. Each foreground clears 4.5:1 on white.
+  // Semantic hues. Each foreground clears 4.5:1 on ivory.
   // ---------------------------------------------------------------------------
   --br-success: #12805c;
   --br-success-surface: #e8f7f1;
@@ -63,24 +67,30 @@
   --br-color-text: var(--br-neutral-900);
   --br-color-text-muted: var(--br-neutral-600);
   --br-color-text-subtle: var(--br-neutral-500);
-  --br-color-text-inverse: var(--br-neutral-0);
+  --br-color-text-inverse: #f7f3ea;
   --br-color-text-link: var(--br-blue-700);
 
+  --br-color-page: var(--br-neutral-25);
   --br-color-surface: var(--br-neutral-0);
   --br-color-surface-raised: var(--br-neutral-0);
   --br-color-surface-sunken: var(--br-neutral-50);
   --br-color-surface-muted: var(--br-neutral-100);
-  --br-color-surface-inverse: var(--br-neutral-900);
+  --br-color-surface-inverse: var(--br-navy-900);
 
-  --br-color-border: var(--br-neutral-200);
-  --br-color-border-strong: var(--br-neutral-300);
+  --br-color-border: rgb(55 42 24 / 10%);
+  --br-color-border-strong: rgb(55 42 24 / 16%);
 
   --br-color-primary: var(--br-blue-600);
   --br-color-primary-hover: var(--br-blue-700);
   --br-color-primary-active: var(--br-blue-800);
-  --br-color-primary-surface: var(--br-blue-50);
+  --br-color-primary-surface: #e7f0ff;
   --br-color-primary-border: var(--br-blue-200);
 
+  --br-color-cta: var(--br-navy-900);
+  --br-color-cta-hover: var(--br-navy-800);
+  --br-color-cta-active: var(--br-navy-950);
+
+  --br-color-accent: #7a5c10;
   --br-color-focus: var(--br-blue-500);
 
   // ---------------------------------------------------------------------------
@@ -89,39 +99,38 @@
   --br-font-sans:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue',
     Arial, sans-serif;
+  --br-font-serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
   --br-font-mono:
     ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', 'Courier New', monospace;
 
-  // Fluid scale. Headings shrink on small screens without a cascade of overrides.
   --br-text-xs: 0.75rem;
   --br-text-sm: 0.875rem;
-  --br-text-base: 1rem;
-  --br-text-lg: 1.125rem;
-  --br-text-xl: clamp(1.188rem, 1.13rem + 0.28vw, 1.375rem);
-  --br-text-2xl: clamp(1.375rem, 1.27rem + 0.52vw, 1.75rem);
-  --br-text-3xl: clamp(1.625rem, 1.44rem + 0.9vw, 2.25rem);
-  --br-text-4xl: clamp(2rem, 1.68rem + 1.6vw, 3rem);
-  --br-text-5xl: clamp(2.375rem, 1.83rem + 2.7vw, 3.75rem);
-  --br-text-6xl: clamp(2.75rem, 1.95rem + 4vw, 4.5rem);
+  --br-text-base: 1.0625rem;
+  --br-text-lg: 1.1875rem;
+  --br-text-xl: clamp(1.25rem, 1.16rem + 0.4vw, 1.5rem);
+  --br-text-2xl: clamp(1.5rem, 1.32rem + 0.7vw, 1.9rem);
+  --br-text-3xl: clamp(1.85rem, 1.45rem + 1.4vw, 2.55rem);
+  --br-text-4xl: clamp(2.25rem, 1.7rem + 2.1vw, 3.35rem);
+  --br-text-5xl: clamp(2.6rem, 1.85rem + 3.1vw, 4.15rem);
+  --br-text-6xl: clamp(3rem, 2rem + 4.2vw, 5rem);
 
   --br-leading-none: 1;
-  --br-leading-tight: 1.15;
-  --br-leading-snug: 1.3;
-  --br-leading-normal: 1.55;
-  --br-leading-relaxed: 1.7;
+  --br-leading-tight: 1.06;
+  --br-leading-snug: 1.28;
+  --br-leading-normal: 1.6;
+  --br-leading-relaxed: 1.75;
 
   --br-weight-regular: 400;
   --br-weight-medium: 500;
   --br-weight-semibold: 600;
   --br-weight-bold: 700;
 
-  --br-tracking-tight: -0.02em;
-  --br-tracking-snug: -0.011em;
+  --br-tracking-tight: -0.035em;
+  --br-tracking-snug: -0.018em;
   --br-tracking-normal: 0;
-  --br-tracking-wide: 0.04em;
+  --br-tracking-wide: 0.08em;
 
-  // Caps line length for readability.
-  --br-measure: 68ch;
+  --br-measure: 62ch;
 
   // ---------------------------------------------------------------------------
   // Spacing — 4px base
@@ -135,34 +144,35 @@
   --br-space-8: 2rem;
   --br-space-10: 2.5rem;
   --br-space-12: 3rem;
+  --br-space-14: 3.5rem;
   --br-space-16: 4rem;
   --br-space-20: 5rem;
   --br-space-24: 6rem;
   --br-space-32: 8rem;
 
-  --br-container-max: 1200px;
-  --br-container-wide: 1400px;
+  --br-container-max: 1280px;
+  --br-container-wide: 1480px;
   --br-gutter: var(--br-space-5);
-  --br-section-y: clamp(3.5rem, 2.4rem + 5.5vw, 7rem);
+  --br-section-y: clamp(4.25rem, 2.8rem + 6vw, 8.5rem);
 
   // ---------------------------------------------------------------------------
   // Radius
   // ---------------------------------------------------------------------------
-  --br-radius-xs: 4px;
-  --br-radius-sm: 6px;
-  --br-radius-md: 10px;
-  --br-radius-lg: 14px;
-  --br-radius-xl: 20px;
-  --br-radius-2xl: 28px;
+  --br-radius-xs: 6px;
+  --br-radius-sm: 10px;
+  --br-radius-md: 14px;
+  --br-radius-lg: 20px;
+  --br-radius-xl: 28px;
+  --br-radius-2xl: 40px;
   --br-radius-full: 999px;
 
   // ---------------------------------------------------------------------------
-  // Elevation — deliberately low contrast; heavy drop shadows read as dated
+  // Elevation — soft, warm, low-contrast
   // ---------------------------------------------------------------------------
-  --br-shadow-xs: 0 1px 2px rgb(22 30 45 / 6%);
-  --br-shadow-sm: 0 1px 3px rgb(22 30 45 / 7%), 0 1px 2px rgb(22 30 45 / 4%);
-  --br-shadow-md: 0 4px 12px rgb(22 30 45 / 8%), 0 1px 3px rgb(22 30 45 / 5%);
-  --br-shadow-lg: 0 12px 32px rgb(22 30 45 / 10%), 0 2px 8px rgb(22 30 45 / 5%);
+  --br-shadow-xs: 0 1px 2px rgb(55 42 24 / 5%);
+  --br-shadow-sm: 0 6px 18px rgb(55 42 24 / 6%);
+  --br-shadow-md: 0 16px 40px rgb(55 42 24 / 8%);
+  --br-shadow-lg: 0 28px 64px rgb(55 42 24 / 10%);
   --br-shadow-focus: 0 0 0 3px rgb(51 122 255 / 30%);
 
   // ---------------------------------------------------------------------------
@@ -185,12 +195,9 @@
   --br-z-modal: 500;
   --br-z-toast: 600;
 
-  // Minimum interactive target, per WCAG 2.1 AA target size guidance.
   --br-touch-target: 44px;
 }
 
-// Honour the operating-system preference globally. Individual components never need to
-// repeat this check.
 @media (prefers-reduced-motion: reduce) {
   :root {
     --br-duration-fast: 1ms;

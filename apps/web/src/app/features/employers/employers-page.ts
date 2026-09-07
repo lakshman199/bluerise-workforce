@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   EMPLOYERS_CAPABILITIES,
   EMPLOYERS_CAPABILITIES_LEAD,
@@ -33,7 +34,10 @@ import {
 })
 export class EmployersPage {
   protected readonly eyebrow = EMPLOYERS_EYEBROW;
-  protected readonly headline = EMPLOYERS_HEADLINE;
+  protected readonly headlineHtml = emphasize(
+    EMPLOYERS_HEADLINE,
+    'workforce operations.',
+  );
   protected readonly intro = EMPLOYERS_INTRO;
   protected readonly challengesTitle = EMPLOYERS_CHALLENGES_TITLE;
   protected readonly challengesLead = EMPLOYERS_CHALLENGES_LEAD;

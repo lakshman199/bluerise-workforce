@@ -1,22 +1,26 @@
 .talent {
   display: flex;
   flex-direction: column;
-  gap: var(--br-space-5);
-  padding: var(--br-space-6);
+  gap: var(--br-space-6);
+  padding: var(--br-space-8);
   border: 1px solid var(--br-color-border);
-  border-radius: var(--br-radius-xl);
+  border-radius: var(--br-radius-2xl);
   background: var(--br-color-surface);
-  box-shadow: var(--br-shadow-md);
+  box-shadow: var(--br-shadow-sm);
 }
 
 .talent__title {
-  font-size: var(--br-text-xl);
+  font-size: var(--br-text-2xl);
+  font-family: var(--br-font-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .talent__list {
   display: flex;
   flex-direction: column;
-  gap: var(--br-space-3);
+  gap: var(--br-space-4);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -26,7 +30,7 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
-  gap: var(--br-space-3);
+  gap: var(--br-space-4);
   font-size: var(--br-text-base);
   font-weight: var(--br-weight-medium);
   line-height: var(--br-leading-snug);
@@ -35,8 +39,8 @@
 .talent__check {
   display: grid;
   place-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.65rem;
+  height: 1.65rem;
   border-radius: var(--br-radius-full);
   background: var(--br-success-surface);
   color: var(--br-success);

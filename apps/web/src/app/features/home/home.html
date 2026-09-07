@@ -2,13 +2,13 @@
 <!-- Hero                                                                                  -->
 <!-- ===================================================================================== -->
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="br-container hero__inner">
+  <div class="br-container br-container--wide hero__inner">
     <div class="hero__copy">
       <p class="br-eyebrow">{{ eyebrow }}</p>
 
       <h1 class="hero__title" id="hero-heading">
         {{ headlinePrimary }}
-        <span class="hero__title-accent">{{ headlineAccent }}</span>
+        <span class="hero__title-accent" [innerHTML]="headlineAccentHtml"></span>
       </h1>
 
       @for (paragraph of lead; track paragraph) {
@@ -110,7 +110,7 @@
   <div class="br-container purpose__inner">
     <div class="purpose__copy">
       <p class="br-eyebrow">{{ purposeEyebrow }}</p>
-      <h2 id="purpose-heading">{{ purposeHeadline }}</h2>
+      <h2 id="purpose-heading" [innerHTML]="purposeHeadlineHtml"></h2>
       <p class="br-lead">{{ purposeLead }}</p>
     </div>
 
@@ -177,7 +177,7 @@
   <div class="br-container about-home__inner">
     <div class="about-home__copy">
       <p class="br-eyebrow">{{ aboutEyebrow }}</p>
-      <h2 id="about-heading">{{ aboutHeadline }}</h2>
+      <h2 id="about-heading" [innerHTML]="aboutHeadlineHtml"></h2>
       <p class="br-lead">{{ aboutIntro }}</p>
       <a
         class="br-button br-button--primary br-button--lg about-home__cta"
@@ -198,11 +198,7 @@
 <!-- ===================================================================================== -->
 <!-- Inclusion                                                                             -->
 <!-- ===================================================================================== -->
-<section
-  class="br-section br-section--sunken inclusion-home"
-  id="inclusion"
-  aria-labelledby="inclusion-heading"
->
+<section class="br-section inclusion-home" id="inclusion" aria-labelledby="inclusion-heading">
   <div class="br-container">
     <br-inclusion-commitment [compact]="true" [showCta]="true" />
   </div>
@@ -285,7 +281,7 @@
   <div class="br-container">
     <div class="together__banner">
       <div class="together__copy">
-        <h2 id="together-heading">{{ togetherHeadline }}</h2>
+        <h2 id="together-heading" [innerHTML]="togetherHeadlineHtml"></h2>
         <p class="together__lead">{{ togetherLead }}</p>
         @for (paragraph of togetherBody; track paragraph) {
           <p>{{ paragraph }}</p>
@@ -308,7 +304,7 @@
   <div class="br-container">
     <header class="values__header">
       <p class="br-eyebrow">{{ valuesEyebrow }}</p>
-      <h2 id="values-heading">{{ valuesHeadline }}</h2>
+      <h2 id="values-heading" [innerHTML]="valuesHeadlineHtml"></h2>
       <p class="br-lead">{{ valuesLead }}</p>
     </header>
 
@@ -329,7 +325,7 @@
 <section class="br-section close" id="connect" aria-labelledby="close-heading">
   <div class="br-container close__inner">
     <p class="br-eyebrow">{{ closeEyebrow }}</p>
-    <h2 id="close-heading">{{ closeHeadline }}</h2>
+    <h2 id="close-heading" [innerHTML]="closeHeadlineHtml"></h2>
     <p class="br-lead">{{ closeLead }}</p>
     <div class="br-cluster close__actions">
       <a class="br-button br-button--primary br-button--lg" [routerLink]="closePrimaryHref">

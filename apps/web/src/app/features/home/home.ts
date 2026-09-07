@@ -1,6 +1,7 @@
 import { afterNextRender, ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   ABOUT_EYEBROW,
   ABOUT_HEADLINE,
@@ -57,14 +58,20 @@ import {
 export class Home {
   protected readonly eyebrow = HERO_EYEBROW;
   protected readonly headlinePrimary = HERO_HEADLINE_PRIMARY;
-  protected readonly headlineAccent = HERO_HEADLINE_ACCENT;
+  protected readonly headlineAccentHtml = emphasize(HERO_HEADLINE_ACCENT, 'Futures.');
   protected readonly lead = HERO_LEAD;
   protected readonly purposeEyebrow = PURPOSE_EYEBROW;
-  protected readonly purposeHeadline = PURPOSE_HEADLINE;
+  protected readonly purposeHeadlineHtml = emphasize(
+    PURPOSE_HEADLINE,
+    'talent meets purpose.',
+  );
   protected readonly purposeLead = PURPOSE_LEAD;
   protected readonly purposeItems = PURPOSE_ITEMS;
   protected readonly aboutEyebrow = ABOUT_EYEBROW;
-  protected readonly aboutHeadline = ABOUT_HEADLINE;
+  protected readonly aboutHeadlineHtml = emphasize(
+    ABOUT_HEADLINE,
+    'workforce opportunity.',
+  );
   protected readonly aboutIntro = ABOUT_HOME_INTRO;
   protected readonly missionLabel = ABOUT_MISSION_LABEL;
   protected readonly mission = ABOUT_MISSION;
@@ -77,17 +84,17 @@ export class Home {
   protected readonly communityLead = COMMUNITY_LEAD;
   protected readonly communityItems = COMMUNITY_ITEMS;
   protected readonly communityClosing = COMMUNITY_CLOSING;
-  protected readonly togetherHeadline = TOGETHER_HEADLINE;
+  protected readonly togetherHeadlineHtml = emphasize(TOGETHER_HEADLINE, 'Together');
   protected readonly togetherLead = TOGETHER_LEAD;
   protected readonly togetherBody = TOGETHER_BODY;
   protected readonly togetherCta = TOGETHER_CTA;
   protected readonly togetherCtaHref = TOGETHER_CTA_HREF;
   protected readonly valuesEyebrow = VALUES_EYEBROW;
-  protected readonly valuesHeadline = VALUES_HEADLINE;
+  protected readonly valuesHeadlineHtml = emphasize(VALUES_HEADLINE, 'Values');
   protected readonly valuesLead = VALUES_LEAD;
   protected readonly valueItems = VALUE_ITEMS;
   protected readonly closeEyebrow = CLOSE_EYEBROW;
-  protected readonly closeHeadline = CLOSE_HEADLINE;
+  protected readonly closeHeadlineHtml = emphasize(CLOSE_HEADLINE, 'future of work');
   protected readonly closeLead = CLOSE_LEAD;
   protected readonly closePrimaryCta = CLOSE_PRIMARY_CTA;
   protected readonly closePrimaryHref = CLOSE_PRIMARY_HREF;

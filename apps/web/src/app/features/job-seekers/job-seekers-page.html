@@ -2,7 +2,7 @@
   <header class="br-section seekers__hero">
     <div class="br-container seekers__hero-inner">
       <p class="br-eyebrow">{{ eyebrow }}</p>
-      <h1>{{ headline }}</h1>
+      <h1 [innerHTML]="headlineHtml"></h1>
       <p class="br-lead">{{ intro }}</p>
     </div>
   </header>
@@ -30,7 +30,7 @@
     </section>
   </div>
 
-  <section class="br-section" aria-labelledby="seekers-areas">
+  <section class="br-section br-section--sunken" aria-labelledby="seekers-areas">
     <div class="br-container">
       <aside class="seekers__note" role="note">
         <h2 id="seekers-areas">{{ areasTitle }}</h2>
@@ -45,7 +45,7 @@
   </section>
 
   <section class="br-section seekers__cta" aria-labelledby="seekers-cta">
-    <div class="br-container br-container--narrow">
+    <div class="br-container seekers__cta-inner">
       <h2 id="seekers-cta">{{ ctaTitle }}</h2>
       <p class="br-lead">{{ ctaBody }}</p>
       <div class="br-cluster seekers__actions">

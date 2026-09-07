@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   ABOUT_EYEBROW,
   ABOUT_HEADLINE,
@@ -24,7 +25,7 @@ import { TalentCard } from './talent-card';
 })
 export class AboutPage {
   protected readonly eyebrow = ABOUT_EYEBROW;
-  protected readonly headline = ABOUT_HEADLINE;
+  protected readonly headlineHtml = emphasize(ABOUT_HEADLINE, 'workforce opportunity.');
   protected readonly intro = ABOUT_INTRO;
   protected readonly missionLabel = ABOUT_MISSION_LABEL;
   protected readonly mission = ABOUT_MISSION;

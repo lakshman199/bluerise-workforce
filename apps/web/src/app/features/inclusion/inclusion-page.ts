@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   INCLUSION_CAREERS_BODY,
   INCLUSION_CAREERS_EYEBROW,
@@ -36,7 +37,7 @@ import { InclusionCommitment } from './inclusion-commitment';
 })
 export class InclusionPage {
   protected readonly eyebrow = INCLUSION_EYEBROW;
-  protected readonly headline = INCLUSION_HEADLINE;
+  protected readonly headlineHtml = emphasize(INCLUSION_HEADLINE, 'commitment.');
   protected readonly lede = INCLUSION_PAGE_LEDE;
   protected readonly pathwaysEyebrow = INCLUSION_PATHWAYS_EYEBROW;
   protected readonly pathwaysTitle = INCLUSION_PATHWAYS_TITLE;

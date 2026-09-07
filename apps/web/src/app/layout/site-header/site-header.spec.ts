@@ -122,7 +122,9 @@ describe('SiteHeader', () => {
     fixture.detectChanges();
     expect(root.querySelector('#mobile-menu')).not.toBeNull();
 
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+    );
     fixture.detectChanges();
 
     expect(toggle?.getAttribute('aria-expanded')).toBe('false');

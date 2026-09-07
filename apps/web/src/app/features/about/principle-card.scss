@@ -5,9 +5,9 @@
 
 .principle {
   height: 100%;
-  padding: var(--br-space-6);
+  padding: var(--br-space-8) var(--br-space-8) var(--br-space-10);
   border: 1px solid var(--br-color-border);
-  border-radius: var(--br-radius-xl);
+  border-radius: var(--br-radius-2xl);
   background: var(--br-color-surface);
   box-shadow: var(--br-shadow-xs);
 }
@@ -15,15 +15,18 @@
 .principle h2,
 .principle h3 {
   margin: 0;
-  font-size: var(--br-text-xl);
-  font-weight: var(--br-weight-semibold);
-  letter-spacing: var(--br-tracking-snug);
+  font-family: var(--br-font-serif);
+  font-style: italic;
+  font-size: var(--br-text-2xl);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   line-height: var(--br-leading-snug);
 }
 
 .principle p {
-  margin: var(--br-space-4) 0 0;
+  margin: var(--br-space-5) 0 0;
   color: var(--br-color-text-muted);
   font-size: var(--br-text-base);
   line-height: var(--br-leading-relaxed);
+  max-width: 42ch;
 }

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   SOLUTIONS_AUDIENCE_TITLE,
   SOLUTIONS_CONNECT_BODY,
@@ -36,7 +37,7 @@ import {
 })
 export class SolutionsPage {
   protected readonly eyebrow = SOLUTIONS_EYEBROW;
-  protected readonly headline = SOLUTIONS_HEADLINE;
+  protected readonly headlineHtml = emphasize(SOLUTIONS_HEADLINE, 'coordinated');
   protected readonly intro = SOLUTIONS_INTRO;
   protected readonly overviewTitle = SOLUTIONS_OVERVIEW_TITLE;
   protected readonly overviewBody = SOLUTIONS_OVERVIEW_BODY;

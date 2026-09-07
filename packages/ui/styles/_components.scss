@@ -10,11 +10,11 @@
   justify-content: center;
   gap: var(--br-space-2);
   min-height: var(--br-touch-target);
-  padding: var(--br-space-3) var(--br-space-5);
+  padding: 0.85rem 1.35rem;
   border: 1px solid transparent;
-  border-radius: var(--br-radius-md);
-  font-size: var(--br-text-base);
-  font-weight: var(--br-weight-medium);
+  border-radius: var(--br-radius-full);
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-semibold);
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
@@ -46,17 +46,17 @@
 }
 
 .br-button--primary {
-  background: var(--br-color-primary);
+  background: var(--br-color-cta);
   color: var(--br-color-text-inverse);
   box-shadow: var(--br-shadow-xs);
 
   &:hover:not(:disabled) {
-    background: var(--br-color-primary-hover);
+    background: var(--br-color-cta-hover);
     color: var(--br-color-text-inverse);
   }
 
   &:active:not(:disabled) {
-    background: var(--br-color-primary-active);
+    background: var(--br-color-cta-active);
   }
 }
 
@@ -122,8 +122,8 @@
 
 .br-button--lg {
   min-height: 52px;
-  padding: var(--br-space-4) var(--br-space-8);
-  font-size: var(--br-text-lg);
+  padding: 0.95rem 1.7rem;
+  font-size: var(--br-text-base);
 }
 
 .br-button--icon {
@@ -308,11 +308,12 @@
 .br-card {
   display: flex;
   flex-direction: column;
-  gap: var(--br-space-4);
-  padding: var(--br-space-6);
+  gap: var(--br-space-5);
+  padding: var(--br-space-8);
   border: 1px solid var(--br-color-border);
-  border-radius: var(--br-radius-lg);
+  border-radius: var(--br-radius-xl);
   background: var(--br-color-surface-raised);
+  box-shadow: var(--br-shadow-xs);
 }
 
 .br-card--interactive {
@@ -349,9 +350,10 @@
 }
 
 .br-card__title {
-  font-size: var(--br-text-lg);
+  font-size: var(--br-text-xl);
   font-weight: var(--br-weight-semibold);
   letter-spacing: var(--br-tracking-snug);
+  line-height: var(--br-leading-snug);
 }
 
 .br-card__body {

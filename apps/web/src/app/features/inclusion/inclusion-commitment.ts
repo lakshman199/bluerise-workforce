@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   INCLUSION_CLOSING,
   INCLUSION_EYEBROW,
@@ -29,7 +30,7 @@ export class InclusionCommitment {
   readonly showCta = input(false);
 
   protected readonly eyebrow = INCLUSION_EYEBROW;
-  protected readonly headline = INCLUSION_HEADLINE;
+  protected readonly headlineHtml = emphasize(INCLUSION_HEADLINE, 'commitment.');
   protected readonly intro = INCLUSION_BODY;
   protected readonly goalIntro = INCLUSION_GOAL_INTRO;
   protected readonly goals = INCLUSION_GOALS;

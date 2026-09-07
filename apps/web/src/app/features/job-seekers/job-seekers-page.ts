@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   SEEKERS_AREAS,
   SEEKERS_AREAS_BODY,
@@ -35,7 +36,7 @@ import {
 })
 export class JobSeekersPage {
   protected readonly eyebrow = SEEKERS_EYEBROW;
-  protected readonly headline = SEEKERS_HEADLINE;
+  protected readonly headlineHtml = emphasize(SEEKERS_HEADLINE, 'Meaningful employment');
   protected readonly intro = SEEKERS_INTRO;
   protected readonly employmentTitle = SEEKERS_EMPLOYMENT_TITLE;
   protected readonly employmentBody = SEEKERS_EMPLOYMENT_BODY;

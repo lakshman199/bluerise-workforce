@@ -4,7 +4,7 @@
   }
 
   @if (showHeading()) {
-    <h2 class="commitment__headline" id="inclusion-heading">{{ headline }}</h2>
+    <h2 class="commitment__headline" id="inclusion-heading" [innerHTML]="headlineHtml"></h2>
   }
 
   @if (showIntro()) {

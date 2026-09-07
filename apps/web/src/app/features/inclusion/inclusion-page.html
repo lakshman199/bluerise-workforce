@@ -1,9 +1,16 @@
 <article class="inclusion">
   <header class="br-section inclusion__hero">
-    <div class="br-container br-container--narrow">
-      <p class="br-eyebrow">{{ eyebrow }}</p>
-      <h1>{{ headline }}</h1>
-      <p class="br-lead">{{ lede }}</p>
+    <div class="br-container inclusion__hero-grid">
+      <div class="inclusion__hero-copy">
+        <p class="br-eyebrow">{{ eyebrow }}</p>
+        <h1 [innerHTML]="headlineHtml"></h1>
+        <p class="br-lead">{{ lede }}</p>
+      </div>
+      <div class="inclusion__hero-visual" aria-hidden="true">
+        <div class="inclusion__orb inclusion__orb--one"></div>
+        <div class="inclusion__orb inclusion__orb--two"></div>
+        <div class="inclusion__orb inclusion__orb--three"></div>
+      </div>
     </div>
   </header>
 
@@ -18,11 +25,8 @@
     </div>
   </section>
 
-  <section
-    class="br-section br-section--sunken inclusion__pathways"
-    aria-labelledby="inclusion-pathways"
-  >
-    <div class="br-container br-container--narrow">
+  <section class="br-section inclusion__pathways" aria-labelledby="inclusion-pathways">
+    <div class="br-container inclusion__pathways-inner">
       <p class="br-eyebrow">{{ pathwaysEyebrow }}</p>
       <h2 id="inclusion-pathways">{{ pathwaysTitle }}</h2>
       <p class="br-lead">{{ pathwaysBody }}</p>
@@ -34,7 +38,10 @@
     </div>
   </section>
 
-  <section class="br-section inclusion__split" aria-label="Training and employer collaboration">
+  <section
+    class="br-section br-section--sunken inclusion__split"
+    aria-label="Training and employer collaboration"
+  >
     <div class="br-container inclusion__split-grid">
       <article class="inclusion__panel">
         <p class="br-eyebrow">{{ trainingEyebrow }}</p>
@@ -49,11 +56,8 @@
     </div>
   </section>
 
-  <section
-    class="br-section br-section--sunken inclusion__careers"
-    aria-labelledby="inclusion-careers"
-  >
-    <div class="br-container br-container--narrow">
+  <section class="br-section inclusion__careers" aria-labelledby="inclusion-careers">
+    <div class="br-container inclusion__careers-inner">
       <p class="br-eyebrow">{{ careersEyebrow }}</p>
       <h2 id="inclusion-careers">{{ careersTitle }}</h2>
       <p class="br-lead">{{ careersBody }}</p>
@@ -61,7 +65,7 @@
   </section>
 
   <section class="br-section inclusion__cta" aria-labelledby="inclusion-cta">
-    <div class="br-container br-container--narrow">
+    <div class="br-container inclusion__cta-inner">
       <h2 id="inclusion-cta">{{ ctaTitle }}</h2>
       <p class="br-lead">{{ closing }}</p>
       <div class="br-cluster inclusion__actions">

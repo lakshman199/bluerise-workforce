@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { emphasize } from '../../shared/emphasize';
 import {
   BENEFITS_CATEGORIES,
   BENEFITS_CATEGORIES_NOTE,
@@ -33,7 +34,7 @@ import {
 })
 export class BenefitsPage {
   protected readonly eyebrow = BENEFITS_EYEBROW;
-  protected readonly headline = BENEFITS_HEADLINE;
+  protected readonly headlineHtml = emphasize(BENEFITS_HEADLINE, 'coordinated');
   protected readonly intro = BENEFITS_INTRO;
   protected readonly whyTitle = BENEFITS_WHY_TITLE;
   protected readonly whyBody = BENEFITS_WHY_BODY;

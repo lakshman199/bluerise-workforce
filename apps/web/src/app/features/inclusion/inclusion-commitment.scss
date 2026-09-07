@@ -5,19 +5,22 @@
 }
 
 .commitment {
-  padding: clamp(1.75rem, 4vw, 3.25rem);
+  padding: clamp(2rem, 5vw, 4rem);
   border-radius: var(--br-radius-2xl);
-  background: var(--br-color-surface-inverse);
+  background:
+    radial-gradient(ellipse 80% 70% at 100% 0%, rgb(51 122 255 / 16%), transparent 52%),
+    var(--br-color-surface-inverse);
   color: var(--br-color-text-inverse);
   box-shadow: var(--br-shadow-md);
 }
 
 .commitment__eyebrow {
-  color: var(--br-blue-200);
+  background: rgb(255 255 255 / 10%);
+  color: var(--br-blue-100);
 }
 
 .commitment__headline {
-  max-width: 22ch;
+  max-width: 20ch;
   color: var(--br-color-text-inverse);
   font-size: var(--br-text-3xl);
   font-weight: var(--br-weight-bold);
@@ -29,15 +32,15 @@
 .commitment__intro,
 .commitment__goal-intro,
 .commitment__closing {
-  max-width: 62ch;
-  color: rgb(255 255 255 / 82%);
+  max-width: 58ch;
+  color: rgb(247 243 234 / 78%);
   font-size: var(--br-text-lg);
   font-weight: var(--br-weight-regular);
   line-height: var(--br-leading-relaxed);
 }
 
 h2.commitment__goal-intro {
-  margin: var(--br-space-8) 0 0;
+  margin: var(--br-space-10) 0 0;
   color: var(--br-color-text-inverse);
   font-size: var(--br-text-xl);
   font-weight: var(--br-weight-semibold);
@@ -45,18 +48,18 @@ h2.commitment__goal-intro {
 }
 
 .commitment__intro {
-  margin-top: var(--br-space-4);
+  margin-top: var(--br-space-5);
 }
 
 .commitment__goal-intro {
-  margin-top: var(--br-space-8);
+  margin-top: var(--br-space-10);
   font-size: var(--br-text-base);
 }
 
 .commitment__goals {
   display: grid;
-  gap: var(--br-space-3);
-  margin: var(--br-space-5) 0 0;
+  gap: var(--br-space-4);
+  margin: var(--br-space-6) 0 0;
   padding: 0;
   list-style: none;
 
@@ -71,18 +74,19 @@ h2.commitment__goal-intro {
 
 .commitment__goals li {
   min-width: 0;
-  padding: var(--br-space-4);
-  border: 1px solid rgb(255 255 255 / 14%);
-  border-radius: var(--br-radius-lg);
-  background: rgb(255 255 255 / 6%);
+  padding: var(--br-space-5) 0;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  background: transparent;
   font-size: var(--br-text-sm);
   font-weight: var(--br-weight-medium);
   line-height: var(--br-leading-snug);
 }
 
 .commitment__closing {
-  margin-top: var(--br-space-8);
-  font-weight: var(--br-weight-semibold);
+  margin-top: var(--br-space-10);
+  font-weight: var(--br-weight-regular);
+  font-family: var(--br-font-serif);
+  font-style: italic;
   color: var(--br-color-text-inverse);
 }
 
@@ -94,11 +98,11 @@ h2.commitment__goal-intro {
 
 .commitment--compact {
   .commitment__headline {
-    max-width: 24ch;
-    font-size: var(--br-text-2xl);
+    max-width: 22ch;
+    font-size: var(--br-text-3xl);
   }
 
   .commitment__intro {
-    font-size: var(--br-text-base);
+    font-size: var(--br-text-lg);
   }
 }

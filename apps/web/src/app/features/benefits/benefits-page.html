@@ -1,8 +1,10 @@
 <article class="benefits">
   <header class="br-section benefits__hero">
-    <div class="br-container br-container--narrow">
-      <p class="br-eyebrow">{{ eyebrow }}</p>
-      <h1>{{ headline }}</h1>
+    <div class="br-container benefits__hero-grid">
+      <div>
+        <p class="br-eyebrow">{{ eyebrow }}</p>
+        <h1 [innerHTML]="headlineHtml"></h1>
+      </div>
       <p class="br-lead">{{ intro }}</p>
     </div>
   </header>
@@ -29,7 +31,7 @@
   </section>
 
   <section class="br-section br-section--sunken" aria-labelledby="benefits-support">
-    <div class="br-container br-container--narrow">
+    <div class="br-container benefits__support">
       <h2 id="benefits-support">{{ supportTitle }}</h2>
       <p class="br-lead">{{ supportBody }}</p>
     </div>
@@ -54,7 +56,7 @@
   </section>
 
   <section class="br-section" aria-labelledby="benefits-cta">
-    <div class="br-container br-container--narrow">
+    <div class="br-container benefits__cta">
       <h2 id="benefits-cta">{{ ctaTitle }}</h2>
       <p class="br-lead">{{ ctaBody }}</p>
       <div class="br-cluster benefits__actions">

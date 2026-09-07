@@ -5,31 +5,50 @@
 }
 
 .about__hero {
-  padding-bottom: calc(var(--br-section-y) * 0.55);
+  text-align: center;
+  padding-block: clamp(3.25rem, 2rem + 6vw, 7rem) calc(var(--br-section-y) * 0.7);
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 0%, rgb(217 232 255 / 55%), transparent 62%),
+    var(--br-color-page);
+}
+
+.about__hero-inner {
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.about__hero .br-eyebrow {
+  margin-inline: auto;
 }
 
 .about__hero h1 {
   overflow-wrap: break-word;
+  max-width: 16ch;
+  margin-inline: auto;
+}
+
+.about__hero .br-lead {
+  margin-inline: auto;
 }
 
 .about__principles {
-  padding-top: calc(var(--br-section-y) * 0.55);
+  padding-top: 0;
 }
 
 .about__principle-grid {
   display: grid;
-  gap: var(--br-space-4);
+  gap: var(--br-space-6);
 
   @include bp.from(bp.$bp-lg) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--br-space-6);
+    gap: var(--br-space-8);
     align-items: stretch;
   }
 }
 
 .about__talent-inner {
   display: grid;
-  gap: var(--br-space-8);
+  gap: var(--br-space-10);
   align-items: start;
 
   @include bp.from(bp.$bp-lg) {
@@ -40,18 +59,29 @@
 }
 
 .about__talent-copy h2 {
-  max-width: 16ch;
+  max-width: 14ch;
 }
 
 .about__next {
-  padding-top: 0;
+  text-align: center;
+}
+
+.about__next-inner {
+  max-width: 40rem;
+  margin-inline: auto;
 }
 
 .about__next h2 {
-  max-width: 22ch;
+  max-width: 18ch;
+  margin-inline: auto;
+}
+
+.about__next .br-lead {
+  margin-inline: auto;
 }
 
 .about__actions {
+  justify-content: center;
   margin-top: var(--br-space-8);
 
   .br-button {

@@ -1,8 +1,10 @@
 <article class="employers">
   <header class="br-section employers__hero">
-    <div class="br-container br-container--narrow">
-      <p class="br-eyebrow">{{ eyebrow }}</p>
-      <h1>{{ headline }}</h1>
+    <div class="br-container employers__hero-grid">
+      <div>
+        <p class="br-eyebrow">{{ eyebrow }}</p>
+        <h1 [innerHTML]="headlineHtml"></h1>
+      </div>
       <p class="br-lead">{{ intro }}</p>
     </div>
   </header>
@@ -57,7 +59,7 @@
     </div>
   </section>
 
-  <section class="br-section" aria-labelledby="employers-inclusion">
+  <section class="br-section employers__inclusion-band" aria-labelledby="employers-inclusion">
     <div class="br-container employers__inclusion">
       <div>
         <h2 id="employers-inclusion">{{ inclusionTitle }}</h2>
@@ -70,7 +72,7 @@
   </section>
 
   <section class="br-section" aria-labelledby="employers-cta">
-    <div class="br-container br-container--narrow">
+    <div class="br-container employers__cta">
       <h2 id="employers-cta">{{ ctaTitle }}</h2>
       <p class="br-lead">{{ ctaBody }}</p>
       <div class="br-cluster employers__actions">

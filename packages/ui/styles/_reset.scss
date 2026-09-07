@@ -14,7 +14,7 @@ html {
   scroll-behavior: smooth;
   // Sticky header height plus breathing room, so an anchored heading is not hidden
   // behind the header.
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 8.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
