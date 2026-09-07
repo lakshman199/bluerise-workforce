@@ -1,34 +1,63 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { DataSource } from 'typeorm';
 
 import { ContactSubmission } from './contact.entity';
 import { ContactService } from './contact.service';
 
-function loadEnvironmentFile(): void {
-  const candidates = [
-    resolve(process.cwd(), '.env'),
-    resolve(process.cwd(), '../../.env'),
-    resolve(__dirname, '../../../../.env'),
-  ];
+function findEnvironmentFile(): string | undefined {
+  const starts = [process.cwd(), __dirname];
 
-  for (const candidate of candidates) {
-    if (existsSync(candidate)) {
-      process.loadEnvFile(candidate);
-      return;
+  for (const start of starts) {
+    let directory = start;
+    for (let depth = 0; depth < 8; depth += 1) {
+      const candidate = resolve(directory, '.env');
+      if (existsSync(candidate)) {
+        return candidate;
+      }
+      directory = resolve(directory, '..');
+    }
+  }
+
+  return undefined;
+}
+
+function applyEnvironmentFile(path: string): void {
+  const lines = readFileSync(path, 'utf8').split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) {
+      continue;
+    }
+    const separator = trimmed.indexOf('=');
+    if (separator <= 0) {
+      continue;
+    }
+    const key = trimmed.slice(0, separator);
+    const raw = trimmed.slice(separator + 1);
+    const value = raw.replace(/^['"]|['"]$/g, '');
+    if (!process.env[key]) {
+      process.env[key] = value;
     }
   }
 }
 
-loadEnvironmentFile();
+const environmentFile = findEnvironmentFile();
+if (environmentFile) {
+  applyEnvironmentFile(environmentFile);
+}
 
-const describePersistence = process.env.DATABASE_URL ? describe : describe.skip;
-
-describePersistence('ContactService persistence', () => {
+describe('ContactService persistence', () => {
   let dataSource: DataSource;
   let service: ContactService;
 
   beforeAll(async () => {
+    if (!process.env.DATABASE_URL) {
+      throw new Error(
+        `DATABASE_URL is not set (cwd=${process.cwd()} dirname=${__dirname} envFile=${environmentFile ?? 'none'})`,
+      );
+    }
+
     dataSource = new DataSource({
       type: 'postgres',
       url: process.env.DATABASE_URL,
@@ -48,14 +77,6 @@ describePersistence('ContactService persistence', () => {
   });
 
   it('writes a valid submission to PostgreSQL without claiming email delivery', async () => {
-    const table = (await dataSource.query(
-      `SELECT to_regclass('public.contact_submissions') AS name`,
-    )) as [{ name: string | null }];
-    if (!table[0]?.name) {
-      pending('contact_submissions has not been migrated yet');
-      return;
-    }
-
     const receipt = await service.create({
       firstName: 'Persistence',
       lastName: 'Check',
