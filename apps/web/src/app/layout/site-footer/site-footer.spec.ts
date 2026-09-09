@@ -12,6 +12,7 @@ const STUB_ROUTES = [
   { path: 'job-seekers', children: [] },
   { path: 'our-solutions', children: [] },
   { path: 'benefits', children: [] },
+  { path: 'industries', children: [] },
   { path: 'resources', children: [] },
   { path: 'contact', children: [] },
 ];

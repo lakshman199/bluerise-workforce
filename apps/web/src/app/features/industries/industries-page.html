@@ -1,0 +1,67 @@
+<article class="industries">
+  <header class="br-section industries__hero">
+    <div class="br-container industries__hero-inner">
+      <p class="br-eyebrow">{{ eyebrow }}</p>
+      <h1 [innerHTML]="headlineHtml"></h1>
+      <p class="br-lead">{{ intro }}</p>
+    </div>
+    <div class="br-container industries__visual">
+      <br-workforce-figure [image]="visualImage" ratio="16 / 9" />
+    </div>
+  </header>
+
+  <section class="br-section br-section--sunken" aria-labelledby="industries-contexts">
+    <div class="br-container">
+      <header class="industries__head">
+        <h2 id="industries-contexts">{{ contextsTitle }}</h2>
+        <p class="br-lead">{{ contextsLead }}</p>
+      </header>
+      <ul class="industries__contexts">
+        @for (item of contexts; track item.title) {
+          <li>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="industries-examples">
+    <div class="br-container">
+      <header class="industries__head">
+        <h2 id="industries-examples">{{ examplesTitle }}</h2>
+        <p class="br-lead">{{ examplesLead }}</p>
+      </header>
+      <ul class="industries__examples">
+        @for (item of examples; track item.image.id) {
+          <li>
+            <br-workforce-figure [image]="item.image" [caption]="item.caption" ratio="3 / 2" />
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section industries__note-band" aria-labelledby="industries-note">
+    <div class="br-container industries__note">
+      <h2 id="industries-note">{{ noteTitle }}</h2>
+      <p>{{ noteBody }}</p>
+    </div>
+  </section>
+
+  <section class="br-section" aria-labelledby="industries-cta">
+    <div class="br-container industries__cta">
+      <h2 id="industries-cta">{{ ctaTitle }}</h2>
+      <p class="br-lead">{{ ctaBody }}</p>
+      <div class="br-cluster industries__actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="primaryHref">
+          {{ primaryCta }}
+        </a>
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+          {{ secondaryCta }}
+        </a>
+      </div>
+    </div>
+  </section>
+</article>

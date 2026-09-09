@@ -11,6 +11,7 @@ export const PUBLIC_SITEMAP_PATHS = [
   '/job-seekers',
   '/our-solutions',
   '/benefits',
+  '/industries',
   '/resources',
   '/contact',
 ] as const;

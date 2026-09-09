@@ -4,14 +4,20 @@
     [style.aspect-ratio]="ratio()"
     [style.--object-position]="image().objectPosition"
   >
-    <img
-      [src]="image().src"
-      [alt]="image().alt"
-      [attr.width]="image().width"
-      [attr.height]="image().height"
-      [attr.loading]="eager() ? 'eager' : 'lazy'"
-      decoding="async"
-    />
+    @for (epoch of [loadEpoch()]; track epoch) {
+      <img
+        class="figure__img"
+        [class.figure__img--failed]="failed()"
+        [src]="image().src"
+        [alt]="image().alt"
+        [attr.width]="image().width"
+        [attr.height]="image().height"
+        [attr.loading]="eager() ? 'eager' : 'lazy'"
+        decoding="async"
+        (error)="onImageError()"
+        (load)="onImageLoad()"
+      />
+    }
   </div>
   @if (caption(); as captionText) {
     <figcaption>{{ captionText }}</figcaption>

@@ -15,6 +15,7 @@ describe('EmployersPage', () => {
           { path: 'our-solutions', children: [] },
           { path: 'contact', children: [] },
           { path: 'inclusion', children: [] },
+          { path: 'industries', children: [] },
         ]),
       ],
     });
@@ -43,16 +44,25 @@ describe('EmployersPage', () => {
     expect(root.textContent).not.toMatch(/Gusto|ADP/);
     expect(root.textContent).not.toMatch(/guaranteed compliance|guaranteed savings/i);
     expect(root.textContent).not.toMatch(/\d+%/);
-    expect(root.textContent).toContain('Current industry focus');
-    expect(root.textContent).toContain('Restaurants');
-    expect(root.textContent).toContain('Grocery Stores');
+    expect(root.textContent).toContain('small and growing businesses');
+    expect(root.textContent).not.toContain('Current industry focus');
+    expect(root.textContent).not.toMatch(/currently focuses on restaurants/i);
+    expect(root.textContent).not.toMatch(/grocery stores/i);
+    expect(
+      root.querySelector('img[src="/images/workforce/industrial-team.png"]'),
+    ).not.toBeNull();
+    expect(
+      root.querySelector('img[src="/images/workforce/industrial-team.png"]')?.getAttribute(
+        'alt',
+      ),
+    ).toBe('A group of industrial and frontline workers showing teamwork.');
+    expect(
+      root.querySelector('img[src="/images/workforce/small-business-team.jpg"]'),
+    ).toBeNull();
     expect(
       root.querySelector('img[src="/images/workforce/restaurant-workforce.jpg"]'),
-    ).not.toBeNull();
-    expect(
-      root.querySelector('img[src="/images/workforce/grocery-workforce.jpg"]'),
-    ).not.toBeNull();
-    expect(root.textContent).not.toMatch(/customer|partnered|live integration/i);
+    ).toBeNull();
+    expect(root.textContent).not.toMatch(/partnered|live integration/i);
   });
 
   it('keeps a single h1 and links to solutions, contact, and inclusion', () => {
@@ -67,6 +77,9 @@ describe('EmployersPage', () => {
     );
     expect(root.querySelector('a[href="/inclusion"]')?.textContent).toContain(
       'inclusion commitment',
+    );
+    expect(root.querySelector('a[href="/industries"]')?.textContent?.trim()).toBe(
+      'Industries We Serve',
     );
   });
 });

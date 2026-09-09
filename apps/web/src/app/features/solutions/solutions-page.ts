@@ -28,10 +28,9 @@ import {
   SOLUTIONS_SECONDARY_HREF,
   SOLUTIONS_WORKER_BODY,
   SOLUTIONS_WORKER_TITLE,
-  SOLUTIONS_WORKPLACE_GROCERY,
   SOLUTIONS_WORKPLACE_LEAD,
+  SOLUTIONS_WORKPLACE_OPERATIONS,
   SOLUTIONS_WORKPLACE_PAYROLL,
-  SOLUTIONS_WORKPLACE_RESTAURANT,
   SOLUTIONS_WORKPLACE_TITLE,
 } from './solutions-content';
 
@@ -55,11 +54,9 @@ export class SolutionsPage {
   protected readonly modules = SOLUTIONS_MODULES;
   protected readonly workplaceTitle = SOLUTIONS_WORKPLACE_TITLE;
   protected readonly workplaceLead = SOLUTIONS_WORKPLACE_LEAD;
-  protected readonly workplaceRestaurant = SOLUTIONS_WORKPLACE_RESTAURANT;
-  protected readonly workplaceGrocery = SOLUTIONS_WORKPLACE_GROCERY;
+  protected readonly workplaceOperations = SOLUTIONS_WORKPLACE_OPERATIONS;
   protected readonly workplacePayroll = SOLUTIONS_WORKPLACE_PAYROLL;
-  protected readonly restaurantOperationsImage = WORKFORCE_IMAGES.restaurantOperations;
-  protected readonly groceryCheckoutImage = WORKFORCE_IMAGES.groceryCheckout;
+  protected readonly operationsImage = WORKFORCE_IMAGES.bodyShopWorker;
   protected readonly payrollImage = WORKFORCE_IMAGES.payroll;
   protected readonly connectTitle = SOLUTIONS_CONNECT_TITLE;
   protected readonly connectBody = SOLUTIONS_CONNECT_BODY;

@@ -15,10 +15,11 @@ import {
   EMPLOYERS_CHALLENGES_TITLE,
   EMPLOYERS_EYEBROW,
   EMPLOYERS_HEADLINE,
-  EMPLOYERS_INDUSTRIES_LEAD,
-  EMPLOYERS_INDUSTRIES_TITLE,
-  EMPLOYERS_INDUSTRY_GROCERY,
-  EMPLOYERS_INDUSTRY_RESTAURANTS,
+  EMPLOYERS_WHO_CAPTION,
+  EMPLOYERS_WHO_CTA,
+  EMPLOYERS_WHO_HREF,
+  EMPLOYERS_WHO_LEAD,
+  EMPLOYERS_WHO_TITLE,
   EMPLOYERS_INCLUSION_BODY,
   EMPLOYERS_INCLUSION_TITLE,
   EMPLOYERS_INTRO,
@@ -45,12 +46,12 @@ export class EmployersPage {
     'workforce operations.',
   );
   protected readonly intro = EMPLOYERS_INTRO;
-  protected readonly industriesTitle = EMPLOYERS_INDUSTRIES_TITLE;
-  protected readonly industriesLead = EMPLOYERS_INDUSTRIES_LEAD;
-  protected readonly restaurantLabel = EMPLOYERS_INDUSTRY_RESTAURANTS;
-  protected readonly groceryLabel = EMPLOYERS_INDUSTRY_GROCERY;
-  protected readonly restaurantImage = WORKFORCE_IMAGES.restaurantWorkforce;
-  protected readonly groceryImage = WORKFORCE_IMAGES.groceryWorkforce;
+  protected readonly whoTitle = EMPLOYERS_WHO_TITLE;
+  protected readonly whoLead = EMPLOYERS_WHO_LEAD;
+  protected readonly whoCta = EMPLOYERS_WHO_CTA;
+  protected readonly whoHref = EMPLOYERS_WHO_HREF;
+  protected readonly whoCaption = EMPLOYERS_WHO_CAPTION;
+  protected readonly teamImage = WORKFORCE_IMAGES.industrialTeam;
   protected readonly challengesTitle = EMPLOYERS_CHALLENGES_TITLE;
   protected readonly challengesLead = EMPLOYERS_CHALLENGES_LEAD;
   protected readonly challenges = EMPLOYERS_CHALLENGES;

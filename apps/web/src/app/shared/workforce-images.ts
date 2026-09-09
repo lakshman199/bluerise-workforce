@@ -1,6 +1,15 @@
 /**
- * Approved Phase 2.1 workforce photographs. Paths are public assets; object-position
- * is tuned per image so faces and primary work stay in frame when cropped.
+ * Generic workforce photographs. Paths are public assets under
+ * `apps/web/public/images/workforce/`. Object-position is tuned per image so
+ * primary work stays in frame when cropped.
+ *
+ * On-page assets (only files that exist in the repository):
+ * - industrial-team.png — Employers; Industries We Serve examples
+ * - body-shop-worker.png — Our Solutions; Industries We Serve examples
+ * - woodworker.png — Industries We Serve hero; examples
+ * - convenience-store-worker.png — Industries We Serve examples
+ * - payroll.jpg — Our Solutions
+ * - employee-support.jpg — Benefits
  */
 
 export interface WorkforceImage {
@@ -13,37 +22,37 @@ export interface WorkforceImage {
 }
 
 export const WORKFORCE_IMAGES = {
-  restaurantWorkforce: {
-    id: 'restaurant-workforce',
-    src: '/images/workforce/restaurant-workforce.jpg',
-    alt: 'Restaurant employees working in a commercial kitchen.',
-    width: 1448,
-    height: 1086,
-    objectPosition: '50% 38%',
+  industrialTeam: {
+    id: 'industrial-team',
+    src: '/images/workforce/industrial-team.png',
+    alt: 'A group of industrial and frontline workers showing teamwork.',
+    width: 1369,
+    height: 769,
+    objectPosition: '50% 42%',
   },
-  restaurantOperations: {
-    id: 'restaurant-operations',
-    src: '/images/workforce/restaurant-operations.jpg',
-    alt: 'Restaurant employees working near a service workstation.',
-    width: 1448,
-    height: 1086,
-    objectPosition: '36% 48%',
+  bodyShopWorker: {
+    id: 'body-shop-worker',
+    src: '/images/workforce/body-shop-worker.png',
+    alt: 'A skilled automotive worker working in a body shop.',
+    width: 1156,
+    height: 768,
+    objectPosition: '48% 38%',
   },
-  groceryWorkforce: {
-    id: 'grocery-workforce',
-    src: '/images/workforce/grocery-workforce.jpg',
-    alt: 'Grocery employee handling fresh produce.',
-    width: 2400,
-    height: 1350,
-    objectPosition: '50% 22%',
+  woodworker: {
+    id: 'woodworker',
+    src: '/images/workforce/woodworker.png',
+    alt: 'A woodworker working in a small business workshop.',
+    width: 1143,
+    height: 768,
+    objectPosition: '36% 42%',
   },
-  groceryCheckout: {
-    id: 'grocery-checkout',
-    src: '/images/workforce/grocery-checkout.jpg',
-    alt: 'Employee using a checkout workstation.',
-    width: 2400,
-    height: 1600,
-    objectPosition: '58% 50%',
+  convenienceStoreWorker: {
+    id: 'convenience-store-worker',
+    src: '/images/workforce/convenience-store-worker.png',
+    alt: 'A frontline retail worker at a small business checkout counter.',
+    width: 1153,
+    height: 763,
+    objectPosition: '52% 38%',
   },
   payroll: {
     id: 'payroll',
