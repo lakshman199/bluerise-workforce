@@ -31,42 +31,6 @@ export const HERO_PLATFORM_AREAS = [
   'Employee Support',
 ] as const;
 
-export const INDUSTRIES_EYEBROW = 'Industries we serve';
-
-export const INDUSTRIES_HEADLINE = 'Built for the people who keep businesses moving.';
-
-export const INDUSTRIES_LEAD =
-  'BlueRise Workforce currently focuses on restaurants and grocery stores—workplaces where people keep daily operations moving.';
-
-export interface IndustrySlideCopy {
-  readonly label: string;
-  readonly heading: string;
-  readonly body: string;
-}
-
-export const INDUSTRY_SLIDES: readonly IndustrySlideCopy[] = [
-  {
-    label: 'Restaurants',
-    heading: 'Restaurant Workforce',
-    body: 'Restaurant teams keep service moving through every shift. BlueRise is designed to support the workforce operations that follow hiring.',
-  },
-  {
-    label: 'Grocery Stores',
-    heading: 'Grocery Workforce',
-    body: 'Grocery teams keep shelves stocked and service running. BlueRise is designed to support the people and operations behind that work.',
-  },
-  {
-    label: 'Restaurants',
-    heading: 'Restaurant Operations',
-    body: 'Kitchen and service work depend on coordinated people, hours, and support—not on disconnected tools.',
-  },
-  {
-    label: 'Grocery Stores',
-    heading: 'Grocery Operations',
-    body: 'Checkout, stocking, and store operations rely on the same workforce record. BlueRise is designed to keep that work coordinated.',
-  },
-] as const;
-
 export const PURPOSE_EYEBROW = 'Our core purpose';
 
 export const PURPOSE_HEADLINE =

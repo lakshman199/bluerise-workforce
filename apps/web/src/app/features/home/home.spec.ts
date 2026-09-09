@@ -12,8 +12,6 @@ import {
   COMMUNITY_ITEMS,
   HERO_HEADLINE_PRIMARY,
   HERO_PLATFORM_AREAS,
-  INDUSTRIES_HEADLINE,
-  INDUSTRY_SLIDES,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
   TOGETHER_CTA,
@@ -78,23 +76,19 @@ describe('Home', () => {
     expect(root.querySelector('#purpose h2')?.textContent).toContain(PURPOSE_HEADLINE);
   });
 
-  it('places a restaurant and grocery industry section after the hero', () => {
+  it('keeps the homepage industry-neutral after the hero', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
-    const industries = root.querySelector('#industries');
+    const text = root.textContent ?? '';
 
-    expect(industries).not.toBeNull();
-    expect(root.querySelector('.hero')?.nextElementSibling).toBe(industries);
-    expect(industries?.nextElementSibling).toBe(root.querySelector('#purpose'));
-    expect(industries?.querySelector('h2')?.textContent).toContain(INDUSTRIES_HEADLINE);
-    expect(industries?.textContent).toContain('restaurants');
-    expect(industries?.textContent).toContain('grocery stores');
-    expect(industries?.querySelector('br-industry-showcase')).not.toBeNull();
-    expect(industries?.querySelectorAll('.showcase__slide').length).toBe(
-      INDUSTRY_SLIDES.length,
+    expect(root.querySelector('#industries')).toBeNull();
+    expect(root.querySelector('br-industry-showcase')).toBeNull();
+    expect(root.querySelector('.hero')?.nextElementSibling).toBe(
+      root.querySelector('#purpose'),
     );
-    expect(industries?.textContent).not.toMatch(/customer|partnered|live integration/i);
-    expect(industries?.textContent).not.toMatch(/cost savings|market share|proven/i);
+    expect(text).not.toMatch(/restaurants? and grocery/i);
+    expect(text).not.toMatch(/grocery stores/i);
+    expect(text).not.toMatch(/current industry focus/i);
   });
 
   it('renders all five Core Purpose items', () => {
@@ -231,10 +225,7 @@ describe('Home', () => {
     const root = fixture.nativeElement as HTMLElement;
 
     expect(root.querySelectorAll('h1').length).toBe(1);
-    expect(root.querySelectorAll('h2').length).toBe(8);
-    expect(root.querySelector('#industries')?.getAttribute('aria-labelledby')).toBe(
-      'industries-heading',
-    );
+    expect(root.querySelectorAll('h2').length).toBe(7);
     expect(root.querySelector('#purpose')?.getAttribute('aria-labelledby')).toBe(
       'purpose-heading',
     );

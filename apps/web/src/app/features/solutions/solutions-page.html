@@ -45,24 +45,18 @@
 
   <section class="br-section solutions__workplace" aria-labelledby="solutions-workplace">
     <div class="br-container">
-      <header class="solutions__head">
+      <div class="solutions__workplace-copy">
         <h2 id="solutions-workplace">{{ workplaceTitle }}</h2>
         <p class="br-lead">{{ workplaceLead }}</p>
-      </header>
-      <ul class="solutions__workplace-grid">
-        <li>
-          <br-workforce-figure
-            [image]="restaurantOperationsImage"
-            [caption]="workplaceRestaurant"
-          />
-        </li>
-        <li>
-          <br-workforce-figure [image]="groceryCheckoutImage" [caption]="workplaceGrocery" />
-        </li>
-        <li>
-          <br-workforce-figure [image]="payrollImage" [caption]="workplacePayroll" ratio="3 / 2" />
-        </li>
-      </ul>
+      </div>
+      <div class="solutions__workplace-figures">
+        <br-workforce-figure
+          [image]="operationsImage"
+          [caption]="workplaceOperations"
+          ratio="3 / 2"
+        />
+        <br-workforce-figure [image]="payrollImage" [caption]="workplacePayroll" ratio="3 / 2" />
+      </div>
     </div>
   </section>
 

@@ -16,6 +16,7 @@ describe('public route SEO', () => {
       'job-seekers',
       'our-solutions',
       'benefits',
+      'industries',
       'resources',
       'contact',
     ];

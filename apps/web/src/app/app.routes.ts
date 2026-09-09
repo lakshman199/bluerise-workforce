@@ -31,6 +31,10 @@ import {
   BENEFITS_SEO_DESCRIPTION,
   BENEFITS_SEO_TITLE,
 } from './features/benefits/benefits-content';
+import {
+  INDUSTRIES_SEO_DESCRIPTION,
+  INDUSTRIES_SEO_TITLE,
+} from './features/industries/industries-content';
 
 /**
  * Every route is lazy-loaded, including the home page. The initial bundle then carries the
@@ -119,6 +123,18 @@ export const routes: Routes = [
       seo: {
         title: BENEFITS_SEO_TITLE,
         description: BENEFITS_SEO_DESCRIPTION,
+      },
+    },
+  },
+  {
+    path: 'industries',
+    loadComponent: () =>
+      import('./features/industries/industries-page').then((m) => m.IndustriesPage),
+    resolve: { seo: seoResolver },
+    data: {
+      seo: {
+        title: INDUSTRIES_SEO_TITLE,
+        description: INDUSTRIES_SEO_DESCRIPTION,
       },
     },
   },

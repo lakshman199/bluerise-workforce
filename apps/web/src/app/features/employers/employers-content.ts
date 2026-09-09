@@ -10,11 +10,12 @@ export const EMPLOYERS_HEADLINE = 'One place to run workforce operations.';
 export const EMPLOYERS_INTRO =
   'BlueRise Workforce is designed to support organizations with a coordinated workforce experience—from onboarding through pay, benefits, hours, and employee support—so employers and the people they employ are not sent across disconnected systems.';
 
-export const EMPLOYERS_INDUSTRIES_TITLE = 'Current industry focus';
-export const EMPLOYERS_INDUSTRIES_LEAD =
-  'BlueRise Workforce currently focuses on restaurants and grocery stores.';
-export const EMPLOYERS_INDUSTRY_RESTAURANTS = 'Restaurants';
-export const EMPLOYERS_INDUSTRY_GROCERY = 'Grocery Stores';
+export const EMPLOYERS_WHO_TITLE = 'Built for small and growing businesses';
+export const EMPLOYERS_WHO_LEAD =
+  'BlueRise is designed for organizations that need a coordinated place to run workforce operations after someone is hired. That includes different kinds of small and growing businesses—not a single-industry product.';
+export const EMPLOYERS_WHO_CTA = 'Industries We Serve';
+export const EMPLOYERS_WHO_HREF = '/industries';
+export const EMPLOYERS_WHO_CAPTION = 'Small and growing businesses';
 
 export const EMPLOYERS_CHALLENGES_EYEBROW = 'Workforce needs';
 export const EMPLOYERS_CHALLENGES_TITLE = 'What employers need after someone is hired';

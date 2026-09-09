@@ -62,11 +62,10 @@ export const SOLUTIONS_MODULES: readonly SolutionModule[] = [
   },
 ] as const;
 
-export const SOLUTIONS_WORKPLACE_TITLE = 'Workforce work, in context';
+export const SOLUTIONS_WORKPLACE_TITLE = 'Workforce administration, in context';
 export const SOLUTIONS_WORKPLACE_LEAD =
-  'Restaurant operations, grocery checkout, and payroll administration are part of the workplaces BlueRise is designed to support. Equipment shown is not a BlueRise product, and no pictured workplace is presented as a customer or live system.';
-export const SOLUTIONS_WORKPLACE_RESTAURANT = 'Restaurant operations';
-export const SOLUTIONS_WORKPLACE_GROCERY = 'Checkout work';
+  'Payroll and workforce administration are part of the work BlueRise is designed to support. Equipment shown is not a BlueRise product, and no pictured workplace is presented as a customer or live system.';
+export const SOLUTIONS_WORKPLACE_OPERATIONS = 'Workforce operations';
 export const SOLUTIONS_WORKPLACE_PAYROLL = 'Payroll administration';
 
 export const SOLUTIONS_CONNECT_TITLE = 'How BlueRise connects services';

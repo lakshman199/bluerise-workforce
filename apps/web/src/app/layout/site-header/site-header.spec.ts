@@ -12,6 +12,7 @@ const STUB_ROUTES = [
   { path: 'job-seekers', children: [] },
   { path: 'our-solutions', children: [] },
   { path: 'benefits', children: [] },
+  { path: 'industries', children: [] },
   { path: 'resources', children: [] },
   { path: 'contact', children: [] },
   { path: 'design-system', children: [] },
@@ -41,6 +42,20 @@ function labelsOf(root: HTMLElement, selector: string): string[] {
 
 describe('SiteHeader', () => {
   const publicLabels = PRIMARY_NAV.map((item) => item.label);
+
+  it('includes Industries We Serve in desktop and mobile navigation', async () => {
+    const fixture = await renderAt('/');
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(labelsOf(root, '.nav__link')).toContain('Industries We Serve');
+    expect(root.querySelector('a.nav__link[href="/industries"]')).not.toBeNull();
+
+    root.querySelector<HTMLButtonElement>('button[aria-controls="mobile-menu"]')?.click();
+    fixture.detectChanges();
+
+    expect(labelsOf(root, '.mobile-menu__link')).toContain('Industries We Serve');
+    expect(root.querySelector('a.mobile-menu__link[href="/industries"]')).not.toBeNull();
+  });
 
   it('lists the approved public navigation and nothing from the development shell', async () => {
     const fixture = await renderAt('/');

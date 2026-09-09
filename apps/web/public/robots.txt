@@ -9,5 +9,5 @@ Disallow: /admin
 Disallow: /design-system
 
 # Absolute sitemap URL requires a confirmed public origin. Indexed public routes include
-# /, /about, /inclusion, /employers, /job-seekers, /our-solutions, /benefits, /resources,
-# and /contact. /design-system, /portal, and /admin stay out of the index.
+# /, /about, /inclusion, /employers, /job-seekers, /our-solutions, /benefits, /industries,
+# /resources, and /contact. /design-system, /portal, and /admin stay out of the index.

@@ -28,6 +28,7 @@ export const PRIMARY_NAV: readonly NavItem[] = [
   { label: 'Job Seekers', path: '/job-seekers' },
   { label: 'Our Solutions', path: '/our-solutions' },
   { label: 'Benefits', path: '/benefits' },
+  { label: 'Industries We Serve', path: '/industries' },
   { label: 'Resources', path: '/resources' },
   { label: 'Contact Us', path: '/contact' },
 ] as const;
@@ -37,6 +38,7 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     heading: 'Company',
     items: [
       { label: 'About Us', path: '/about' },
+      { label: 'Industries We Serve', path: '/industries' },
       { label: 'Resources', path: '/resources' },
       { label: 'Contact Us', path: '/contact' },
     ],

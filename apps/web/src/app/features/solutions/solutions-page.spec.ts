@@ -47,13 +47,25 @@ describe('SolutionsPage', () => {
     expect(text).not.toMatch(/Gusto|ADP/);
     expect(text).not.toContain('awaiting credentials');
     expect(text).toContain('not a BlueRise product');
+    expect(text).not.toMatch(/restaurant operations|grocery checkout/i);
+    expect(
+      root.querySelector('img[src="/images/workforce/body-shop-worker.png"]'),
+    ).not.toBeNull();
+    expect(
+      root.querySelector('img[src="/images/workforce/body-shop-worker.png"]')?.getAttribute(
+        'alt',
+      ),
+    ).toBe('A skilled automotive worker working in a body shop.');
+    expect(
+      root.querySelector('img[src="/images/workforce/workforce-operations.jpg"]'),
+    ).toBeNull();
+    expect(root.querySelector('img[src="/images/workforce/payroll.jpg"]')).not.toBeNull();
     expect(
       root.querySelector('img[src="/images/workforce/restaurant-operations.jpg"]'),
-    ).not.toBeNull();
+    ).toBeNull();
     expect(
       root.querySelector('img[src="/images/workforce/grocery-checkout.jpg"]'),
-    ).not.toBeNull();
-    expect(root.querySelector('img[src="/images/workforce/payroll.jpg"]')).not.toBeNull();
+    ).toBeNull();
   });
 
   it('keeps a single h1 and CTAs to contact and benefits', () => {

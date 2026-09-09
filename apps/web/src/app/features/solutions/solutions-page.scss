@@ -139,19 +139,24 @@
   line-height: var(--br-leading-relaxed);
 }
 
-.solutions__workplace-grid {
+.solutions__workplace-copy {
+  max-width: 40rem;
+  margin-bottom: var(--br-space-10);
+
+  h2 {
+    max-width: 14ch;
+    overflow-wrap: break-word;
+  }
+}
+
+.solutions__workplace-figures {
   display: grid;
   gap: var(--br-space-8);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  min-width: 0;
 
   @include bp.from(bp.$bp-md) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @include bp.from(bp.$bp-xl) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--br-space-10);
   }
 }
 

@@ -32,20 +32,34 @@
   margin-bottom: var(--br-space-10);
 }
 
-.employers__industries {
+.employers__who {
   padding-top: calc(var(--br-section-y) * 0.35);
 }
 
-.employers__industry-grid {
+.employers__who-inner {
   display: grid;
-  gap: var(--br-space-8);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  gap: var(--br-space-10);
+  align-items: center;
 
-  @include bp.from(bp.$bp-md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--br-space-10);
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--br-space-16);
+  }
+}
+
+.employers__who-copy {
+  display: grid;
+  gap: var(--br-space-6);
+  justify-items: start;
+
+  h2 {
+    max-width: 16ch;
+    overflow-wrap: break-word;
+  }
+
+  .br-button {
+    white-space: normal;
+    text-align: center;
   }
 }
 
