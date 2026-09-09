@@ -43,6 +43,29 @@
     </div>
   </section>
 
+  <section class="br-section solutions__workplace" aria-labelledby="solutions-workplace">
+    <div class="br-container">
+      <header class="solutions__head">
+        <h2 id="solutions-workplace">{{ workplaceTitle }}</h2>
+        <p class="br-lead">{{ workplaceLead }}</p>
+      </header>
+      <ul class="solutions__workplace-grid">
+        <li>
+          <br-workforce-figure
+            [image]="restaurantOperationsImage"
+            [caption]="workplaceRestaurant"
+          />
+        </li>
+        <li>
+          <br-workforce-figure [image]="groceryCheckoutImage" [caption]="workplaceGrocery" />
+        </li>
+        <li>
+          <br-workforce-figure [image]="payrollImage" [caption]="workplacePayroll" ratio="3 / 2" />
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <section class="br-section solutions__connect" aria-labelledby="solutions-connect">
     <div class="br-container solutions__connect-inner">
       <h2 id="solutions-connect">{{ connectTitle }}</h2>

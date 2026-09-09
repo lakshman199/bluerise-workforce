@@ -9,6 +9,23 @@
     </div>
   </header>
 
+  <section class="br-section employers__industries" aria-labelledby="employers-industries">
+    <div class="br-container">
+      <header class="employers__section-head">
+        <h2 id="employers-industries">{{ industriesTitle }}</h2>
+        <p class="br-lead">{{ industriesLead }}</p>
+      </header>
+      <ul class="employers__industry-grid">
+        <li>
+          <br-workforce-figure [image]="restaurantImage" [caption]="restaurantLabel" />
+        </li>
+        <li>
+          <br-workforce-figure [image]="groceryImage" [caption]="groceryLabel" />
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <section class="br-section br-section--sunken" aria-labelledby="employers-needs">
     <div class="br-container employers__needs-wrap">
       <header class="employers__section-head">

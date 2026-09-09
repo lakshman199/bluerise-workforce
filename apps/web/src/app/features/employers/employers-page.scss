@@ -32,6 +32,23 @@
   margin-bottom: var(--br-space-10);
 }
 
+.employers__industries {
+  padding-top: calc(var(--br-section-y) * 0.35);
+}
+
+.employers__industry-grid {
+  display: grid;
+  gap: var(--br-space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.from(bp.$bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--br-space-10);
+  }
+}
+
 .employers__needs-wrap {
   display: grid;
   gap: var(--br-space-12);

@@ -46,6 +46,14 @@ describe('SolutionsPage', () => {
     expect(text).not.toMatch(/adapter|vendor lock-in|provider hostage|Phase 6/i);
     expect(text).not.toMatch(/Gusto|ADP/);
     expect(text).not.toContain('awaiting credentials');
+    expect(text).toContain('not a BlueRise product');
+    expect(
+      root.querySelector('img[src="/images/workforce/restaurant-operations.jpg"]'),
+    ).not.toBeNull();
+    expect(
+      root.querySelector('img[src="/images/workforce/grocery-checkout.jpg"]'),
+    ).not.toBeNull();
+    expect(root.querySelector('img[src="/images/workforce/payroll.jpg"]')).not.toBeNull();
   });
 
   it('keeps a single h1 and CTAs to contact and benefits', () => {

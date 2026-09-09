@@ -32,8 +32,11 @@
 
   <section class="br-section br-section--sunken" aria-labelledby="benefits-support">
     <div class="br-container benefits__support">
-      <h2 id="benefits-support">{{ supportTitle }}</h2>
-      <p class="br-lead">{{ supportBody }}</p>
+      <div class="benefits__support-copy">
+        <h2 id="benefits-support">{{ supportTitle }}</h2>
+        <p class="br-lead">{{ supportBody }}</p>
+      </div>
+      <br-workforce-figure [image]="supportImage" ratio="16 / 9" />
     </div>
   </section>
 

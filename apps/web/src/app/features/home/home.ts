@@ -16,6 +16,7 @@ import {
 import { PrincipleCard } from '../about/principle-card';
 import { TalentCard } from '../about/talent-card';
 import { InclusionCommitment } from '../inclusion/inclusion-commitment';
+import { IndustryShowcase } from './industry-showcase/industry-showcase';
 import {
   CLOSE_EYEBROW,
   CLOSE_HEADLINE,
@@ -36,6 +37,9 @@ import {
   HERO_PLATFORM_AREAS,
   HERO_PLATFORM_LEAD,
   HERO_PLATFORM_TITLE,
+  INDUSTRIES_EYEBROW,
+  INDUSTRIES_HEADLINE,
+  INDUSTRIES_LEAD,
   PURPOSE_EYEBROW,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
@@ -53,7 +57,7 @@ import {
 
 @Component({
   selector: 'br-home',
-  imports: [RouterLink, PrincipleCard, TalentCard, InclusionCommitment],
+  imports: [RouterLink, PrincipleCard, TalentCard, InclusionCommitment, IndustryShowcase],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -66,6 +70,12 @@ export class Home {
   protected readonly platformTitle = HERO_PLATFORM_TITLE;
   protected readonly platformLead = HERO_PLATFORM_LEAD;
   protected readonly platformAreas = HERO_PLATFORM_AREAS;
+  protected readonly industriesEyebrow = INDUSTRIES_EYEBROW;
+  protected readonly industriesHeadlineHtml = emphasize(
+    INDUSTRIES_HEADLINE,
+    'keep businesses moving.',
+  );
+  protected readonly industriesLead = INDUSTRIES_LEAD;
   protected readonly purposeEyebrow = PURPOSE_EYEBROW;
   protected readonly purposeHeadlineHtml = emphasize(
     PURPOSE_HEADLINE,

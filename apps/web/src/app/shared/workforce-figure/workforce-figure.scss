@@ -1,0 +1,28 @@
+.figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.figure__frame {
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--br-radius-2xl);
+  background: var(--br-color-surface-muted);
+  box-shadow: var(--br-shadow-xs);
+}
+
+.figure__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--object-position, 50% 50%);
+}
+
+figcaption {
+  margin-top: var(--br-space-3);
+  color: var(--br-color-text-muted);
+  font-size: var(--br-text-sm);
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: var(--br-tracking-wide);
+  text-transform: uppercase;
+}

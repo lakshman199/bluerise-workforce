@@ -1,0 +1,95 @@
+<div
+  class="showcase"
+  role="region"
+  aria-roledescription="carousel"
+  aria-label="Restaurant and grocery industry photographs"
+  (pointerenter)="onPointerEnter()"
+  (pointerleave)="onPointerLeave()"
+  (focusin)="onFocusIn()"
+  (focusout)="onFocusOut($event)"
+>
+  <div class="showcase__stage">
+    @for (slide of slides; track slide.image.id; let i = $index) {
+      <div
+        class="showcase__slide"
+        [class.is-active]="i === index()"
+        [attr.aria-hidden]="i !== index()"
+      >
+        <img
+          [src]="slide.image.src"
+          [alt]="i === index() ? slide.image.alt : ''"
+          [attr.width]="slide.image.width"
+          [attr.height]="slide.image.height"
+          [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+          decoding="async"
+          [style.object-position]="slide.image.objectPosition"
+        />
+      </div>
+    }
+  </div>
+
+  <div class="showcase__body">
+    <div class="showcase__copy">
+      @for (slide of slides; track slide.image.id; let i = $index) {
+        <div
+          class="showcase__text"
+          [class.is-active]="i === index()"
+          [attr.aria-hidden]="i !== index()"
+        >
+          <p class="br-eyebrow">{{ slide.label }}</p>
+          <h3>{{ slide.heading }}</h3>
+          <p>{{ slide.body }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="showcase__controls">
+      <button
+        type="button"
+        class="showcase__nav br-button br-button--secondary"
+        aria-label="Previous industry"
+        (click)="previous()"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          aria-hidden="true"
+        >
+          <path d="M15 6 9 12l6 6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <div class="showcase__indicators">
+        @for (slide of slides; track slide.image.id; let i = $index) {
+          <button
+            type="button"
+            class="showcase__dot"
+            [class.is-active]="i === index()"
+            [attr.aria-label]="'Show ' + slide.heading"
+            [attr.aria-current]="i === index() ? 'true' : null"
+            (click)="goTo(i, true)"
+          ></button>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="showcase__nav br-button br-button--secondary"
+        aria-label="Next industry"
+        (click)="next()"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          aria-hidden="true"
+        >
+          <path d="m9 6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

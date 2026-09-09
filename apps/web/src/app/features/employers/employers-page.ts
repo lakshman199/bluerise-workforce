@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { emphasize } from '../../shared/emphasize';
+import { WorkforceFigure } from '../../shared/workforce-figure/workforce-figure';
+import { WORKFORCE_IMAGES } from '../../shared/workforce-images';
 import {
   EMPLOYERS_CAPABILITIES,
   EMPLOYERS_CAPABILITIES_LEAD,
@@ -13,6 +15,10 @@ import {
   EMPLOYERS_CHALLENGES_TITLE,
   EMPLOYERS_EYEBROW,
   EMPLOYERS_HEADLINE,
+  EMPLOYERS_INDUSTRIES_LEAD,
+  EMPLOYERS_INDUSTRIES_TITLE,
+  EMPLOYERS_INDUSTRY_GROCERY,
+  EMPLOYERS_INDUSTRY_RESTAURANTS,
   EMPLOYERS_INCLUSION_BODY,
   EMPLOYERS_INCLUSION_TITLE,
   EMPLOYERS_INTRO,
@@ -28,7 +34,7 @@ import {
 @Component({
   selector: 'br-employers-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, WorkforceFigure],
   templateUrl: './employers-page.html',
   styleUrl: './employers-page.scss',
 })
@@ -39,6 +45,12 @@ export class EmployersPage {
     'workforce operations.',
   );
   protected readonly intro = EMPLOYERS_INTRO;
+  protected readonly industriesTitle = EMPLOYERS_INDUSTRIES_TITLE;
+  protected readonly industriesLead = EMPLOYERS_INDUSTRIES_LEAD;
+  protected readonly restaurantLabel = EMPLOYERS_INDUSTRY_RESTAURANTS;
+  protected readonly groceryLabel = EMPLOYERS_INDUSTRY_GROCERY;
+  protected readonly restaurantImage = WORKFORCE_IMAGES.restaurantWorkforce;
+  protected readonly groceryImage = WORKFORCE_IMAGES.groceryWorkforce;
   protected readonly challengesTitle = EMPLOYERS_CHALLENGES_TITLE;
   protected readonly challengesLead = EMPLOYERS_CHALLENGES_LEAD;
   protected readonly challenges = EMPLOYERS_CHALLENGES;

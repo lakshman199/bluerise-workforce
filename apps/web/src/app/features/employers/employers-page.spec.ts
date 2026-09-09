@@ -43,6 +43,16 @@ describe('EmployersPage', () => {
     expect(root.textContent).not.toMatch(/Gusto|ADP/);
     expect(root.textContent).not.toMatch(/guaranteed compliance|guaranteed savings/i);
     expect(root.textContent).not.toMatch(/\d+%/);
+    expect(root.textContent).toContain('Current industry focus');
+    expect(root.textContent).toContain('Restaurants');
+    expect(root.textContent).toContain('Grocery Stores');
+    expect(
+      root.querySelector('img[src="/images/workforce/restaurant-workforce.jpg"]'),
+    ).not.toBeNull();
+    expect(
+      root.querySelector('img[src="/images/workforce/grocery-workforce.jpg"]'),
+    ).not.toBeNull();
+    expect(root.textContent).not.toMatch(/customer|partnered|live integration/i);
   });
 
   it('keeps a single h1 and links to solutions, contact, and inclusion', () => {

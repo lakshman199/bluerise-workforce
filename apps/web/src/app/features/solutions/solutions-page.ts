@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { emphasize } from '../../shared/emphasize';
+import { WorkforceFigure } from '../../shared/workforce-figure/workforce-figure';
+import { WORKFORCE_IMAGES } from '../../shared/workforce-images';
 import {
   SOLUTIONS_AUDIENCE_TITLE,
   SOLUTIONS_CONNECT_BODY,
@@ -26,12 +28,17 @@ import {
   SOLUTIONS_SECONDARY_HREF,
   SOLUTIONS_WORKER_BODY,
   SOLUTIONS_WORKER_TITLE,
+  SOLUTIONS_WORKPLACE_GROCERY,
+  SOLUTIONS_WORKPLACE_LEAD,
+  SOLUTIONS_WORKPLACE_PAYROLL,
+  SOLUTIONS_WORKPLACE_RESTAURANT,
+  SOLUTIONS_WORKPLACE_TITLE,
 } from './solutions-content';
 
 @Component({
   selector: 'br-solutions-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, WorkforceFigure],
   templateUrl: './solutions-page.html',
   styleUrl: './solutions-page.scss',
 })
@@ -46,6 +53,14 @@ export class SolutionsPage {
   protected readonly modulesTitle = SOLUTIONS_MODULES_TITLE;
   protected readonly modulesLead = SOLUTIONS_MODULES_LEAD;
   protected readonly modules = SOLUTIONS_MODULES;
+  protected readonly workplaceTitle = SOLUTIONS_WORKPLACE_TITLE;
+  protected readonly workplaceLead = SOLUTIONS_WORKPLACE_LEAD;
+  protected readonly workplaceRestaurant = SOLUTIONS_WORKPLACE_RESTAURANT;
+  protected readonly workplaceGrocery = SOLUTIONS_WORKPLACE_GROCERY;
+  protected readonly workplacePayroll = SOLUTIONS_WORKPLACE_PAYROLL;
+  protected readonly restaurantOperationsImage = WORKFORCE_IMAGES.restaurantOperations;
+  protected readonly groceryCheckoutImage = WORKFORCE_IMAGES.groceryCheckout;
+  protected readonly payrollImage = WORKFORCE_IMAGES.payroll;
   protected readonly connectTitle = SOLUTIONS_CONNECT_TITLE;
   protected readonly connectBody = SOLUTIONS_CONNECT_BODY;
   protected readonly audienceTitle = SOLUTIONS_AUDIENCE_TITLE;

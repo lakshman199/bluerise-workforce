@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { emphasize } from '../../shared/emphasize';
+import { WorkforceFigure } from '../../shared/workforce-figure/workforce-figure';
+import { WORKFORCE_IMAGES } from '../../shared/workforce-images';
 import {
   BENEFITS_CATEGORIES,
   BENEFITS_CATEGORIES_NOTE,
@@ -28,7 +30,7 @@ import {
 @Component({
   selector: 'br-benefits-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, WorkforceFigure],
   templateUrl: './benefits-page.html',
   styleUrl: './benefits-page.scss',
 })
@@ -42,6 +44,7 @@ export class BenefitsPage {
   protected readonly experience = BENEFITS_EXPERIENCE;
   protected readonly supportTitle = BENEFITS_SUPPORT_TITLE;
   protected readonly supportBody = BENEFITS_SUPPORT_BODY;
+  protected readonly supportImage = WORKFORCE_IMAGES.employeeSupport;
   protected readonly connectTitle = BENEFITS_CONNECT_TITLE;
   protected readonly connectBody = BENEFITS_CONNECT_BODY;
   protected readonly categoriesTitle = BENEFITS_CATEGORIES_TITLE;

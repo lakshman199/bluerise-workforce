@@ -38,6 +38,9 @@ describe('BenefitsPage', () => {
     expect(text).not.toMatch(/Gusto|ADP|Aetna|UnitedHealthcare/);
     expect(text).not.toMatch(/enroll today|from \$\d/i);
     expect(text).not.toMatch(/coverage guaranteed/i);
+    expect(
+      root.querySelector('img[src="/images/workforce/employee-support.jpg"]'),
+    ).not.toBeNull();
   });
 
   it('keeps a single h1 and a contact CTA', () => {

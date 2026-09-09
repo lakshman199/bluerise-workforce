@@ -32,7 +32,6 @@
 }
 
 .benefits__why-inner,
-.benefits__support,
 .benefits__cta {
   max-width: 40rem;
   margin-inline: auto;
@@ -95,8 +94,25 @@
   line-height: var(--br-leading-relaxed);
 }
 
-.benefits__support .br-lead,
-.benefits__support h2,
+.benefits__support {
+  display: grid;
+  gap: var(--br-space-10);
+  align-items: center;
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--br-space-16);
+  }
+}
+
+.benefits__support-copy {
+  max-width: 36rem;
+
+  h2 {
+    max-width: 14ch;
+  }
+}
+
 .benefits__cta .br-lead,
 .benefits__cta h2 {
   margin-inline: auto;
