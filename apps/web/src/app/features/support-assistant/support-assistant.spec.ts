@@ -214,7 +214,9 @@ describe('SupportAssistant', () => {
       consent: true,
     });
     expect(root.textContent).toContain('Your support ticket has been received.');
-    expect(root.textContent).toContain('44444444-4444-4444-8444-444444444444');
+    expect(root.querySelector('.support__receipt-id')?.textContent).toBe(
+      '44444444-4444-4444-8444-444444444444',
+    );
     expect(root.textContent).toContain('does not send an email confirmation');
   });
 
