@@ -9,4 +9,6 @@
   height: var(--br-logo-height, 2.75rem);
   width: auto;
   max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
 }

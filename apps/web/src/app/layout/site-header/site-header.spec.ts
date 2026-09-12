@@ -156,6 +156,17 @@ describe('SiteHeader', () => {
     expect(logo?.getAttribute('alt')).toBe('BlueRise Workforce');
   });
 
+  it('treats the logo as a single home brand link', async () => {
+    const fixture = await renderAt('/about');
+    const brand = (fixture.nativeElement as HTMLElement).querySelector<HTMLAnchorElement>(
+      'a.brand',
+    );
+
+    expect(brand).not.toBeNull();
+    expect(brand?.getAttribute('href')).toBe('/');
+    expect(brand?.querySelector('img.brand-logo')).not.toBeNull();
+  });
+
   it('publishes the verified email and does not invent a phone or street address', async () => {
     const fixture = await renderAt('/');
     const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
