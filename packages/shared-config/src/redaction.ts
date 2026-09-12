@@ -33,6 +33,8 @@ export const REDACTED_FIELD_NAMES = [
   'lastName',
   'email',
   'phone',
+  'name',
+  'comment',
   'first_name',
   'last_name',
 ] as const;

@@ -44,4 +44,15 @@ describe('App shell', () => {
     const mains = (fixture.nativeElement as HTMLElement).querySelectorAll('main');
     expect(mains.length).toBe(1);
   });
+
+  it('includes the BlueRise Support launcher on every public page', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    const launcher = (fixture.nativeElement as HTMLElement).querySelector(
+      '.support__launcher',
+    );
+    expect(launcher).not.toBeNull();
+    expect(launcher?.getAttribute('aria-label')).toBe('BlueRise Support');
+  });
 });

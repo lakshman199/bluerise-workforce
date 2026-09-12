@@ -96,6 +96,7 @@ to an instance whose schema is behind.
 | ---------------------------- | ----- |
 | `/api/v1/health`             | 1     |
 | `/api/v1/contact`            | 2     |
+| `/api/v1/support/tickets`    | 2     |
 | `/api/v1/auth`               | 3     |
 | `/api/v1/users`              | 3     |
 | `/api/v1/organizations`      | 3     |

@@ -10,6 +10,7 @@ import { DatabaseModule } from './database/database.module';
 import { ContactModule } from './contact/contact.module';
 import { HealthModule } from './health/health.module';
 import { LoggerModule } from './logger/logger.module';
+import { SupportModule } from './support/support.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { LoggerModule } from './logger/logger.module';
     }),
     HealthModule,
     ContactModule,
+    SupportModule,
   ],
   providers: [
     // Rate limiting applies to every route by default; a route opts out explicitly with
