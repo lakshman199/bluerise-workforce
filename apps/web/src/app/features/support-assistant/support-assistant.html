@@ -1,0 +1,316 @@
+<div class="support" [class.support--open]="open()">
+  <button
+    type="button"
+    class="support__launcher"
+    [attr.aria-expanded]="open()"
+    aria-controls="support-panel"
+    [attr.aria-label]="launcherLabel"
+    (click)="toggle()"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path
+        d="M21 12a8.4 8.4 0 0 1-1.3 4.5L21 21l-4.6-1.2A8.5 8.5 0 1 1 21 12Z"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    <span>{{ launcherLabel }}</span>
+  </button>
+
+  <button
+    type="button"
+    class="support__backdrop"
+    [attr.aria-label]="closeLabel"
+    [attr.aria-hidden]="!open()"
+    [attr.tabindex]="open() ? 0 : -1"
+    [attr.inert]="open() ? null : ''"
+    (click)="close()"
+  ></button>
+  <section
+    #panel
+    id="support-panel"
+    class="support__panel"
+    role="dialog"
+    [attr.aria-modal]="open()"
+    [attr.aria-hidden]="!open()"
+    [attr.inert]="open() ? null : ''"
+    aria-labelledby="support-title"
+    tabindex="-1"
+  >
+    <header class="support__header">
+      <div class="support__brand">
+        <br-brand-logo />
+        <div class="support__heading">
+          <h2 id="support-title">
+            {{ view() === 'ticket' || view() === 'success' ? ticketTitle : panelTitle }}
+          </h2>
+          <p class="support__subtitle">{{ panelSubtitle }}</p>
+        </div>
+      </div>
+      <button type="button" class="support__close" (click)="close()">
+        <span class="br-sr-only">{{ closeLabel }}</span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6 6 18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </header>
+
+    @if (view() === 'chat') {
+      <div class="support__stage">
+        <div #transcript class="support__transcript" aria-live="polite">
+          @for (message of messages(); track message.id) {
+            <article
+              class="support__bubble"
+              [class.support__bubble--user]="message.role === 'user'"
+              [class.support__bubble--assistant]="message.role === 'assistant'"
+            >
+              <p>{{ message.text }}</p>
+              @if (message.link) {
+                <a class="support__link" [routerLink]="message.link.href">
+                  {{ relatedLabel }}: {{ message.link.label }}
+                </a>
+              }
+              @if (message.offerTicket) {
+                <button type="button" class="br-button br-button--primary" (click)="openTicket()">
+                  {{ raiseTicketLabel }}
+                </button>
+              }
+            </article>
+          }
+
+          <div class="support__starters">
+            @if (hasConversation()) {
+              <button
+                type="button"
+                class="support__starters-toggle"
+                [attr.aria-expanded]="startersOpen()"
+                aria-controls="support-starter-list"
+                (click)="toggleStarters()"
+              >
+                {{ startersLabel }}
+              </button>
+            } @else {
+              <p class="support__starters-label" id="support-starters">{{ startersLabel }}</p>
+            }
+            @if (startersOpen()) {
+              <div
+                id="support-starter-list"
+                class="support__starter-list"
+                role="group"
+                [attr.aria-labelledby]="hasConversation() ? null : 'support-starters'"
+              >
+                @for (question of starters; track question) {
+                  <button
+                    type="button"
+                    class="support__starter"
+                    [class.support__starter--asked]="isStarterAsked(question)"
+                    [attr.aria-pressed]="isStarterAsked(question)"
+                    (click)="askSuggested(question)"
+                  >
+                    {{ question }}
+                  </button>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="support__dock">
+        <form class="support__composer" (submit)="onSend($event)">
+          <label class="br-sr-only" for="support-question">{{ inputLabel }}</label>
+          <input
+            id="support-question"
+            class="br-input support__input"
+            type="text"
+            name="question"
+            autocomplete="off"
+            [placeholder]="inputPlaceholder"
+            [value]="draft()"
+            (input)="onDraftInput($event)"
+          />
+          <button type="submit" class="br-button br-button--primary" [disabled]="!draft().trim()">
+            {{ sendLabel }}
+          </button>
+        </form>
+
+        <div class="support__ticket-bar">
+          <button type="button" class="br-button br-button--secondary" (click)="openTicket()">
+            {{ raiseTicketLabel }}
+          </button>
+        </div>
+      </div>
+    } @else if (view() === 'ticket') {
+      <form
+        class="support__ticket"
+        [formGroup]="form"
+        (ngSubmit)="onSubmitTicket()"
+        novalidate
+        [attr.aria-busy]="submitting()"
+      >
+        <p>{{ ticketIntro }}</p>
+
+        @if (apiError(); as error) {
+          <div class="br-alert br-alert--danger" role="alert">
+            <div>
+              <p class="br-alert__title">{{ ticketErrorTitle }}</p>
+              <p class="br-alert__body">{{ error.message }}</p>
+            </div>
+          </div>
+        }
+
+        <div class="br-field">
+          <label class="br-label" for="support-ticket-name">
+            {{ ticketNameLabel }}
+            <span class="br-label__required" aria-hidden="true">*</span>
+            <span class="br-sr-only">(required)</span>
+          </label>
+          <input
+            id="support-ticket-name"
+            class="br-input"
+            type="text"
+            autocomplete="name"
+            formControlName="name"
+            [attr.aria-invalid]="showError('name')"
+            [attr.aria-describedby]="showError('name') ? 'support-ticket-name-error' : null"
+          />
+          @if (showError('name')) {
+            <p id="support-ticket-name-error" class="br-error-text" role="alert">
+              {{ errorFor('name') }}
+            </p>
+          }
+        </div>
+
+        <div class="br-field">
+          <label class="br-label" for="support-ticket-email">
+            {{ ticketEmailLabel }}
+            <span class="br-label__required" aria-hidden="true">*</span>
+            <span class="br-sr-only">(required)</span>
+          </label>
+          <input
+            id="support-ticket-email"
+            class="br-input"
+            type="email"
+            autocomplete="email"
+            formControlName="email"
+            [attr.aria-invalid]="showError('email')"
+            [attr.aria-describedby]="showError('email') ? 'support-ticket-email-error' : null"
+          />
+          @if (showError('email')) {
+            <p id="support-ticket-email-error" class="br-error-text" role="alert">
+              {{ errorFor('email') }}
+            </p>
+          }
+        </div>
+
+        <div class="br-field">
+          <label class="br-label" for="support-ticket-phone">
+            {{ ticketPhoneLabel }}
+            <span class="support__optional">({{ ticketPhoneOptional }})</span>
+          </label>
+          <input
+            id="support-ticket-phone"
+            class="br-input"
+            type="tel"
+            autocomplete="tel"
+            formControlName="phone"
+            [attr.aria-invalid]="showError('phone')"
+            [attr.aria-describedby]="showError('phone') ? 'support-ticket-phone-error' : null"
+          />
+          @if (showError('phone')) {
+            <p id="support-ticket-phone-error" class="br-error-text" role="alert">
+              {{ errorFor('phone') }}
+            </p>
+          }
+        </div>
+
+        <div class="br-field">
+          <label class="br-label" for="support-ticket-message">
+            {{ ticketMessageLabel }}
+            <span class="br-label__required" aria-hidden="true">*</span>
+            <span class="br-sr-only">(required)</span>
+          </label>
+          <textarea
+            id="support-ticket-message"
+            class="br-textarea"
+            rows="4"
+            formControlName="message"
+            [attr.aria-invalid]="showError('message')"
+            [attr.aria-describedby]="showError('message') ? 'support-ticket-message-error' : null"
+          ></textarea>
+          @if (showError('message')) {
+            <p id="support-ticket-message-error" class="br-error-text" role="alert">
+              {{ errorFor('message') }}
+            </p>
+          }
+        </div>
+
+        @if (lastUserQuery()) {
+          <label class="br-checkbox" for="support-ticket-include">
+            <input
+              id="support-ticket-include"
+              type="checkbox"
+              formControlName="includeLastQuestion"
+            />
+            <span>
+              {{ ticketIncludeQueryLabel }}:
+              <q>{{ lastUserQuery() }}</q>
+            </span>
+          </label>
+        }
+
+        <label class="br-checkbox" for="support-ticket-consent">
+          <input
+            id="support-ticket-consent"
+            type="checkbox"
+            formControlName="consent"
+            [attr.aria-invalid]="showError('consent')"
+            [attr.aria-describedby]="showError('consent') ? 'support-ticket-consent-error' : null"
+          />
+          <span>{{ ticketConsentLabel }}</span>
+        </label>
+        @if (showError('consent')) {
+          <p id="support-ticket-consent-error" class="br-error-text" role="alert">
+            {{ errorFor('consent') }}
+          </p>
+        }
+
+        <div class="support__ticket-actions">
+          <button type="submit" class="br-button br-button--primary" [disabled]="submitDisabled">
+            {{ submitting() ? ticketSubmittingLabel : ticketSubmitLabel }}
+          </button>
+          <button type="button" class="br-button br-button--ghost" (click)="backToChat()">
+            {{ backToChatLabel }}
+          </button>
+        </div>
+      </form>
+    } @else {
+      <div class="support__success" role="status">
+        <div class="br-alert br-alert--success">
+          <div>
+            <p class="br-alert__title">{{ ticketSuccessTitle }}</p>
+            <p class="br-alert__body">{{ ticketSuccessBody }}</p>
+          </div>
+        </div>
+        <p>
+          Ticket ID
+          <code>{{ receiptId() }}</code>
+        </p>
+        <p>
+          If you need to add anything, write again or email
+          <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+          .
+        </p>
+        <button type="button" class="br-button br-button--secondary" (click)="backToChat()">
+          {{ backToChatLabel }}
+        </button>
+      </div>
+    }
+  </section>
+</div>
