@@ -419,6 +419,35 @@
   overflow-y: auto;
 }
 
+.support__receipt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem var(--br-space-2);
+  margin: 0;
+  min-width: 0;
+}
+
+.support__receipt-label {
+  flex: 0 0 auto;
+}
+
+.support__receipt-id {
+  min-width: 0;
+  max-width: 100%;
+  font-family: var(--br-font-mono);
+  font-size: var(--br-text-xs);
+  line-height: var(--br-leading-snug);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: none;
+  user-select: all;
+}
+
+.support__success-help {
+  margin: 0;
+}
+
 .support__optional {
   color: var(--br-color-text-muted);
   font-weight: var(--br-weight-regular);
@@ -430,8 +459,61 @@
   gap: var(--br-space-2);
 }
 
-.support__success code {
-  font-size: var(--br-text-xs);
+@include bp.until(bp.$bp-sm) {
+  .support__success {
+    gap: var(--br-space-5);
+    padding: var(--br-space-5);
+    font-size: var(--br-text-sm);
+    line-height: var(--br-leading-normal);
+  }
+
+  .support__success .br-alert {
+    padding: var(--br-space-3) var(--br-space-4);
+  }
+
+  .support__success .br-alert__title {
+    margin-bottom: var(--br-space-2);
+    font-size: var(--br-text-sm);
+    line-height: var(--br-leading-snug);
+  }
+
+  .support__success .br-alert__body {
+    font-size: var(--br-text-xs);
+    line-height: var(--br-leading-normal);
+  }
+
+  .support__receipt {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--br-space-2);
+  }
+
+  .support__receipt-label {
+    color: var(--br-color-text-muted);
+    font-size: var(--br-text-xs);
+    font-weight: var(--br-weight-semibold);
+    letter-spacing: var(--br-tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .support__receipt-id {
+    display: block;
+    padding: var(--br-space-2) var(--br-space-3);
+    border: 1px solid var(--br-color-primary-border);
+    border-radius: var(--br-radius-sm);
+    background: var(--br-neutral-0);
+    color: var(--br-navy-900);
+  }
+
+  .support__success-help {
+    font-size: var(--br-text-sm);
+    line-height: var(--br-leading-normal);
+  }
+
+  .support__success-action {
+    align-self: flex-start;
+    margin-top: var(--br-space-1);
+  }
 }
 
 @keyframes support-bubble-in {

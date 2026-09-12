@@ -298,16 +298,20 @@
             <p class="br-alert__body">{{ ticketSuccessBody }}</p>
           </div>
         </div>
-        <p>
-          Ticket ID
-          <code>{{ receiptId() }}</code>
+        <p class="support__receipt">
+          <span class="support__receipt-label">Ticket ID</span>
+          <code class="support__receipt-id">{{ receiptId() }}</code>
         </p>
-        <p>
+        <p class="support__success-help">
           If you need to add anything, write again or email
           <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
           .
         </p>
-        <button type="button" class="br-button br-button--secondary" (click)="backToChat()">
+        <button
+          type="button"
+          class="br-button br-button--secondary support__success-action"
+          (click)="backToChat()"
+        >
           {{ backToChatLabel }}
         </button>
       </div>
