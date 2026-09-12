@@ -93,6 +93,15 @@
   --br-color-accent: #7a5c10;
   --br-color-focus: var(--br-blue-500);
 
+  --br-color-nav: var(--br-navy-800);
+  --br-color-nav-hover: var(--br-blue-800);
+
+  // Warm ivory glass for the public header. 88–94% keeps the bar translucent
+  // without reading as frosted white plastic. `#fffdf8` is `--br-neutral-0`.
+  --br-color-header-glass: rgb(255 253 248 / 88%);
+  --br-color-header-glass-scrolled: rgb(255 253 248 / 94%);
+  --br-header-blur: 10px;
+
   // ---------------------------------------------------------------------------
   // Typography
   // ---------------------------------------------------------------------------

@@ -66,11 +66,29 @@
 .header__shell {
   border: 1px solid var(--br-color-border);
   border-radius: 1.75rem;
-  background: var(--br-color-surface);
+  background: var(--br-neutral-0);
+  background: var(--br-color-header-glass);
   box-shadow: var(--br-shadow-sm);
+  -webkit-backdrop-filter: blur(var(--br-header-blur)) saturate(1.06);
+  backdrop-filter: blur(var(--br-header-blur)) saturate(1.06);
+  isolation: isolate;
 
   @include bp.from(bp.$bp-xl) {
     border-radius: 2.15rem;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header__shell {
+    background: var(--br-color-header-glass-scrolled);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .header__shell {
+    animation: br-header-glass-settle linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 6rem;
   }
 }
 
@@ -105,18 +123,42 @@
 .brand {
   display: inline-flex;
   align-items: center;
+  flex: 0 1 auto;
   flex-shrink: 1;
   min-width: 0;
-  max-width: min(17.5rem, 70%);
+  max-width: min(18.75rem, calc(100% - 3.75rem));
   min-height: var(--br-touch-target);
-  padding-block: 0.15rem;
+  padding: 0.15rem 0.2rem;
+  border-radius: var(--br-radius-sm);
   text-decoration: none;
+  transform-origin: left center;
+  transition:
+    transform var(--br-duration-base) var(--br-ease-out),
+    filter var(--br-duration-base) var(--br-ease-out);
+  --br-logo-height: clamp(2.7rem, 2.35rem + 1.4vw, 3.15rem);
 
-  --br-logo-height: 2.55rem;
+  .brand-logo {
+    filter: contrast(1.08);
+  }
 
   @include bp.from(bp.$bp-md) {
-    --br-logo-height: 2.95rem;
-    max-width: 19rem;
+    max-width: min(20.5rem, 46%);
+  }
+
+  @include bp.from(bp.$bp-xl) {
+    max-width: 21.5rem;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--br-color-focus);
+    outline-offset: 3px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brand:hover {
+    transform: translate3d(0, -0.1rem, 0) scale(1.03);
+    filter: drop-shadow(0 8px 14px rgb(23 52 111 / 14%)) brightness(1.03);
   }
 }
 
@@ -152,7 +194,7 @@
   border-radius: var(--br-radius-full);
   font-size: 0.8125rem;
   font-weight: var(--br-weight-medium);
-  color: var(--br-color-text-muted);
+  color: var(--br-color-nav);
   text-decoration: none;
   white-space: nowrap;
   transition:
@@ -160,8 +202,8 @@
     color var(--br-duration-fast) var(--br-ease-out);
 
   &:hover {
-    background: var(--br-color-surface-sunken);
-    color: var(--br-color-text);
+    background: var(--br-color-primary-surface);
+    color: var(--br-color-nav-hover);
   }
 
   @media (min-width: 1440px) {
@@ -172,8 +214,8 @@
 }
 
 .nav__link--active:not(.nav__link--cta) {
-  color: var(--br-blue-800);
-  background: rgb(231 240 255 / 88%);
+  color: var(--br-color-nav-hover);
+  background: var(--br-color-primary-surface);
   font-weight: var(--br-weight-semibold);
 }
 
@@ -223,18 +265,21 @@
   border-radius: var(--br-radius-lg);
   font-size: var(--br-text-base);
   font-weight: var(--br-weight-medium);
-  color: var(--br-color-text);
+  color: var(--br-color-nav);
   text-decoration: none;
+  transition:
+    background-color var(--br-duration-fast) var(--br-ease-out),
+    color var(--br-duration-fast) var(--br-ease-out);
 
   &:hover {
-    background: var(--br-color-surface-sunken);
-    color: var(--br-color-text);
+    background: var(--br-color-primary-surface);
+    color: var(--br-color-nav-hover);
   }
 }
 
 .mobile-menu__link--active:not(.mobile-menu__link--cta) {
-  color: var(--br-blue-800);
-  background: rgb(231 240 255 / 88%);
+  color: var(--br-color-nav-hover);
+  background: var(--br-color-primary-surface);
 }
 
 .mobile-menu__link--cta {
@@ -253,4 +298,33 @@
 .mobile-menu__link--cta.mobile-menu__link--active {
   background: var(--br-color-cta-hover);
   color: var(--br-color-text-inverse);
+}
+
+@keyframes br-header-glass-settle {
+  from {
+    background: var(--br-color-header-glass);
+    box-shadow: var(--br-shadow-sm);
+  }
+
+  to {
+    background: var(--br-color-header-glass-scrolled);
+    box-shadow: var(--br-shadow-md);
+  }
+}
+
+@include bp.reduced-motion {
+  .header__shell {
+    animation: none;
+  }
+
+  .brand,
+  .nav__link,
+  .mobile-menu__link {
+    transition: none;
+  }
+
+  .brand:hover {
+    transform: none;
+    filter: none;
+  }
 }
