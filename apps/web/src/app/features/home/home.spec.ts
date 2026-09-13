@@ -11,7 +11,8 @@ import {
   COMMUNITY_HEADLINE,
   COMMUNITY_ITEMS,
   HERO_HEADLINE_PRIMARY,
-  HERO_PLATFORM_AREAS,
+  HERO_SCENE_ALT,
+  HERO_SCENE_FRAMES,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
   TOGETHER_CTA,
@@ -135,13 +136,28 @@ describe('Home', () => {
     );
   });
 
-  it('shows a platform overview in the hero, not live employee or payroll data', () => {
+  it('plays the four-frame hero scene as one accessible visual', () => {
     const fixture = setup();
-    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
+    const root = fixture.nativeElement as HTMLElement;
+    const frames = Array.from(
+      root.querySelectorAll<HTMLImageElement>('.hero-scene__frame'),
+    );
+    const text = root.textContent ?? '';
 
-    for (const area of HERO_PLATFORM_AREAS) {
-      expect(text).toContain(area);
-    }
+    expect(root.querySelector('.hero-scene')).not.toBeNull();
+    expect(frames.map((frame) => frame.getAttribute('src'))).toEqual([
+      ...HERO_SCENE_FRAMES,
+    ]);
+    expect(frames.every((frame) => frame.getAttribute('alt') === '')).toBe(true);
+    expect(root.querySelector('.hero__visual figcaption')?.textContent?.trim()).toBe(
+      HERO_SCENE_ALT,
+    );
+    expect(root.querySelector('.hero-scene--live')).toBeNull();
+
+    frames[0]?.dispatchEvent(new Event('error'));
+    fixture.detectChanges();
+    expect(frames[0]?.hasAttribute('src')).toBe(false);
+    expect(frames[0]?.classList.contains('hero-scene__frame--failed')).toBe(true);
     expect(text).not.toContain('Employee portal');
     expect(text).not.toContain('Pay statement');
     expect(text).not.toContain('Coverage on file');

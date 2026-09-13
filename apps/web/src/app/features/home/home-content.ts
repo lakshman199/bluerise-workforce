@@ -31,6 +31,16 @@ export const HERO_PLATFORM_AREAS = [
   'Employee Support',
 ] as const;
 
+export const HERO_SCENE_ALT =
+  'BlueRise helps small businesses simplify hiring, payroll, benefits, timekeeping and workforce support.';
+
+export const HERO_SCENE_FRAMES = [
+  '/images/hero/bluerise-chaos-start.png',
+  '/images/hero/bluerise-float-motion.png',
+  '/images/hero/bluerise-peak-action.png',
+  '/images/hero/bluerise-calm-finish.png',
+] as const;
+
 export const PURPOSE_EYEBROW = 'Our core purpose';
 
 export const PURPOSE_HEADLINE =

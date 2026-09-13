@@ -21,7 +21,7 @@
   align-items: center;
 
   @include bp.from(bp.$bp-lg) {
-    grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+    grid-template-columns: minmax(0, 0.44fr) minmax(0, 0.56fr);
     gap: var(--br-space-16);
   }
 }
@@ -60,7 +60,7 @@
 }
 
 // ---------------------------------------------------------------------------------------
-// Platform overview visual — capabilities, not live records
+// Hero scene — four aligned frames, CSS cross-fade loop
 // ---------------------------------------------------------------------------------------
 
 .hero__visual {
@@ -68,75 +68,139 @@
   min-width: 0;
 }
 
-.overview {
+.hero-scene {
   position: relative;
-  min-width: 0;
-  padding: clamp(1.4rem, 3vw, 2.1rem);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  isolation: isolate;
   border: 1px solid var(--br-color-border);
   border-radius: var(--br-radius-2xl);
   background: var(--br-color-surface);
   box-shadow: var(--br-shadow-sm);
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: auto -12% -28% 42%;
-    height: 70%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgb(255 214 160 / 34%), transparent 68%);
-    pointer-events: none;
-  }
 }
 
-.overview__hub {
-  position: relative;
+.hero-scene__frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
   margin: 0;
-  font-family: var(--br-font-serif);
-  font-style: italic;
-  font-size: clamp(1.7rem, 3vw, 2.25rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: var(--br-leading-snug);
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.overview__lead {
-  position: relative;
-  margin: var(--br-space-2) 0 0;
-  color: var(--br-color-text-muted);
-  font-size: var(--br-text-sm);
+.hero-scene__frame--failed {
+  display: none;
 }
 
-.overview__areas {
-  position: relative;
-  display: grid;
-  gap: 0;
-  margin: var(--br-space-6) 0 0;
-  padding: 0;
-  list-style: none;
+.hero-scene__frame--ready.hero-scene__frame--1,
+.hero-scene__frame--hold {
+  opacity: 1;
+}
 
-  @include bp.from(bp.$bp-sm) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 var(--br-space-8);
+.hero-scene--live .hero-scene__frame {
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.hero-scene--live .hero-scene__frame--1 {
+  animation-name: hero-scene-1;
+}
+
+.hero-scene--live .hero-scene__frame--2 {
+  animation-name: hero-scene-2;
+}
+
+.hero-scene--live .hero-scene__frame--3 {
+  animation-name: hero-scene-3;
+}
+
+.hero-scene--live .hero-scene__frame--4 {
+  animation-name: hero-scene-4;
+}
+
+// 5s loop. Each frame holds ~1.01s at full opacity. Fades are 240ms out / 200ms
+// in, staggered so the outgoing frame is nearly gone before the next is solid.
+// That keeps misaligned characters/papers from reading as a double exposure.
+@keyframes hero-scene-1 {
+  0%,
+  20.2% {
+    opacity: 1;
   }
 
-  li {
-    display: flex;
-    align-items: center;
-    gap: var(--br-space-3);
-    min-width: 0;
-    padding: var(--br-space-3) 0;
-    border-bottom: 1px solid var(--br-color-border);
-    font-weight: var(--br-weight-semibold);
-    overflow-wrap: break-word;
+  25%,
+  96.4% {
+    opacity: 0;
+  }
 
-    &::before {
-      content: '→';
-      flex-shrink: 0;
-      color: var(--br-color-accent);
-      font-family: var(--br-font-serif);
-      font-style: italic;
-      font-weight: 500;
-    }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-scene-2 {
+  0%,
+  23% {
+    opacity: 0;
+  }
+
+  27%,
+  45.2% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-scene-3 {
+  0%,
+  48% {
+    opacity: 0;
+  }
+
+  52%,
+  70.2% {
+    opacity: 1;
+  }
+
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-scene-4 {
+  0%,
+  73% {
+    opacity: 0;
+  }
+
+  77%,
+  95.2% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@include bp.reduced-motion {
+  .hero-scene--live .hero-scene__frame {
+    animation: none;
+    opacity: 0;
+  }
+
+  .hero-scene--live .hero-scene__frame--4.hero-scene__frame--ready,
+  .hero-scene--live .hero-scene__frame--hold {
+    opacity: 1;
   }
 }
 

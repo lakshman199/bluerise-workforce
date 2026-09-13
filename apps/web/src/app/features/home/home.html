@@ -30,19 +30,28 @@
     </div>
 
     <figure class="hero__visual">
-      <figcaption class="br-sr-only">
-        An overview of the BlueRise Workforce platform areas: payroll, benefits, HR and compliance,
-        timekeeping, workers’ compensation, and employee support.
-      </figcaption>
-
-      <div class="overview" aria-hidden="true">
-        <p class="overview__hub">{{ platformTitle }}</p>
-        <p class="overview__lead">{{ platformLead }}</p>
-        <ol class="overview__areas">
-          @for (item of platformAreas; track item) {
-            <li>{{ item }}</li>
-          }
-        </ol>
+      <figcaption class="br-sr-only">{{ sceneAlt }}</figcaption>
+      <div class="hero-scene" [class.hero-scene--live]="allFramesReady()" aria-hidden="true">
+        @for (src of sceneFrames; track src; let i = $index) {
+          <img
+            class="hero-scene__frame"
+            [class.hero-scene__frame--1]="i === 0"
+            [class.hero-scene__frame--2]="i === 1"
+            [class.hero-scene__frame--3]="i === 2"
+            [class.hero-scene__frame--4]="i === 3"
+            [class.hero-scene__frame--ready]="frameLoaded()[i]"
+            [class.hero-scene__frame--hold]="!allFramesReady() && lastReadyIndex() === i"
+            [class.hero-scene__frame--failed]="frameFailed()[i]"
+            [src]="src"
+            alt=""
+            width="1600"
+            height="900"
+            [attr.fetchpriority]="i === 0 ? 'high' : null"
+            decoding="async"
+            (load)="onFrameLoad(i)"
+            (error)="onFrameError(i, $event)"
+          />
+        }
       </div>
     </figure>
   </div>
