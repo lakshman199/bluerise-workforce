@@ -10,8 +10,13 @@ import {
   COMMUNITY_CLOSING,
   COMMUNITY_HEADLINE,
   COMMUNITY_ITEMS,
+  GLANCE_CARDS,
+  GLANCE_HEADLINE_ACCENT,
+  GLANCE_HEADLINE_LEAD,
   HERO_HEADLINE_PRIMARY,
-  HERO_PLATFORM_AREAS,
+  HERO_SCENE_ALT,
+  HERO_SCENE_FRAMES,
+  HERO_SERVICE_CARDS,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
   TOGETHER_CTA,
@@ -41,6 +46,7 @@ function setup() {
         { path: 'inclusion', children: [] },
         { path: 'contact', children: [] },
         { path: 'our-solutions', children: [] },
+        { path: 'employers', children: [] },
       ]),
     ],
   });
@@ -135,13 +141,35 @@ describe('Home', () => {
     );
   });
 
-  it('shows a platform overview in the hero, not live employee or payroll data', () => {
+  it('plays the four-frame hero scene as one accessible visual', () => {
     const fixture = setup();
-    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
+    const root = fixture.nativeElement as HTMLElement;
+    const frames = Array.from(
+      root.querySelectorAll<HTMLImageElement>('.hero-scene__frame'),
+    );
+    const text = root.textContent ?? '';
 
-    for (const area of HERO_PLATFORM_AREAS) {
-      expect(text).toContain(area);
-    }
+    expect(root.querySelector('.hero-scene')).not.toBeNull();
+    expect(frames.map((frame) => frame.getAttribute('src'))).toEqual([
+      ...HERO_SCENE_FRAMES,
+    ]);
+    expect(frames.every((frame) => frame.getAttribute('alt') === '')).toBe(true);
+    expect(root.querySelector('.hero__visual figcaption')?.textContent?.trim()).toBe(
+      HERO_SCENE_ALT,
+    );
+    expect(root.querySelector('.hero-scene--live')).toBeNull();
+
+    frames[0]?.dispatchEvent(new Event('error'));
+    fixture.detectChanges();
+    expect(frames[0]?.hasAttribute('src')).toBe(false);
+    expect(frames[0]?.classList.contains('hero-scene__frame--failed')).toBe(true);
+    const cards = Array.from(
+      root.querySelectorAll('.hero-float-card .hero-float-card__label'),
+      (node) => node.textContent?.trim(),
+    );
+    expect(cards).toEqual(HERO_SERVICE_CARDS.map((card) => card.label));
+    expect(new Set(cards).size).toBe(5);
+    expect(root.querySelectorAll('.hero-float-card').length).toBe(5);
     expect(text).not.toContain('Employee portal');
     expect(text).not.toContain('Pay statement');
     expect(text).not.toContain('Coverage on file');
@@ -153,6 +181,28 @@ describe('Home', () => {
     expect(text).not.toContain('Roadmap');
     expect(text).not.toContain('bluerise-api');
     expect(text).not.toMatch(/Priya|Marcus|Gusto|ADP/);
+  });
+
+  it('renders glance value cards under the hero visual without duplicating overlay cards', () => {
+    const fixture = setup();
+    const root = fixture.nativeElement as HTMLElement;
+    const glance = root.querySelector('.hero .hero-glance');
+    const heading = root.querySelector('#glance-heading');
+    const cards = Array.from(root.querySelectorAll<HTMLAnchorElement>('.hero-glance .glance-card'));
+
+    expect(glance).not.toBeNull();
+    expect(root.querySelector('.hero')?.contains(glance)).toBe(true);
+    expect(heading?.textContent).toContain(GLANCE_HEADLINE_LEAD);
+    expect(heading?.textContent).toContain(GLANCE_HEADLINE_ACCENT);
+    expect(cards.map((card) => card.getAttribute('href'))).toEqual(
+      GLANCE_CARDS.map((card) => card.href),
+    );
+    for (const card of GLANCE_CARDS) {
+      expect(glance?.textContent).toContain(card.title);
+      expect(glance?.textContent).toContain(card.body);
+    }
+    expect(root.querySelectorAll('.hero-float-card').length).toBe(5);
+    expect(root.querySelectorAll('.hero-glance .glance-card').length).toBe(3);
   });
 
   it('renders Community Impact after Inclusion as aspirational pathways, not results', () => {
@@ -225,7 +275,11 @@ describe('Home', () => {
     const root = fixture.nativeElement as HTMLElement;
 
     expect(root.querySelectorAll('h1').length).toBe(1);
-    expect(root.querySelectorAll('h2').length).toBe(7);
+    expect(root.querySelectorAll('h2').length).toBe(8);
+    expect(root.querySelector('#glance-heading')?.textContent).toContain(GLANCE_HEADLINE_LEAD);
+    expect(root.querySelector('.hero-glance')?.getAttribute('aria-labelledby')).toBe(
+      'glance-heading',
+    );
     expect(root.querySelector('#purpose')?.getAttribute('aria-labelledby')).toBe(
       'purpose-heading',
     );

@@ -1,4 +1,9 @@
-import { afterNextRender, ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { emphasize } from '../../shared/emphasize';
@@ -16,6 +21,7 @@ import {
 import { PrincipleCard } from '../about/principle-card';
 import { TalentCard } from '../about/talent-card';
 import { InclusionCommitment } from '../inclusion/inclusion-commitment';
+import { HeroGlance } from './hero-glance';
 import {
   CLOSE_EYEBROW,
   CLOSE_HEADLINE,
@@ -33,9 +39,9 @@ import {
   HERO_HEADLINE_ACCENT,
   HERO_HEADLINE_PRIMARY,
   HERO_LEAD,
-  HERO_PLATFORM_AREAS,
-  HERO_PLATFORM_LEAD,
-  HERO_PLATFORM_TITLE,
+  HERO_SCENE_ALT,
+  HERO_SCENE_FRAMES,
+  HERO_SERVICE_CARDS,
   PURPOSE_EYEBROW,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
@@ -53,7 +59,7 @@ import {
 
 @Component({
   selector: 'br-home',
-  imports: [RouterLink, PrincipleCard, TalentCard, InclusionCommitment],
+  imports: [RouterLink, HeroGlance, PrincipleCard, TalentCard, InclusionCommitment],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,9 +69,45 @@ export class Home {
   protected readonly headlinePrimary = HERO_HEADLINE_PRIMARY;
   protected readonly headlineAccentHtml = emphasize(HERO_HEADLINE_ACCENT, 'Futures.');
   protected readonly lead = HERO_LEAD;
-  protected readonly platformTitle = HERO_PLATFORM_TITLE;
-  protected readonly platformLead = HERO_PLATFORM_LEAD;
-  protected readonly platformAreas = HERO_PLATFORM_AREAS;
+  protected readonly sceneAlt = HERO_SCENE_ALT;
+  protected readonly sceneFrames = HERO_SCENE_FRAMES;
+  protected readonly serviceCards = HERO_SERVICE_CARDS;
+  protected readonly frameLoaded = signal<readonly boolean[]>([
+    false,
+    false,
+    false,
+    false,
+  ]);
+  protected readonly frameFailed = signal<readonly boolean[]>([
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  protected allFramesReady(): boolean {
+    return this.frameLoaded().every(Boolean);
+  }
+
+  protected lastReadyIndex(): number {
+    return this.frameLoaded().lastIndexOf(true);
+  }
+
+  protected onFrameLoad(index: number): void {
+    this.frameLoaded.update((current) =>
+      current.map((value, i) => (i === index ? true : value)),
+    );
+  }
+
+  protected onFrameError(index: number, event: Event): void {
+    this.frameFailed.update((current) =>
+      current.map((value, i) => (i === index ? true : value)),
+    );
+    const image = event.target;
+    if (image instanceof HTMLImageElement) {
+      image.removeAttribute('src');
+    }
+  }
   protected readonly purposeEyebrow = PURPOSE_EYEBROW;
   protected readonly purposeHeadlineHtml = emphasize(
     PURPOSE_HEADLINE,
