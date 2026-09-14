@@ -21,6 +21,7 @@ import {
 import { PrincipleCard } from '../about/principle-card';
 import { TalentCard } from '../about/talent-card';
 import { InclusionCommitment } from '../inclusion/inclusion-commitment';
+import { HeroGlance } from './hero-glance';
 import {
   CLOSE_EYEBROW,
   CLOSE_HEADLINE,
@@ -58,7 +59,7 @@ import {
 
 @Component({
   selector: 'br-home',
-  imports: [RouterLink, PrincipleCard, TalentCard, InclusionCommitment],
+  imports: [RouterLink, HeroGlance, PrincipleCard, TalentCard, InclusionCommitment],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

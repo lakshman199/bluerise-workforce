@@ -10,6 +10,9 @@ import {
   COMMUNITY_CLOSING,
   COMMUNITY_HEADLINE,
   COMMUNITY_ITEMS,
+  GLANCE_CARDS,
+  GLANCE_HEADLINE_ACCENT,
+  GLANCE_HEADLINE_LEAD,
   HERO_HEADLINE_PRIMARY,
   HERO_SCENE_ALT,
   HERO_SCENE_FRAMES,
@@ -43,6 +46,7 @@ function setup() {
         { path: 'inclusion', children: [] },
         { path: 'contact', children: [] },
         { path: 'our-solutions', children: [] },
+        { path: 'employers', children: [] },
       ]),
     ],
   });
@@ -179,6 +183,28 @@ describe('Home', () => {
     expect(text).not.toMatch(/Priya|Marcus|Gusto|ADP/);
   });
 
+  it('renders glance value cards under the hero visual without duplicating overlay cards', () => {
+    const fixture = setup();
+    const root = fixture.nativeElement as HTMLElement;
+    const glance = root.querySelector('.hero .hero-glance');
+    const heading = root.querySelector('#glance-heading');
+    const cards = Array.from(root.querySelectorAll<HTMLAnchorElement>('.hero-glance .glance-card'));
+
+    expect(glance).not.toBeNull();
+    expect(root.querySelector('.hero')?.contains(glance)).toBe(true);
+    expect(heading?.textContent).toContain(GLANCE_HEADLINE_LEAD);
+    expect(heading?.textContent).toContain(GLANCE_HEADLINE_ACCENT);
+    expect(cards.map((card) => card.getAttribute('href'))).toEqual(
+      GLANCE_CARDS.map((card) => card.href),
+    );
+    for (const card of GLANCE_CARDS) {
+      expect(glance?.textContent).toContain(card.title);
+      expect(glance?.textContent).toContain(card.body);
+    }
+    expect(root.querySelectorAll('.hero-float-card').length).toBe(5);
+    expect(root.querySelectorAll('.hero-glance .glance-card').length).toBe(3);
+  });
+
   it('renders Community Impact after Inclusion as aspirational pathways, not results', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
@@ -249,7 +275,11 @@ describe('Home', () => {
     const root = fixture.nativeElement as HTMLElement;
 
     expect(root.querySelectorAll('h1').length).toBe(1);
-    expect(root.querySelectorAll('h2').length).toBe(7);
+    expect(root.querySelectorAll('h2').length).toBe(8);
+    expect(root.querySelector('#glance-heading')?.textContent).toContain(GLANCE_HEADLINE_LEAD);
+    expect(root.querySelector('.hero-glance')?.getAttribute('aria-labelledby')).toBe(
+      'glance-heading',
+    );
     expect(root.querySelector('#purpose')?.getAttribute('aria-labelledby')).toBe(
       'purpose-heading',
     );

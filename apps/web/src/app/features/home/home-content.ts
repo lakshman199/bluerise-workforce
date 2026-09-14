@@ -61,6 +61,45 @@ export const HERO_SERVICE_CARDS: readonly HeroServiceCard[] = [
   { id: 'support', label: 'Support' },
 ] as const;
 
+export const GLANCE_HEADLINE_LEAD = 'From workforce chaos to';
+export const GLANCE_HEADLINE_ACCENT = 'one connected experience.';
+
+export type GlanceCardId = 'hire' | 'operations' | 'support';
+
+export type GlanceCardIcon = 'people' | 'workforce' | 'headset';
+
+export interface GlanceCard {
+  id: GlanceCardId;
+  icon: GlanceCardIcon;
+  title: string;
+  body: string;
+  href: '/employers' | '/our-solutions' | '/benefits';
+}
+
+export const GLANCE_CARDS: readonly GlanceCard[] = [
+  {
+    id: 'hire',
+    icon: 'people',
+    title: 'Hire Faster',
+    body: 'Connect with the right talent and simplify onboarding.',
+    href: '/employers',
+  },
+  {
+    id: 'operations',
+    icon: 'workforce',
+    title: 'Run Workforce Operations',
+    body: 'Manage payroll, timekeeping and benefits with confidence.',
+    href: '/our-solutions',
+  },
+  {
+    id: 'support',
+    icon: 'headset',
+    title: 'Support Your People',
+    body: 'Provide ongoing support and create better employee experiences.',
+    href: '/benefits',
+  },
+] as const;
+
 export const PURPOSE_EYEBROW = 'Our core purpose';
 
 export const PURPOSE_HEADLINE =

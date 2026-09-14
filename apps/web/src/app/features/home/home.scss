@@ -17,27 +17,38 @@
 
 .hero__inner {
   display: grid;
+  grid-template-areas:
+    'copy'
+    'visual'
+    'glance';
   gap: var(--br-space-12);
   align-items: center;
 
   @include bp.from(bp.$bp-lg) {
     grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
-    gap: var(--br-space-12);
+    grid-template-areas:
+      'copy visual'
+      'copy glance';
+    column-gap: var(--br-space-12);
+    row-gap: var(--br-space-6);
     align-items: start;
   }
 
   @include bp.from(bp.$bp-xl) {
     grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr);
-    gap: var(--br-space-10);
+    column-gap: var(--br-space-10);
+    row-gap: var(--br-space-5);
   }
 
   @media (min-width: 1440px) {
     grid-template-columns: minmax(0, 0.3fr) minmax(0, 0.7fr);
-    gap: var(--br-space-8);
+    column-gap: var(--br-space-8);
+    row-gap: var(--br-space-5);
   }
 }
 
 .hero__copy {
+  grid-area: copy;
   min-width: 0;
   position: relative;
   z-index: 1;
@@ -76,7 +87,14 @@
 // Hero scene — four aligned frames, CSS cross-fade loop
 // ---------------------------------------------------------------------------------------
 
+.hero-glance-host {
+  grid-area: glance;
+  min-width: 0;
+  align-self: start;
+}
+
 .hero__visual {
+  grid-area: visual;
   position: relative;
   margin: 0;
   min-width: 0;
