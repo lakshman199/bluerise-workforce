@@ -52,6 +52,55 @@
             (error)="onFrameError(i, $event)"
           />
         }
+        <ul class="hero-scene__cards">
+          @for (card of serviceCards; track card.id) {
+            <li class="hero-float-card" [class]="'hero-float-card hero-float-card--' + card.id">
+              <span class="hero-float-card__icon">
+                @switch (card.id) {
+                  @case ('hiring') {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="9" cy="8" r="3" />
+                      <path d="M4 19c.5-2.6 2.4-4 5-4s4.5 1.4 5 4" stroke-linecap="round" />
+                      <path d="M17 8v6M14 11h6" stroke-linecap="round" />
+                    </svg>
+                  }
+                  @case ('payroll') {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="12" cy="12" r="8.2" />
+                      <path d="M12 7.2v9.6M14.6 9.1c-.6-.8-1.5-1.2-2.6-1.2-1.6 0-2.7.9-2.7 2.1 0 2.8 5.3 1.4 5.3 4.2 0 1.3-1.2 2.2-2.9 2.2-1.2 0-2.2-.5-2.8-1.3" stroke-linecap="round" />
+                    </svg>
+                  }
+                  @case ('benefits') {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path
+                        d="M12 3 5 6.5v5.2c0 4.2 2.8 7.9 7 8.8 4.2-.9 7-4.6 7-8.8V6.5L12 3Z"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  }
+                  @case ('timekeeping') {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="12" cy="12" r="8.2" />
+                      <path d="M12 7.5V12l3.2 2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  }
+                  @case ('support') {
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path
+                        d="M5.5 11.5V10a6.5 6.5 0 0 1 13 0v1.5"
+                        stroke-linecap="round"
+                      />
+                      <rect x="3.8" y="11" width="4.2" height="6.2" rx="1.6" />
+                      <rect x="16" y="11" width="4.2" height="6.2" rx="1.6" />
+                      <path d="M18.1 17.2c0 2.1-1.8 3.3-4.1 3.3" stroke-linecap="round" />
+                    </svg>
+                  }
+                }
+              </span>
+              <span class="hero-float-card__label">{{ card.label }}</span>
+            </li>
+          }
+        </ul>
       </div>
     </figure>
   </div>

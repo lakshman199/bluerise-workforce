@@ -13,6 +13,7 @@ import {
   HERO_HEADLINE_PRIMARY,
   HERO_SCENE_ALT,
   HERO_SCENE_FRAMES,
+  HERO_SERVICE_CARDS,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
   TOGETHER_CTA,
@@ -158,6 +159,13 @@ describe('Home', () => {
     fixture.detectChanges();
     expect(frames[0]?.hasAttribute('src')).toBe(false);
     expect(frames[0]?.classList.contains('hero-scene__frame--failed')).toBe(true);
+    const cards = Array.from(
+      root.querySelectorAll('.hero-float-card .hero-float-card__label'),
+      (node) => node.textContent?.trim(),
+    );
+    expect(cards).toEqual(HERO_SERVICE_CARDS.map((card) => card.label));
+    expect(new Set(cards).size).toBe(5);
+    expect(root.querySelectorAll('.hero-float-card').length).toBe(5);
     expect(text).not.toContain('Employee portal');
     expect(text).not.toContain('Pay statement');
     expect(text).not.toContain('Coverage on file');

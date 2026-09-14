@@ -40,6 +40,7 @@ import {
   HERO_LEAD,
   HERO_SCENE_ALT,
   HERO_SCENE_FRAMES,
+  HERO_SERVICE_CARDS,
   PURPOSE_EYEBROW,
   PURPOSE_HEADLINE,
   PURPOSE_ITEMS,
@@ -69,6 +70,7 @@ export class Home {
   protected readonly lead = HERO_LEAD;
   protected readonly sceneAlt = HERO_SCENE_ALT;
   protected readonly sceneFrames = HERO_SCENE_FRAMES;
+  protected readonly serviceCards = HERO_SERVICE_CARDS;
   protected readonly frameLoaded = signal<readonly boolean[]>([
     false,
     false,

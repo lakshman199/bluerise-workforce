@@ -35,10 +35,30 @@ export const HERO_SCENE_ALT =
   'BlueRise helps small businesses simplify hiring, payroll, benefits, timekeeping and workforce support.';
 
 export const HERO_SCENE_FRAMES = [
-  '/images/hero/bluerise-chaos-start.png',
-  '/images/hero/bluerise-float-motion.png',
-  '/images/hero/bluerise-peak-action.png',
-  '/images/hero/bluerise-calm-finish.png',
+  '/images/hero/bluerise-chaos-start-clean.png',
+  '/images/hero/bluerise-float-motion-clean.png',
+  '/images/hero/bluerise-peak-action-clean.png',
+  '/images/hero/bluerise-calm-finish-clean.png',
+] as const;
+
+export type HeroServiceCardId =
+  | 'hiring'
+  | 'payroll'
+  | 'benefits'
+  | 'timekeeping'
+  | 'support';
+
+export interface HeroServiceCard {
+  id: HeroServiceCardId;
+  label: string;
+}
+
+export const HERO_SERVICE_CARDS: readonly HeroServiceCard[] = [
+  { id: 'hiring', label: 'Hiring' },
+  { id: 'payroll', label: 'Payroll' },
+  { id: 'benefits', label: 'Benefits' },
+  { id: 'timekeeping', label: 'Timekeeping' },
+  { id: 'support', label: 'Support' },
 ] as const;
 
 export const PURPOSE_EYEBROW = 'Our core purpose';

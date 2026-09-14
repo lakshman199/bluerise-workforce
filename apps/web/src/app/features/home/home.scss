@@ -7,7 +7,7 @@
 .hero {
   position: relative;
   isolation: isolate;
-  overflow: clip;
+  overflow: visible;
   padding-block: clamp(2.5rem, 1.2rem + 5vw, 6.25rem) var(--br-section-y);
   background:
     radial-gradient(ellipse 70% 55% at 92% 8%, rgb(217 232 255 / 70%), transparent 58%),
@@ -21,13 +21,26 @@
   align-items: center;
 
   @include bp.from(bp.$bp-lg) {
-    grid-template-columns: minmax(0, 0.44fr) minmax(0, 0.56fr);
-    gap: var(--br-space-16);
+    grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+    gap: var(--br-space-12);
+    align-items: start;
+  }
+
+  @include bp.from(bp.$bp-xl) {
+    grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr);
+    gap: var(--br-space-10);
+  }
+
+  @media (min-width: 1440px) {
+    grid-template-columns: minmax(0, 0.3fr) minmax(0, 0.7fr);
+    gap: var(--br-space-8);
   }
 }
 
 .hero__copy {
   min-width: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .hero__title {
@@ -64,18 +77,86 @@
 // ---------------------------------------------------------------------------------------
 
 .hero__visual {
+  position: relative;
   margin: 0;
   min-width: 0;
+  width: 100%;
+  justify-self: stretch;
+  transform-origin: center center;
+  will-change: transform;
+  // Mobile: a few pixels only. Desktop overrides restore the full float.
+  --hero-float-x: 1px;
+  --hero-float-y-start: 2px;
+  --hero-float-y-mid: -3px;
+  --hero-float-y-end: 1px;
+  --hero-float-rot-start: -0.06deg;
+  --hero-float-rot-mid: 0.08deg;
+  --hero-float-rot-end: -0.03deg;
+  --hero-float-scale: 1.002;
+  animation: hero-visual-float 6s ease-in-out infinite alternate;
+
+  @include bp.from(bp.$bp-md) {
+    --hero-float-x: 1.5px;
+    --hero-float-y-start: 2px;
+    --hero-float-y-mid: -5px;
+    --hero-float-y-end: 1.5px;
+    --hero-float-rot-start: -0.08deg;
+    --hero-float-rot-mid: 0.12deg;
+    --hero-float-rot-end: -0.04deg;
+    --hero-float-scale: 1.003;
+  }
+
+  @include bp.from(bp.$bp-lg) {
+    --hero-float-x: 2px;
+    --hero-float-y-start: 3px;
+    --hero-float-y-mid: -6px;
+    --hero-float-y-end: 2px;
+    --hero-float-rot-start: -0.1deg;
+    --hero-float-rot-mid: 0.15deg;
+    --hero-float-rot-end: -0.05deg;
+    --hero-float-scale: 1.005;
+  }
+
+  @include bp.until(bp.$bp-md) {
+    max-width: 28rem;
+    margin-inline: auto;
+  }
+
+  @include bp.from(bp.$bp-md) {
+    @include bp.until(bp.$bp-lg) {
+      max-width: 40rem;
+      margin-inline: auto;
+    }
+  }
+}
+
+@keyframes hero-visual-float {
+  0% {
+    transform: translate3d(0, var(--hero-float-y-start), 0)
+      rotate(var(--hero-float-rot-start)) scale(1);
+  }
+
+  50% {
+    transform: translate3d(var(--hero-float-x), var(--hero-float-y-mid), 0)
+      rotate(var(--hero-float-rot-mid)) scale(var(--hero-float-scale));
+  }
+
+  100% {
+    transform: translate3d(calc(var(--hero-float-x) * -1), var(--hero-float-y-end), 0)
+      rotate(var(--hero-float-rot-end)) scale(1);
+  }
 }
 
 .hero-scene {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   isolation: isolate;
   border: 1px solid var(--br-color-border);
   border-radius: var(--br-radius-2xl);
-  background: var(--br-color-surface);
+  // Sky from the artwork, never the cream page surface, so a missed frame cannot flash white.
+  background: #b9dcfa;
   box-shadow: var(--br-shadow-sm);
 }
 
@@ -86,10 +167,11 @@
   width: 100%;
   height: 100%;
   margin: 0;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   opacity: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .hero-scene__frame--failed {
@@ -99,6 +181,7 @@
 .hero-scene__frame--ready.hero-scene__frame--1,
 .hero-scene__frame--hold {
   opacity: 1;
+  z-index: 1;
 }
 
 .hero-scene--live .hero-scene__frame {
@@ -123,84 +206,304 @@
   animation-name: hero-scene-4;
 }
 
-// 5s loop. Each frame holds ~1.01s at full opacity. Fades are 240ms out / 200ms
-// in, staggered so the outgoing frame is nearly gone before the next is solid.
-// That keeps misaligned characters/papers from reading as a double exposure.
+// 5s loop. Incoming frame fades in over 160ms (3.2%) on top of the current
+// fully opaque frame. The outgoing frame drops only after the incoming cover
+// is complete, so the cream/sky container is never visible between frames.
 @keyframes hero-scene-1 {
-  0%,
-  20.2% {
+  0% {
     opacity: 1;
+    z-index: 3;
   }
 
-  25%,
-  96.4% {
+  28.2% {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  28.3%,
+  96.8% {
     opacity: 0;
+    z-index: 1;
   }
 
   100% {
     opacity: 1;
+    z-index: 4;
   }
 }
 
 @keyframes hero-scene-2 {
   0%,
-  23% {
+  25% {
     opacity: 0;
+    z-index: 1;
   }
 
-  27%,
-  45.2% {
+  28.2% {
     opacity: 1;
+    z-index: 4;
   }
 
-  50%,
+  53.2% {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  53.3%,
   100% {
     opacity: 0;
+    z-index: 1;
   }
 }
 
 @keyframes hero-scene-3 {
   0%,
-  48% {
+  50% {
     opacity: 0;
+    z-index: 1;
   }
 
-  52%,
-  70.2% {
+  53.2% {
     opacity: 1;
+    z-index: 4;
   }
 
-  75%,
+  78.2% {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  78.3%,
   100% {
     opacity: 0;
+    z-index: 1;
   }
 }
 
 @keyframes hero-scene-4 {
-  0%,
-  73% {
-    opacity: 0;
+  0% {
+    opacity: 1;
+    z-index: 2;
   }
 
-  77%,
-  95.2% {
+  3.2% {
     opacity: 1;
+    z-index: 2;
+  }
+
+  3.3%,
+  75% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  78.2%,
+  100% {
+    opacity: 1;
+    z-index: 4;
+  }
+}
+
+.hero-scene__cards {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.hero-float-card {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  max-width: calc(100% - 1rem);
+  padding: 0.34rem 0.62rem 0.34rem 0.34rem;
+  border: 1px solid rgb(23 52 111 / 12%);
+  border-radius: var(--br-radius-full);
+  background: rgb(255 253 248 / 94%);
+  box-shadow: var(--br-shadow-sm);
+  color: var(--br-blue-900);
+  font-size: 0.72rem;
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  transform: translate3d(0, 0, 0);
+  animation: hero-card-float ease-in-out infinite alternate;
+  --card-float-x: 2px;
+  --card-float-y: -5px;
+  --card-float-r: 0.35deg;
+}
+
+.hero-float-card__icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: var(--br-radius-full);
+  background: var(--br-color-primary-surface);
+  color: var(--br-color-primary);
+
+  svg {
+    width: 0.82rem;
+    height: 0.82rem;
+  }
+}
+
+.hero-float-card--hiring {
+  left: 22%;
+  top: 6.5%;
+  animation-duration: 5.2s;
+  animation-delay: -2.1s;
+  --card-float-x: 3px;
+  --card-float-y: -8px;
+  --card-float-r: 0.45deg;
+}
+
+.hero-float-card--payroll {
+  left: 46%;
+  top: 6%;
+  animation-duration: 6.1s;
+  animation-delay: -0.8s;
+  --card-float-x: 4px;
+  --card-float-y: -6px;
+  --card-float-r: -0.35deg;
+}
+
+.hero-float-card--benefits {
+  left: 63%;
+  top: 21%;
+  right: auto;
+  animation-duration: 5.6s;
+  animation-delay: -3.4s;
+  --card-float-x: -3px;
+  --card-float-y: -9px;
+  --card-float-r: 0.55deg;
+}
+
+.hero-float-card--timekeeping {
+  left: 23%;
+  top: 38%;
+  animation-duration: 6.5s;
+  animation-delay: -1.7s;
+  --card-float-x: 2px;
+  --card-float-y: -7px;
+  --card-float-r: -0.5deg;
+}
+
+.hero-float-card--support {
+  left: 44%;
+  top: 53%;
+  animation-duration: 5.8s;
+  animation-delay: -4.2s;
+  --card-float-x: 5px;
+  --card-float-y: -4px;
+  --card-float-r: 0.3deg;
+}
+
+@keyframes hero-card-float {
+  0% {
+    transform: translate3d(0, 3px, 0) rotate(-0.2deg);
   }
 
   100% {
-    opacity: 0;
+    transform: translate3d(var(--card-float-x), var(--card-float-y), 0)
+      rotate(var(--card-float-r));
+  }
+}
+
+@include bp.from(bp.$bp-md) {
+  .hero-float-card {
+    font-size: 0.78rem;
+    padding: 0.38rem 0.72rem 0.38rem 0.38rem;
+  }
+
+  .hero-float-card__icon {
+    width: 1.45rem;
+    height: 1.45rem;
+
+    svg {
+      width: 0.88rem;
+      height: 0.88rem;
+    }
+  }
+}
+
+@include bp.from(bp.$bp-lg) {
+  .hero-float-card {
+    font-size: 0.84rem;
+  }
+}
+
+@include bp.until(bp.$bp-md) {
+  .hero-float-card {
+    font-size: 0.62rem;
+    gap: 0.28rem;
+    padding: 0.26rem 0.48rem 0.26rem 0.26rem;
+    --card-float-x: 1px;
+    --card-float-y: -3px;
+    --card-float-r: 0.2deg;
+  }
+
+  .hero-float-card__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+
+    svg {
+      width: 0.68rem;
+      height: 0.68rem;
+    }
+  }
+
+  .hero-float-card--hiring {
+    left: 18%;
+    top: 5.5%;
+  }
+
+  .hero-float-card--payroll {
+    left: 43%;
+    top: 5%;
+  }
+
+  .hero-float-card--benefits {
+    left: 60%;
+    top: 19%;
+    right: auto;
+  }
+
+  .hero-float-card--timekeeping {
+    left: 18%;
+    top: 36%;
+  }
+
+  .hero-float-card--support {
+    left: 40%;
+    top: 52%;
   }
 }
 
 @include bp.reduced-motion {
+  .hero__visual,
+  .hero-float-card {
+    animation: none;
+    will-change: auto;
+    transform: none;
+  }
+
   .hero-scene--live .hero-scene__frame {
     animation: none;
     opacity: 0;
+    z-index: 0;
   }
 
   .hero-scene--live .hero-scene__frame--4.hero-scene__frame--ready,
   .hero-scene--live .hero-scene__frame--hold {
     opacity: 1;
+    z-index: 2;
   }
 }
 
