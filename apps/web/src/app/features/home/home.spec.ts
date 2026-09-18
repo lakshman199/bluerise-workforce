@@ -4,36 +4,48 @@ import { provideRouter } from '@angular/router';
 
 import { Home } from './home';
 import {
-  CLOSE_HEADLINE,
   CLOSE_PRIMARY_CTA,
-  CLOSE_SECONDARY_CTA,
   COMMUNITY_CLOSING,
   COMMUNITY_HEADLINE,
   COMMUNITY_ITEMS,
   GLANCE_CARDS,
   GLANCE_HEADLINE_ACCENT,
   GLANCE_HEADLINE_LEAD,
+  HERO_HEADLINE_ACCENT,
   HERO_HEADLINE_PRIMARY,
+  HERO_LEAD,
+  HERO_PRIMARY_CTA,
   HERO_SCENE_ALT,
   HERO_SCENE_FRAMES,
+  HERO_SECONDARY_CTA,
   HERO_SERVICE_CARDS,
-  PURPOSE_HEADLINE,
+  HOW_IT_WORKS_HEADLINE,
+  HOW_IT_WORKS_STEPS,
   PURPOSE_ITEMS,
+  PURPOSE_LEAD,
   TOGETHER_CTA,
   TOGETHER_HEADLINE,
   TOGETHER_LEAD,
-  VALUE_ITEMS,
-  VALUES_HEADLINE,
+  TRUST_LEAD,
 } from './home-content';
-import {
-  ABOUT_HEADLINE,
-  ABOUT_HOME_CTA,
-  ABOUT_HOME_INTRO,
-  ABOUT_MISSION,
-  ABOUT_VISION,
-  TALENT_HEADING,
-} from '../about/about-content';
+import { ABOUT_HOME_CTA } from '../about/about-content';
 import { INCLUSION_HEADLINE, INCLUSION_HOME_CTA } from '../inclusion/inclusion-content';
+
+if (typeof window.matchMedia !== 'function') {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => undefined,
+      removeListener: () => undefined,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+      dispatchEvent: () => false,
+    }),
+  });
+}
 
 function setup() {
   TestBed.configureTestingModule({
@@ -57,29 +69,29 @@ function setup() {
 }
 
 describe('Home', () => {
-  it('uses the approved hero message with the plural Workforces standard', () => {
+  it('uses the short small-business hero message', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
     const heading = root.querySelector('h1')?.textContent ?? '';
 
     expect(heading).toContain(HERO_HEADLINE_PRIMARY);
-    expect(heading).toContain('Creating Brighter Futures.');
-    expect(heading).not.toContain('Building Stronger Workforce.');
-    expect(root.textContent).toContain('work is more than employment');
-    expect(root.textContent).toContain('supporting families');
-    expect(root.textContent).toContain('respect, compassion');
+    expect(heading).toContain(HERO_HEADLINE_ACCENT);
+    expect(root.textContent).toContain(HERO_LEAD);
+    expect(root.textContent).not.toContain('work is more than employment');
+    expect(root.querySelectorAll('.hero__support').length).toBe(1);
   });
 
-  it('sends the primary CTA to Core Purpose and the secondary CTA to Benefits', () => {
+  it('sends the primary CTA to the glance section and the secondary CTA to Contact', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
-    const purpose = root.querySelector<HTMLAnchorElement>('a[href="#purpose"]');
-    const benefits = root.querySelector<HTMLAnchorElement>('a[href="/benefits"]');
+    const glanceCta = root.querySelector<HTMLAnchorElement>('a[href="#glance"]');
+    const contact = root.querySelector<HTMLAnchorElement>('.hero__actions a[href="/contact"]');
 
-    expect(purpose?.textContent?.trim()).toBe('Explore Our Purpose');
-    expect(benefits?.textContent?.trim()).toBe('View Benefits');
-    expect(root.querySelector('#purpose')).not.toBeNull();
-    expect(root.querySelector('#purpose h2')?.textContent).toContain(PURPOSE_HEADLINE);
+    expect(glanceCta?.textContent?.trim()).toBe(HERO_PRIMARY_CTA);
+    expect(contact?.textContent?.trim()).toBe(HERO_SECONDARY_CTA);
+    expect(root.querySelector('#glance')).not.toBeNull();
+    expect(root.querySelector('#purpose h2')?.textContent).toContain('Built for');
+    expect(root.querySelector('#purpose h2')?.textContent).toContain('Growing Businesses.');
   });
 
   it('keeps the homepage industry-neutral after the hero', () => {
@@ -97,18 +109,21 @@ describe('Home', () => {
     expect(text).not.toMatch(/current industry focus/i);
   });
 
-  it('renders all five Core Purpose items', () => {
+  it('positions BlueRise for growing businesses after the hero', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
     const cards = root.querySelectorAll('.purpose-card');
 
+    expect(root.querySelector('#purpose h2')?.textContent).toContain('Built for');
+    expect(root.querySelector('#purpose h2')?.textContent).toContain('Growing Businesses.');
+    expect(root.textContent).toContain(PURPOSE_LEAD);
     expect(cards.length).toBe(PURPOSE_ITEMS.length);
     for (const item of PURPOSE_ITEMS) {
       expect(root.textContent).toContain(item.title);
     }
   });
 
-  it('summarizes About, Mission, Vision, and Talent Meets Purpose after Core Purpose', () => {
+  it('summarizes purpose after Core Purpose without repeating About-page mission copy', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
     const about = root.querySelector('#about');
@@ -116,14 +131,14 @@ describe('Home', () => {
 
     expect(about).not.toBeNull();
     expect(purpose?.nextElementSibling).toBe(about);
-    expect(about?.querySelector('h2')?.textContent).toContain(ABOUT_HEADLINE);
-    expect(about?.textContent).toContain(ABOUT_HOME_INTRO);
-    expect(about?.textContent).toContain(ABOUT_MISSION);
-    expect(about?.textContent).toContain(ABOUT_VISION);
-    expect(about?.textContent).toContain(TALENT_HEADING);
+    expect(about?.querySelector('h2')?.textContent).toContain('Better for Business.');
+    expect(about?.querySelector('h2')?.textContent).toContain('Better for People.');
+    expect(about?.textContent).toContain(TRUST_LEAD);
     expect(about?.querySelector('a[href="/about"]')?.textContent?.trim()).toBe(
       ABOUT_HOME_CTA,
     );
+    expect(about?.querySelector('br-principle-card')).toBeNull();
+    expect(about?.querySelector('br-talent-card')).toBeNull();
   });
 
   it('renders the Inclusion commitment after About and links to /inclusion', () => {
@@ -213,7 +228,7 @@ describe('Home', () => {
     expect(community).not.toBeNull();
     expect(root.querySelector('#inclusion')?.nextElementSibling).toBe(community);
     expect(community?.querySelector('h2')?.textContent).toContain(COMMUNITY_HEADLINE);
-    expect(community?.textContent).toContain('We aspire to establish programs');
+    expect(community?.textContent).toContain('We aspire to programs');
     expect(community?.textContent).toContain(COMMUNITY_CLOSING);
     expect(community?.querySelectorAll('.impact-card').length).toBe(
       COMMUNITY_ITEMS.length,
@@ -226,7 +241,7 @@ describe('Home', () => {
     expect(community?.textContent).not.toMatch(/partnered with|in partnership with/i);
   });
 
-  it('renders A Future Built Together with Explore Benefits after Community Impact', () => {
+  it('teases Benefits after Community Impact', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
     const together = root.querySelector('#together');
@@ -235,38 +250,36 @@ describe('Home', () => {
     expect(root.querySelector('#community')?.nextElementSibling).toBe(together);
     expect(together?.querySelector('h2')?.textContent).toContain(TOGETHER_HEADLINE);
     expect(together?.textContent).toContain(TOGETHER_LEAD);
-    expect(together?.textContent).toContain('meaningful employment');
-    expect(together?.textContent).toContain('lasting impact');
     expect(together?.querySelector('a[href="/benefits"]')?.textContent?.trim()).toBe(
       TOGETHER_CTA,
     );
   });
 
-  it('renders Values and a final CTA for employers, job seekers, and community partners', () => {
+  it('explains how BlueRise works in three steps and closes with a contact CTA', () => {
     const fixture = setup();
     const root = fixture.nativeElement as HTMLElement;
-    const values = root.querySelector('#values');
+    const how = root.querySelector('#how-it-works');
     const close = root.querySelector('#connect');
 
-    expect(values).not.toBeNull();
+    expect(how).not.toBeNull();
     expect(close).not.toBeNull();
-    expect(root.querySelector('#together')?.nextElementSibling).toBe(values);
-    expect(values?.nextElementSibling).toBe(close);
-    expect(values?.querySelector('h2')?.textContent).toContain(VALUES_HEADLINE);
-    expect(values?.querySelectorAll('.value-card').length).toBe(VALUE_ITEMS.length);
-    for (const item of VALUE_ITEMS) {
-      expect(values?.textContent).toContain(item.title);
-      expect(values?.textContent).toContain(item.body);
+    expect(root.querySelector('#together')?.nextElementSibling).toBe(how);
+    expect(how?.nextElementSibling).toBe(close);
+    expect(how?.querySelector('h2')?.textContent).toContain(HOW_IT_WORKS_HEADLINE);
+    expect(how?.querySelectorAll('.how-it-works__step').length).toBe(
+      HOW_IT_WORKS_STEPS.length,
+    );
+    for (const step of HOW_IT_WORKS_STEPS) {
+      expect(how?.textContent).toContain(step.title);
+      expect(how?.textContent).toContain(step.body);
     }
-    expect(close?.querySelector('h2')?.textContent).toContain(CLOSE_HEADLINE);
+    expect(close?.querySelector('h2')?.textContent).toContain('Ready to Simplify');
+    expect(close?.querySelector('h2')?.textContent).toContain('Workforce Management?');
     expect(close?.textContent).toContain(
-      'Employers, job seekers, and community partners',
+      'Spend less time managing workforce administration',
     );
     expect(close?.querySelector('a[href="/contact"]')?.textContent?.trim()).toBe(
       CLOSE_PRIMARY_CTA,
-    );
-    expect(close?.querySelector('a[href="/our-solutions"]')?.textContent?.trim()).toBe(
-      CLOSE_SECONDARY_CTA,
     );
   });
 
@@ -295,8 +308,8 @@ describe('Home', () => {
     expect(root.querySelector('#together')?.getAttribute('aria-labelledby')).toBe(
       'together-heading',
     );
-    expect(root.querySelector('#values')?.getAttribute('aria-labelledby')).toBe(
-      'values-heading',
+    expect(root.querySelector('#how-it-works')?.getAttribute('aria-labelledby')).toBe(
+      'how-it-works-heading',
     );
     expect(root.querySelector('#connect')?.getAttribute('aria-labelledby')).toBe(
       'close-heading',

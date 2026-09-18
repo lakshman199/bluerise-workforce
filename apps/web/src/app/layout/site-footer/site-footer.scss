@@ -58,7 +58,11 @@
 .footer__nav {
   display: grid;
   gap: var(--br-space-10);
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @include bp.from(bp.$bp-lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .footer__heading {
@@ -95,6 +99,25 @@
 
 .footer__legal {
   padding-top: var(--br-space-8);
+  padding-bottom: 4.25rem;
   font-size: var(--br-text-sm);
   color: rgb(247 243 234 / 48%);
+
+  @include bp.from(bp.$bp-md) {
+    padding-bottom: 0;
+    padding-right: 11rem;
+  }
+}
+
+.footer__social {
+  margin-top: var(--br-space-4);
+}
+
+.footer__social-label {
+  margin: 0 0 var(--br-space-2);
+  font-size: 0.7rem;
+  font-weight: var(--br-weight-semibold);
+  letter-spacing: var(--br-tracking-wide);
+  text-transform: uppercase;
+  color: rgb(247 243 234 / 55%);
 }

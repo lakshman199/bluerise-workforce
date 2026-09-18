@@ -15,6 +15,7 @@ const STUB_ROUTES = [
   { path: 'industries', children: [] },
   { path: 'resources', children: [] },
   { path: 'contact', children: [] },
+  { path: 'inclusion', children: [] },
 ];
 
 describe('SiteFooter', () => {
@@ -37,9 +38,10 @@ describe('SiteFooter', () => {
       root.querySelectorAll<HTMLAnchorElement>('.footer__nav a'),
     ).map((anchor) => anchor.getAttribute('href'));
 
-    const allowed = new Set(
-      FOOTER_COLUMNS.flatMap((column) => column.items.map((item) => item.path)),
-    );
+    const allowed = new Set([
+      ...FOOTER_COLUMNS.flatMap((column) => column.items.map((item) => item.path)),
+      `mailto:${PUBLIC_CONTACT_EMAIL}`,
+    ]);
     for (const href of hrefs) {
       expect(allowed.has(href ?? '')).toBe(true);
     }
@@ -58,6 +60,38 @@ describe('SiteFooter', () => {
     expect(text).not.toContain('012 3456 789');
     expect(text).not.toContain('Dubai');
     expect(text).not.toContain('linkedin.com');
+    expect(text).not.toContain('facebook.com');
+    expect(text).not.toContain('instagram.com');
+    expect(text).not.toContain('Connect with us');
+  });
+
+  it('keeps footer navigation to existing public routes', () => {
+    const root = render();
+    const hrefs = Array.from(
+      root.querySelectorAll<HTMLAnchorElement>('.footer__nav a'),
+    ).map((anchor) => anchor.getAttribute('href'));
+
+    expect(hrefs).toContain('/about');
+    expect(hrefs).toContain('/inclusion');
+    expect(hrefs).toContain('/employers');
+    expect(hrefs).toContain('/our-solutions');
+    expect(hrefs).toContain('/benefits');
+    expect(hrefs).toContain('/job-seekers');
+    expect(hrefs).toContain('/contact');
+    expect(hrefs).not.toContain('/industries');
+    expect(hrefs).not.toContain('/resources');
+    expect(hrefs).not.toContain('/design-system');
+  });
+
+  it('groups footer links as Company, Employers, Job Seekers, and Connect', () => {
+    const root = render();
+    const headings = Array.from(root.querySelectorAll('.footer__heading')).map(
+      (heading) => heading.textContent?.trim(),
+    );
+
+    expect(headings).toEqual(['Company', 'Employers', 'Job Seekers', 'Connect']);
+    expect(root.querySelector('.footer__social')).toBeNull();
+    expect(root.textContent).not.toContain('Connect with us');
   });
 
   it('uses the approved logo on a light plate so the mark stays readable on the dark footer', () => {

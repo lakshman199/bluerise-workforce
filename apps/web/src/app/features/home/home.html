@@ -7,24 +7,22 @@
       <p class="br-eyebrow">{{ eyebrow }}</p>
 
       <h1 class="hero__title" id="hero-heading">
-        {{ headlinePrimary }}
-        <span class="hero__title-accent" [innerHTML]="headlineAccentHtml"></span>
+        <span class="hero__title-lead">{{ headlinePrimary }}</span>
+        <span class="hero__title-accent">{{ headlineAccent }}</span>
       </h1>
 
-      @for (paragraph of lead; track paragraph) {
-        <p class="hero__support">{{ paragraph }}</p>
-      }
+      <p class="hero__support">{{ lead }}</p>
 
       <div class="br-cluster hero__actions">
         <a
           class="br-button br-button--primary br-button--lg"
-          href="#purpose"
-          (click)="onExplorePurpose($event)"
+          [href]="primaryHref"
+          (click)="onHeroPrimaryCta($event)"
         >
-          Explore Our Purpose
+          {{ primaryCta }}
         </a>
-        <a class="br-button br-button--secondary br-button--lg" routerLink="/benefits">
-          View Benefits
+        <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+          {{ secondaryCta }}
         </a>
       </div>
     </div>
@@ -104,7 +102,7 @@
       </div>
     </figure>
 
-    <br-hero-glance class="hero-glance-host" />
+    <br-hero-glance id="glance" class="hero-glance-host" />
   </div>
 </section>
 
@@ -119,7 +117,10 @@
   <div class="br-container purpose__inner">
     <div class="purpose__copy">
       <p class="br-eyebrow">{{ purposeEyebrow }}</p>
-      <h2 id="purpose-heading" [innerHTML]="purposeHeadlineHtml"></h2>
+      <h2 id="purpose-heading">
+        <span class="purpose__line">{{ purposeHeadlineLead }}</span>
+        <span class="br-heading-accent">{{ purposeHeadlineAccent }}</span>
+      </h2>
       <p class="br-lead">{{ purposeLead }}</p>
     </div>
 
@@ -185,21 +186,18 @@
 <section class="br-section about-home" id="about" aria-labelledby="about-heading">
   <div class="br-container about-home__inner">
     <div class="about-home__copy">
-      <p class="br-eyebrow">{{ aboutEyebrow }}</p>
-      <h2 id="about-heading" [innerHTML]="aboutHeadlineHtml"></h2>
-      <p class="br-lead">{{ aboutIntro }}</p>
+      <p class="br-eyebrow">{{ trustEyebrow }}</p>
+      <h2 id="about-heading">
+        <span class="about-home__line">{{ trustHeadlineLead }}</span>
+        <span class="br-heading-accent">{{ trustHeadlineAccent }}</span>
+      </h2>
+      <p class="br-lead">{{ trustLead }}</p>
       <a
         class="br-button br-button--primary br-button--lg about-home__cta"
         [routerLink]="aboutCtaHref"
       >
         {{ aboutCta }}
       </a>
-    </div>
-
-    <div class="about-home__cards">
-      <br-principle-card [label]="missionLabel" [body]="mission" headingLevel="h3" />
-      <br-principle-card [label]="visionLabel" [body]="vision" headingLevel="h3" />
-      <br-talent-card />
     </div>
   </div>
 </section>
@@ -290,11 +288,11 @@
   <div class="br-container">
     <div class="together__banner">
       <div class="together__copy">
-        <h2 id="together-heading" [innerHTML]="togetherHeadlineHtml"></h2>
+        <h2 id="together-heading">
+          {{ togetherHeadlineLead }}
+          <span class="br-heading-accent br-heading-accent--on-dark">{{ togetherHeadlineAccent }}</span>
+        </h2>
         <p class="together__lead">{{ togetherLead }}</p>
-        @for (paragraph of togetherBody; track paragraph) {
-          <p>{{ paragraph }}</p>
-        }
       </div>
       <a
         class="br-button br-button--inverse br-button--lg together__cta"
@@ -309,22 +307,26 @@
 <!-- ===================================================================================== -->
 <!-- Values                                                                                -->
 <!-- ===================================================================================== -->
-<section class="br-section br-section--sunken values" id="values" aria-labelledby="values-heading">
+<section class="br-section br-section--sunken values" id="how-it-works" aria-labelledby="how-it-works-heading">
   <div class="br-container">
     <header class="values__header">
-      <p class="br-eyebrow">{{ valuesEyebrow }}</p>
-      <h2 id="values-heading" [innerHTML]="valuesHeadlineHtml"></h2>
-      <p class="br-lead">{{ valuesLead }}</p>
+      <p class="br-eyebrow">{{ howItWorksEyebrow }}</p>
+      <h2 id="how-it-works-heading">
+        {{ howItWorksHeadlineLead }}
+        <span class="br-heading-accent">{{ howItWorksHeadlineAccent }}</span>
+      </h2>
+      <p class="br-lead">{{ howItWorksLead }}</p>
     </header>
 
-    <ul class="values__grid">
-      @for (item of valueItems; track item.title) {
-        <li class="value-card">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.body }}</p>
+    <ol class="values__grid how-it-works__grid">
+      @for (step of howItWorksSteps; track step.title; let i = $index) {
+        <li class="value-card how-it-works__step">
+          <span class="how-it-works__num" aria-hidden="true">{{ i + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.body }}</p>
         </li>
       }
-    </ul>
+    </ol>
   </div>
 </section>
 
@@ -334,14 +336,14 @@
 <section class="br-section close" id="connect" aria-labelledby="close-heading">
   <div class="br-container close__inner">
     <p class="br-eyebrow">{{ closeEyebrow }}</p>
-    <h2 id="close-heading" [innerHTML]="closeHeadlineHtml"></h2>
+    <h2 id="close-heading">
+      <span class="close__line">{{ closeHeadlineLead }}</span>
+      <span class="br-heading-accent">{{ closeHeadlineAccent }}</span>
+    </h2>
     <p class="br-lead">{{ closeLead }}</p>
     <div class="br-cluster close__actions">
       <a class="br-button br-button--primary br-button--lg" [routerLink]="closePrimaryHref">
         {{ closePrimaryCta }}
-      </a>
-      <a class="br-button br-button--secondary br-button--lg" [routerLink]="closeSecondaryHref">
-        {{ closeSecondaryCta }}
       </a>
     </div>
   </div>
