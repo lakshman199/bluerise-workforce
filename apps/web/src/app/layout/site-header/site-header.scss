@@ -20,33 +20,53 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--br-space-2) var(--br-space-6);
-  padding-block: 0.45rem;
-  min-height: 2.5rem;
+  justify-content: flex-end;
+  gap: 0.15rem var(--br-space-4);
+  min-height: 2rem;
+  padding-block: 0;
 }
 
-.utility__motto {
+.utility__inner--with-social {
+  justify-content: space-between;
+}
+
+.utility__connect,
+.utility__contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--br-space-3);
+}
+
+.utility__label {
   margin: 0;
   font-size: var(--br-text-xs);
   font-weight: var(--br-weight-medium);
   letter-spacing: var(--br-tracking-wide);
-  line-height: var(--br-leading-snug);
-  max-width: 52ch;
+  text-transform: uppercase;
+  line-height: 1;
 }
 
-.utility__email {
+.utility__email,
+.utility__cta {
   font-size: var(--br-text-xs);
   font-weight: var(--br-weight-medium);
   color: var(--br-color-text-inverse);
   text-decoration: none;
-  min-height: var(--br-touch-target);
+  min-height: 2rem;
   display: inline-flex;
   align-items: center;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     text-decoration: underline;
     color: var(--br-color-text-inverse);
+  }
+}
+
+@include bp.until(bp.$bp-sm) {
+  .utility__email {
+    display: none;
   }
 }
 

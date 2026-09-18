@@ -1,0 +1,42 @@
+@if (links.length) {
+  <ul class="social-links">
+    @for (link of links; track link.id) {
+      <li>
+        <a
+          class="social-links__item"
+          [href]="link.href"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="link.label"
+        >
+          @switch (link.id) {
+            @case ('linkedin') {
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M6.5 9.5H4V20h2.5V9.5ZM5.25 4A1.63 1.63 0 1 0 5.26 7.25 1.63 1.63 0 0 0 5.25 4ZM20 20h-2.5v-5.6c0-1.57-.56-2.64-1.96-2.64-1.07 0-1.7.72-1.98 1.42-.1.25-.13.59-.13.94V20H11V9.5h2.5v1.43c.33-.51 1.17-1.64 2.86-1.64 2.09 0 3.64 1.37 3.64 4.3V20Z"
+                />
+              </svg>
+            }
+            @case ('facebook') {
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M14.5 8.25V6.6c0-.54.36-.66.61-.66H16.5V4h-2.17C11.9 4 11 5.5 11 7.33v.92H9v2.17h2V20h2.5v-8.58h2.08l.42-2.17H13.5V8.25Z"
+                />
+              </svg>
+            }
+            @case ('instagram') {
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M8.5 4h7A4.5 4.5 0 0 1 20 8.5v7A4.5 4.5 0 0 1 15.5 20h-7A4.5 4.5 0 0 1 4 15.5v-7A4.5 4.5 0 0 1 8.5 4Zm0 1.6A2.9 2.9 0 0 0 5.6 8.5v7a2.9 2.9 0 0 0 2.9 2.9h7a2.9 2.9 0 0 0 2.9-2.9v-7a2.9 2.9 0 0 0-2.9-2.9h-7Zm8.15 1.35a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 8.4A3.6 3.6 0 1 1 8.4 12 3.6 3.6 0 0 1 12 8.4Zm0 1.6A2 2 0 1 0 14 12a2 2 0 0 0-2-2Z"
+                />
+              </svg>
+            }
+          }
+        </a>
+      </li>
+    }
+  </ul>
+}

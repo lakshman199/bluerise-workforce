@@ -169,9 +169,21 @@ describe('SiteHeader', () => {
 
   it('publishes the verified email and does not invent a phone or street address', async () => {
     const fixture = await renderAt('/');
-    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
+    const root = fixture.nativeElement as HTMLElement;
+    const text = root.textContent ?? '';
+
     expect(text).toContain('info@blueriseworkforce.com');
+    expect(text).toContain('Contact Us');
+    expect(text).not.toContain('Connect with us');
+    expect(root.querySelector('.utility__connect')).toBeNull();
+    expect(root.querySelector('br-social-links')).toBeNull();
+    expect(root.querySelector('a.utility__cta[href="/contact"]')?.textContent?.trim()).toBe(
+      'Contact Us',
+    );
     expect(text).not.toContain('012 3456 789');
     expect(text).not.toContain('Dubai');
+    expect(text).not.toContain('linkedin.com');
+    expect(text).not.toContain('facebook.com');
+    expect(text).not.toContain('instagram.com');
   });
 });

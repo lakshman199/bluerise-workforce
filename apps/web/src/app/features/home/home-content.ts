@@ -1,20 +1,22 @@
 /**
- * Homepage copy for Task 2: hero and Core Purpose.
+ * Homepage copy for the public marketing site.
  *
- * Headline uses the plural "Workforces". The content-site screenshot reads the singular
- * "Workforce"; the master specification and architecture notes standardize the plural,
- * and that remains the project standard until the owner decides otherwise.
+ * This page is written for small and growing businesses. Longer mission, vision, and
+ * community detail lives on dedicated pages rather than in the hero.
  */
 
 export const HERO_EYEBROW = 'BlueRise Workforce';
 
-export const HERO_HEADLINE_PRIMARY = 'Building Stronger Workforces.';
-export const HERO_HEADLINE_ACCENT = 'Creating Brighter Futures.';
+export const HERO_HEADLINE_PRIMARY = 'Workforce Management,';
+export const HERO_HEADLINE_ACCENT = 'Made Simpler.';
 
-export const HERO_LEAD = [
-  'At BlueRise Workforce, we believe that work is more than employment—it is a pathway to dignity, stability, growth, and opportunity. Our purpose extends beyond connecting businesses with talent. We are committed to empowering individuals, supporting families, and creating sustainable career pathways that improve lives and strengthen communities.',
-  'We partner with organizations to deliver workforce solutions while ensuring that every individual we serve is treated with respect, compassion, and the opportunity to reach their full potential.',
-] as const;
+export const HERO_LEAD =
+  'Hire, pay, support, and retain your workforce with connected tools for payroll, benefits, timekeeping, and employee support.';
+
+export const HERO_PRIMARY_CTA = 'See How BlueRise Works';
+export const HERO_PRIMARY_HREF = '#glance';
+export const HERO_SECONDARY_CTA = 'Talk to Our Team';
+export const HERO_SECONDARY_HREF = '/contact';
 
 /**
  * Homepage hero visual labels. These name platform areas, not live employee records,
@@ -61,8 +63,8 @@ export const HERO_SERVICE_CARDS: readonly HeroServiceCard[] = [
   { id: 'support', label: 'Support' },
 ] as const;
 
-export const GLANCE_HEADLINE_LEAD = 'From workforce chaos to';
-export const GLANCE_HEADLINE_ACCENT = 'one connected experience.';
+export const GLANCE_HEADLINE_LEAD = 'One Connected Experience';
+export const GLANCE_HEADLINE_ACCENT = 'for Your Workforce.';
 
 export type GlanceCardId = 'hire' | 'operations' | 'support';
 
@@ -80,33 +82,35 @@ export const GLANCE_CARDS: readonly GlanceCard[] = [
   {
     id: 'hire',
     icon: 'people',
-    title: 'Hire Faster',
-    body: 'Connect with the right talent and simplify onboarding.',
+    title: 'Hire with Confidence',
+    body: 'Attract and onboard the right people with a simpler process.',
     href: '/employers',
   },
   {
     id: 'operations',
     icon: 'workforce',
-    title: 'Run Workforce Operations',
-    body: 'Manage payroll, timekeeping and benefits with confidence.',
+    title: 'Manage Payroll & Benefits',
+    body: 'Keep payroll, time, and benefits organized in one place.',
     href: '/our-solutions',
   },
   {
     id: 'support',
     icon: 'headset',
-    title: 'Support Your People',
-    body: 'Provide ongoing support and create better employee experiences.',
+    title: 'Support Your Workforce',
+    body: 'Give employees access to the support they need to stay productive and engaged.',
     href: '/benefits',
   },
 ] as const;
 
-export const PURPOSE_EYEBROW = 'Our core purpose';
+export const PURPOSE_EYEBROW = 'For growing businesses';
 
-export const PURPOSE_HEADLINE =
-  'BlueRise Workforce exists to create opportunities where talent meets purpose.';
+export const PURPOSE_HEADLINE_LEAD = 'Built for';
+export const PURPOSE_HEADLINE_ACCENT = 'Growing Businesses.';
+
+export const PURPOSE_HEADLINE = `${PURPOSE_HEADLINE_LEAD} ${PURPOSE_HEADLINE_ACCENT}`;
 
 export const PURPOSE_LEAD =
-  'By connecting people with opportunities and organizations with talent, we help build a stronger and more inclusive workforce for the future.';
+  'BlueRise helps small and growing businesses reduce administrative work and manage their workforce with greater clarity and confidence.';
 
 export type PurposeIcon = 'employment' | 'growth' | 'workplace' | 'security' | 'respect';
 
@@ -123,17 +127,23 @@ export const PURPOSE_ITEMS: readonly PurposeItem[] = [
   { icon: 'respect', title: 'Respect, dignity, and equal opportunity' },
 ] as const;
 
+export const TRUST_EYEBROW = 'Our purpose';
+export const TRUST_HEADLINE_LEAD = 'Better for Business.';
+export const TRUST_HEADLINE_ACCENT = 'Better for People.';
+export const TRUST_HEADLINE = `${TRUST_HEADLINE_LEAD} ${TRUST_HEADLINE_ACCENT}`;
+export const TRUST_LEAD =
+  'BlueRise helps businesses grow while creating stronger experiences for the people who make that growth possible.';
+
 /**
- * Community Impact copy from the approved content screenshot. The lead is aspirational
- * on purpose: these are intended pathways, not claimed programme results.
+ * Community Impact copy. The lead is aspirational on purpose: these are intended
+ * pathways, not claimed programme results.
  */
 export const COMMUNITY_EYEBROW = 'Community Impact & Giving Back';
 
-export const COMMUNITY_HEADLINE =
-  'BlueRise Workforce is committed to creating opportunities beyond traditional staffing and workforce services.';
+export const COMMUNITY_HEADLINE = 'Opportunity that reaches beyond the workplace.';
 
 export const COMMUNITY_LEAD =
-  'We aspire to establish programs and partnerships that allow individuals, businesses, and communities to contribute toward:';
+  'We aspire to programs and partnerships that help people, businesses, and communities contribute toward:';
 
 export type CommunityIcon =
   'development' | 'training' | 'scholarship' | 'workshops' | 'inclusion' | 'community';
@@ -153,64 +163,41 @@ export const COMMUNITY_ITEMS: readonly CommunityItem[] = [
 ] as const;
 
 export const COMMUNITY_CLOSING =
-  'By working together, we can create sustainable pathways that empower people to build brighter futures.';
+  'Working together, we can create pathways that help people build brighter futures.';
 
-export const TOGETHER_HEADLINE = 'A Future Built Together';
+export const TOGETHER_HEADLINE_LEAD = 'Benefits That';
+export const TOGETHER_HEADLINE_ACCENT = 'Help You Compete.';
+export const TOGETHER_HEADLINE = `${TOGETHER_HEADLINE_LEAD} ${TOGETHER_HEADLINE_ACCENT}`;
 
 export const TOGETHER_LEAD =
-  'At BlueRise Workforce, we believe that when people are empowered, communities prosper.';
-
-export const TOGETHER_BODY = [
-  'Through meaningful employment, workforce development, inclusive opportunities, and a commitment to serving others, we strive to create a future where everyone has the chance to contribute, succeed, and thrive.',
-  'Together, we are building stronger workforces, brighter futures, and lasting impact for generations to come.',
-] as const;
+  'Offer meaningful benefits and support that help you attract, retain, and care for your workforce.';
 
 export const TOGETHER_CTA = 'Explore Benefits';
 export const TOGETHER_CTA_HREF = '/benefits';
 
-export const VALUES_EYEBROW = 'How we work';
-export const VALUES_HEADLINE = 'Our Values';
-export const VALUES_LEAD =
-  'The same commitments that shape employment, inclusion, and community impact.';
+export const HOW_IT_WORKS_EYEBROW = 'How it works';
+export const HOW_IT_WORKS_HEADLINE_LEAD = 'Simple to Start.';
+export const HOW_IT_WORKS_HEADLINE_ACCENT = 'Easy to Manage.';
+export const HOW_IT_WORKS_HEADLINE = `${HOW_IT_WORKS_HEADLINE_LEAD} ${HOW_IT_WORKS_HEADLINE_ACCENT}`;
+export const HOW_IT_WORKS_LEAD = 'BlueRise follows a clear path from hiring to day-to-day support.';
 
-export interface ValueItem {
+export interface HowItWorksStep {
   title: string;
   body: string;
 }
 
-export const VALUE_ITEMS: readonly ValueItem[] = [
-  {
-    title: 'Empowerment',
-    body: 'Meaningful work as a pathway to dignity, growth, and opportunity.',
-  },
-  {
-    title: 'Integrity',
-    body: 'Honest, respectful support for every person we serve.',
-  },
-  {
-    title: 'Inclusion',
-    body: 'A commitment to accessible employment pathways, including for neurodiverse talent.',
-  },
-  {
-    title: 'Compassion',
-    body: 'Care for people, families, and the communities around them.',
-  },
-  {
-    title: 'Excellence',
-    body: 'Thoughtful workforce support that helps safeguard people’s futures.',
-  },
-  {
-    title: 'Impact',
-    body: 'When people are empowered, communities prosper.',
-  },
+export const HOW_IT_WORKS_STEPS: readonly HowItWorksStep[] = [
+  { title: 'Hire', body: 'Bring the right people onboard.' },
+  { title: 'Manage', body: 'Coordinate payroll, time, and benefits.' },
+  { title: 'Support', body: 'Help your workforce stay productive and supported.' },
 ] as const;
 
 export const CLOSE_EYEBROW = 'Get in touch';
-export const CLOSE_HEADLINE = 'Build the future of work with BlueRise Workforce.';
+export const CLOSE_HEADLINE_LEAD = 'Ready to Simplify';
+export const CLOSE_HEADLINE_ACCENT = 'Workforce Management?';
+export const CLOSE_HEADLINE = `${CLOSE_HEADLINE_LEAD} ${CLOSE_HEADLINE_ACCENT}`;
 export const CLOSE_LEAD =
-  'Employers, job seekers, and community partners are invited to connect with BlueRise Workforce.';
+  'Spend less time managing workforce administration and more time focused on your business.';
 
-export const CLOSE_PRIMARY_CTA = 'Contact Us';
+export const CLOSE_PRIMARY_CTA = 'Talk to BlueRise';
 export const CLOSE_PRIMARY_HREF = '/contact';
-export const CLOSE_SECONDARY_CTA = 'Explore Our Solutions';
-export const CLOSE_SECONDARY_HREF = '/our-solutions';

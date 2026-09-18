@@ -382,7 +382,12 @@
   .glance-card__float,
   .glance-card__lift,
   .glance-card__icon,
-  .glance-card__arrow {
+  .glance-card__arrow,
+  .hero-glance--visible .glance-heading,
+  .hero-glance--visible .glance-card,
+  .glance-card--hire .glance-card__float,
+  .glance-card--operations .glance-card__float,
+  .glance-card--support .glance-card__float {
     animation: none;
     opacity: 1;
     transform: none;

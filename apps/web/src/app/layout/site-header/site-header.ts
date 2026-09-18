@@ -8,11 +8,18 @@ import {
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { BrandLogo } from '../brand-logo/brand-logo';
-import { PRIMARY_NAV, PUBLIC_CONTACT_EMAIL, PUBLIC_MOTTO } from '../navigation';
+import {
+  PRIMARY_NAV,
+  PUBLIC_CONTACT_EMAIL,
+  SOCIAL_CONNECT_LABEL,
+  UTILITY_CONTACT_LABEL,
+  VERIFIED_SOCIAL_PROFILES,
+} from '../navigation';
+import { SocialLinks } from '../social-links/social-links';
 
 @Component({
   selector: 'br-site-header',
-  imports: [RouterLink, RouterLinkActive, BrandLogo],
+  imports: [RouterLink, RouterLinkActive, BrandLogo, SocialLinks],
   templateUrl: './site-header.html',
   styleUrl: './site-header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,8 +29,10 @@ import { PRIMARY_NAV, PUBLIC_CONTACT_EMAIL, PUBLIC_MOTTO } from '../navigation';
 })
 export class SiteHeader {
   protected readonly navItems = PRIMARY_NAV;
-  protected readonly motto = PUBLIC_MOTTO;
   protected readonly contactEmail = PUBLIC_CONTACT_EMAIL;
+  protected readonly connectLabel = SOCIAL_CONNECT_LABEL;
+  protected readonly utilityContactLabel = UTILITY_CONTACT_LABEL;
+  protected readonly hasSocial = VERIFIED_SOCIAL_PROFILES.length > 0;
   protected readonly menuOpen = signal(false);
 
   private readonly menuToggle = viewChild<ElementRef<HTMLButtonElement>>('menuToggle');

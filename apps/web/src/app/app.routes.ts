@@ -49,9 +49,9 @@ export const routes: Routes = [
     resolve: { seo: seoResolver },
     data: {
       seo: {
-        title: 'BlueRise Workforce — Building Stronger Workforces',
+        title: 'BlueRise Workforce — Workforce Management, Made Simpler',
         description:
-          'BlueRise Workforce is a unified workforce platform covering onboarding, payroll, benefits, HR and compliance, timekeeping, and workers’ compensation for employers and the people they employ.',
+          'BlueRise helps small and growing businesses hire, pay, support, and retain their workforce with connected tools for payroll, benefits, timekeeping, and employee support.',
       },
     },
   },

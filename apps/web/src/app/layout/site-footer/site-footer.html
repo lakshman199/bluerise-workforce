@@ -21,6 +21,21 @@
           </ul>
         </div>
       }
+
+      <div class="footer__column">
+        <h2 class="footer__heading">Connect</h2>
+        <ul>
+          <li>
+            <a routerLink="/contact">Contact Us</a>
+          </li>
+        </ul>
+        @if (hasSocial) {
+          <div class="footer__social">
+            <p class="footer__social-label">{{ connectLabel }}</p>
+            <br-social-links />
+          </div>
+        }
+      </div>
     </nav>
   </div>
 

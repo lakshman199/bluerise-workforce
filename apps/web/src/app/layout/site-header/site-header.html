@@ -1,7 +1,15 @@
 <div class="utility">
-  <div class="br-container utility__inner">
-    <p class="utility__motto">{{ motto }}</p>
-    <a class="utility__email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+  <div class="br-container utility__inner" [class.utility__inner--with-social]="hasSocial">
+    @if (hasSocial) {
+      <div class="utility__connect">
+        <p class="utility__label">{{ connectLabel }}</p>
+        <br-social-links />
+      </div>
+    }
+    <div class="utility__contact">
+      <a class="utility__email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+      <a class="utility__cta" routerLink="/contact">{{ utilityContactLabel }}</a>
+    </div>
   </div>
 </div>
 

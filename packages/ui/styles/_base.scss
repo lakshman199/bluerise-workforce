@@ -43,6 +43,14 @@ em.br-serif,
   color: inherit;
 }
 
+.br-heading-accent {
+  color: var(--br-color-primary);
+}
+
+.br-heading-accent--on-dark {
+  color: var(--br-blue-200);
+}
+
 h3 {
   font-size: var(--br-text-2xl);
   letter-spacing: var(--br-tracking-snug);
