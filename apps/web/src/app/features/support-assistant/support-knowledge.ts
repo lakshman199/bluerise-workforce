@@ -5,6 +5,8 @@
  * customers, live integrations, portals, certifications, or statistics here.
  */
 
+import { ABOUT_MISSION, ABOUT_VISION } from '../about/about-content';
+
 export interface SupportKnowledgeLink {
   readonly href: string;
   readonly label: string;
@@ -174,8 +176,7 @@ export const SUPPORT_KNOWLEDGE: readonly SupportKnowledgeEntry[] = [
   {
     id: 'mission',
     question: 'What is BlueRise’s mission?',
-    answer:
-      'The published mission is to empower individuals through meaningful employment opportunities, comprehensive employee support, and career development programs that safeguard and protect their future. The published vision is to become a globally recognized workforce organization dedicated to serving humanity through employment, inclusion, education, and opportunity.',
+    answer: `The published mission is to ${ABOUT_MISSION[0].toLowerCase()}${ABOUT_MISSION.slice(1)} The published vision is ${ABOUT_VISION[0].toLowerCase()}${ABOUT_VISION.slice(1)}`,
     keywords: ['mission', 'vision', 'purpose', 'talent meets purpose'],
     link: { href: '/about', label: 'About Us' },
   },
