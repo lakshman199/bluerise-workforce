@@ -1,43 +1,187 @@
 <article class="about">
   <header class="br-section about__hero">
     <div class="br-container about__hero-inner">
-      <p class="br-eyebrow">{{ eyebrow }}</p>
-      <h1 [innerHTML]="headlineHtml"></h1>
-      <p class="br-lead">{{ intro }}</p>
+      <div class="about__hero-copy">
+        <p class="br-eyebrow">{{ eyebrow }}</p>
+        <h1 class="about__hero-title" id="about-heading">
+          <span class="about__hero-title-lead">{{ headlineLead }}</span>
+          <span class="about__hero-title-accent">{{ headlineAccent }}</span>
+        </h1>
+        <p class="br-lead">{{ intro }}</p>
+        <div class="br-cluster about__hero-actions">
+          <a class="br-button br-button--primary br-button--lg" [href]="primaryHref" (click)="onPurposeCta($event)">
+            {{ primaryCta }}
+          </a>
+          <a class="br-button br-button--secondary br-button--lg" [routerLink]="secondaryHref">
+            {{ secondaryCta }}
+          </a>
+        </div>
+      </div>
+
+      <figure class="about__hero-visual">
+        <img
+          class="about__hero-image"
+          [src]="heroImage.src"
+          [alt]="heroImage.alt"
+          [attr.width]="heroImage.width"
+          [attr.height]="heroImage.height"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </figure>
     </div>
   </header>
 
-  <section class="br-section about__principles" aria-label="Mission and vision">
-    <div class="br-container about__principle-grid">
-      <br-principle-card [label]="missionLabel" [body]="mission" headingLevel="h2" />
-      <br-principle-card [label]="visionLabel" [body]="vision" headingLevel="h2" />
+  <section class="br-section about__why" id="why" aria-labelledby="about-why-heading">
+    <div class="br-container">
+      <header class="about__section-head">
+        <h2 id="about-why-heading">
+          {{ whyHeadlineLead }}
+          <span class="br-heading-accent">{{ whyHeadlineAccent }}</span>
+        </h2>
+      </header>
+      <div class="about__principle-grid">
+        <br-principle-card [label]="missionLabel" [body]="mission" headingLevel="h3" />
+        <br-principle-card [label]="visionLabel" [body]="vision" headingLevel="h3" />
+      </div>
     </div>
   </section>
 
   <section class="br-section br-section--sunken about__talent" aria-labelledby="about-talent">
-    <div class="br-container about__talent-inner">
-      <div class="about__talent-copy">
-        <p class="br-eyebrow">{{ talentHeading }}</p>
-        <h2 id="about-talent">{{ talentHeading }}</h2>
+    <div class="br-container">
+      <header class="about__section-head about__section-head--talent">
+        <h2 id="about-talent">
+          <span class="about__line">{{ talentHeadlineLead }}</span>
+          <span class="br-heading-accent">{{ talentHeadlineAccent }}</span>
+        </h2>
         <p class="br-lead">{{ talentIntro }}</p>
-      </div>
-      <br-talent-card [showHeading]="false" />
+      </header>
+
+      <ul class="about__ideas">
+        @for (item of talentIdeas; track item.id) {
+          <li class="about-idea">
+            <span class="about-idea__icon" aria-hidden="true">
+              @switch (item.icon) {
+                @case ('opportunity') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M4 19V5M4 19h16" stroke-linecap="round" />
+                    <path d="m8 14 3-3 3 2 5-6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                }
+                @case ('support') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                      d="M5 15.5V13a7 7 0 0 1 14 0v2.5"
+                      stroke-linecap="round"
+                    />
+                    <path d="M5 15.5h2.2A1.8 1.8 0 0 1 9 17.3V18a2 2 0 0 1-2 2H7" />
+                    <path d="M19 15.5h-2.2A1.8 1.8 0 0 0 15 17.3V18a2 2 0 0 0 2 2h0" />
+                  </svg>
+                }
+                @case ('partnership') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="8" cy="8" r="2.4" />
+                    <circle cx="16" cy="8" r="2.4" />
+                    <path
+                      d="M4.5 19c.4-2.2 2.3-3.6 4.5-3.6.8 0 1.6.2 2.3.6M13 15.4c.7-.4 1.5-.6 2.3-.6 2.2 0 4.1 1.4 4.5 3.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                }
+              }
+            </span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
     </div>
   </section>
 
-  <section class="br-section about__next" aria-labelledby="about-next">
-    <div class="br-container about__next-inner">
-      <h2 id="about-next">Continue exploring BlueRise Workforce</h2>
-      <p class="br-lead">
-        Read how inclusion shapes employment pathways, or reach the team to talk about workforce
-        support.
-      </p>
-      <div class="br-cluster about__actions">
-        <a class="br-button br-button--primary br-button--lg" routerLink="/inclusion">
-          Explore our inclusion commitment
-        </a>
-        <a class="br-button br-button--secondary br-button--lg" routerLink="/contact">
-          Contact BlueRise Workforce
+  <section class="br-section about__values" aria-labelledby="about-values-heading">
+    <div class="br-container">
+      <header class="about__section-head">
+        <h2 id="about-values-heading">{{ valuesHeadline }}</h2>
+      </header>
+      <ul class="about__values-grid">
+        @for (item of values; track item.id) {
+          <li class="about-value">
+            <span class="about-value__icon" aria-hidden="true">
+              @switch (item.icon) {
+                @case ('empowerment') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M12 20V6" stroke-linecap="round" />
+                    <path d="m7 11 5-5 5 5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M6 20h12" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('integrity') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                      d="M12 3 5 6.5v5.2c0 4.2 2.8 7.9 7 8.8 4.2-.9 7-4.6 7-8.8V6.5L12 3Z"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="m9.5 12 1.8 1.8 3.4-3.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                }
+                @case ('inclusion') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="8" cy="8" r="2.3" />
+                    <circle cx="16" cy="8" r="2.3" />
+                    <path
+                      d="M4.5 18c.5-2.3 2.4-3.7 4.5-3.7h.4M14.6 14.3h.4c2.1 0 4 1.4 4.5 3.7"
+                      stroke-linecap="round"
+                    />
+                    <path d="M9.8 14.6c.7-.4 1.5-.6 2.2-.6s1.5.2 2.2.6" stroke-linecap="round" />
+                  </svg>
+                }
+                @case ('compassion') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                      d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20Z"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                }
+                @case ('excellence') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                      d="m12 3.5 1.7 4.8h5l-4 3 1.6 4.9L12 13.4 7.7 16.2 9.3 11.3l-4-3h5L12 3.5Z"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                }
+                @case ('impact') {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="7.2" />
+                    <circle cx="12" cy="12" r="3.2" />
+                    <path d="M12 4.8v2.2M12 17v2.2M4.8 12h2.2M17 12h2.2" stroke-linecap="round" />
+                  </svg>
+                }
+              }
+            </span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="br-section about__close" aria-labelledby="about-close-heading">
+    <div class="br-container about__close-inner">
+      <h2 id="about-close-heading">
+        <span class="about__line">{{ closeHeadlineLead }}</span>
+        <span class="br-heading-accent">{{ closeHeadlineAccent }}</span>
+      </h2>
+      <p class="br-lead">{{ closeLead }}</p>
+      <div class="br-cluster about__close-actions">
+        <a class="br-button br-button--primary br-button--lg" [routerLink]="closeHref">
+          {{ closeCta }}
         </a>
       </div>
     </div>

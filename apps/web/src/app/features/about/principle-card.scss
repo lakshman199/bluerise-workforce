@@ -10,6 +10,26 @@
   border-radius: var(--br-radius-2xl);
   background: var(--br-color-surface);
   box-shadow: var(--br-shadow-xs);
+  transition:
+    transform var(--br-duration-base) var(--br-ease-out),
+    box-shadow var(--br-duration-base) var(--br-ease-out);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-3px);
+    box-shadow: var(--br-shadow-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .principle {
+    transition: none;
+
+    &:hover,
+    &:focus-within {
+      transform: none;
+    }
+  }
 }
 
 .principle h2,
