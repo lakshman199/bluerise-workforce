@@ -41,6 +41,7 @@
 }
 
 .about__hero {
+  overflow: visible;
   padding-block: clamp(2rem, 1.1rem + 3.4vw, 4.75rem) calc(var(--br-section-y) * 0.65);
   background:
     radial-gradient(ellipse 70% 55% at 92% 8%, rgb(217 232 255 / 70%), transparent 58%),
@@ -52,6 +53,7 @@
   display: grid;
   gap: var(--br-space-8);
   align-items: center;
+  overflow: visible;
 
   @include bp.from(bp.$bp-lg) {
     grid-template-columns: minmax(0, 0.5fr) minmax(0, 0.5fr);
@@ -104,8 +106,44 @@
   margin: 0;
   min-width: 0;
   width: 100%;
-  --about-float-y: 4px;
-  animation: about-visual-float 8s ease-in-out infinite alternate;
+  overflow: visible;
+  transform-origin: center center;
+  will-change: transform;
+  // Mobile: a few pixels only. Tablet and desktop restore more lift.
+  --about-float-x: 0px;
+  --about-float-x-end: 0px;
+  --about-float-y-start: 2px;
+  --about-float-y-mid: -3px;
+  --about-float-y-end: 2px;
+  --about-float-rot-start: 0deg;
+  --about-float-rot-mid: 0deg;
+  --about-float-rot-end: 0deg;
+  --about-float-scale: 1;
+  animation: about-visual-float 6.5s ease-in-out infinite alternate;
+
+  @include bp.from(bp.$bp-md) {
+    --about-float-x: 1px;
+    --about-float-x-end: -1px;
+    --about-float-y-start: 2px;
+    --about-float-y-mid: -5px;
+    --about-float-y-end: 2px;
+    --about-float-rot-start: -0.04deg;
+    --about-float-rot-mid: 0.06deg;
+    --about-float-rot-end: -0.02deg;
+    --about-float-scale: 1.002;
+  }
+
+  @include bp.from(bp.$bp-lg) {
+    --about-float-x: 2px;
+    --about-float-x-end: -1px;
+    --about-float-y-start: 3px;
+    --about-float-y-mid: -7px;
+    --about-float-y-end: 2px;
+    --about-float-rot-start: -0.08deg;
+    --about-float-rot-mid: 0.12deg;
+    --about-float-rot-end: -0.04deg;
+    --about-float-scale: 1.004;
+  }
 
   @include bp.until(bp.$bp-lg) {
     max-width: 40rem;
@@ -117,6 +155,7 @@
   display: block;
   width: 100%;
   height: auto;
+  max-width: 100%;
   border: 1px solid var(--br-color-border);
   border-radius: var(--br-radius-2xl);
   background: var(--br-color-surface-muted);
@@ -124,12 +163,19 @@
 }
 
 @keyframes about-visual-float {
-  from {
-    transform: translate3d(0, 0, 0);
+  0% {
+    transform: translate3d(0, var(--about-float-y-start), 0)
+      rotate(var(--about-float-rot-start)) scale(1);
   }
 
-  to {
-    transform: translate3d(0, calc(var(--about-float-y) * -1), 0);
+  50% {
+    transform: translate3d(var(--about-float-x), var(--about-float-y-mid), 0)
+      rotate(var(--about-float-rot-mid)) scale(var(--about-float-scale));
+  }
+
+  100% {
+    transform: translate3d(var(--about-float-x-end), var(--about-float-y-end), 0)
+      rotate(var(--about-float-rot-end)) scale(1);
   }
 }
 
@@ -284,6 +330,8 @@
 
   .about__hero-visual {
     animation: none;
+    will-change: auto;
+    transform: none;
   }
 
   .about-idea,
